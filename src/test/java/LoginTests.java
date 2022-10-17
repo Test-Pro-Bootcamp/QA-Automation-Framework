@@ -17,5 +17,7 @@ public class LoginTests {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
+
+
     }
 }
