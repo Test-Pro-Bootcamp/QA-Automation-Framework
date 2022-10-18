@@ -36,8 +36,10 @@ public class LoginTests {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
         String url = "https://bbb.testpro.io/";
+        String resgstatationURL = "https://bbb.testpro.io/registration.php";
         driver.get(url);
 
         WebElement registrationLink = driver.findElement(By.id("hel"));
@@ -51,8 +53,11 @@ public class LoginTests {
         registrationLink.click();
 
         Thread.sleep(5000);
-        driver.quit();
+        Thread.sleep(5000);
 
+        Assert.assertEquals(driver.getCurrentUrl(), resgstatationURL);
+
+        driver.quit();
     }
 
 }
