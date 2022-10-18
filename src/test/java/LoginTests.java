@@ -12,11 +12,6 @@ public class LoginTests {
     @Test
     public static void LoginEmptyEmailPasswordTest () throws InterruptedException {
 
-        // This is for Windows users
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            System.setProperty("webdriver.chrome.driver","chromedriver.exe");
-        }
-
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -50,10 +45,9 @@ public class LoginTests {
 //        email.sendKeys("laborde.chaanyah@gmail.com");
 //        password.click();
 //        password.sendKeys("te$t$tudent");
+        Thread.sleep(3000);
         registrationLink.click();
-
-        Thread.sleep(5000);
-        Thread.sleep(5000);
+        Thread.sleep(4000);
 
         Assert.assertEquals(driver.getCurrentUrl(), resgstatationURL);
 
