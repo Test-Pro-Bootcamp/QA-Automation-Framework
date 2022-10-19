@@ -59,6 +59,7 @@ public class HW15 {
             if (a.contains("Pluto")){
                 Boolean testResult = true;
                 Assert.assertTrue(testResult);
+                System.out.println("TEST SUCCESSFUL");
             }
         } finally {
             driver.quit();
