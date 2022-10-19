@@ -13,7 +13,7 @@ public class LoginTests {
     public static void LoginEmptyEmailPasswordTest () {
 
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));}
 
 //    @Test
 //    public static void LoginInalidEmailValidPasswordTest () {
@@ -40,7 +40,7 @@ public class LoginTests {
 //
 //    }
 
-    @Test
+  /*  @Test
     public static void LoginEmptyEmailPasswordTest () throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         try {
@@ -152,5 +152,5 @@ public class LoginTests {
 //        }
 //
 //    }
-
+*/
 }
