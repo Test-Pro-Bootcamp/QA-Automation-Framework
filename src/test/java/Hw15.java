@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class Hw15 {
     @Test
-    public static void Search() {
+    public static void Search() throws InterruptedException {
         String url = "https://bbb.testpro.io/";
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -31,8 +31,11 @@ public class Hw15 {
         searchField.click();
         searchField.sendKeys("Pluto");
 
-        WebElement song = driver.findElement(By.cssSelector("a[href = '#!/artist/3']"));
+        WebElement song = driver.findElement(By.cssSelector("[class='songs']>ul>article>span:nth-child(2)"));
         Assert.assertTrue(song.isDisplayed());
+
+        Thread.sleep(3000);
+        driver.quit();
     }
 
 
