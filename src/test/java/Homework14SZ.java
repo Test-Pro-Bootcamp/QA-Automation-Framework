@@ -18,14 +18,9 @@ public class Homework14SZ {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
 
-        WebElement registrationLink = driver.findElement(By.id("hel"));
-        registrationLink.click();
+//        WebElement registrationLink = driver.findElement(By.id("hel")) ;
+//        registrationLink.click();
 
-        WebElement registrationLink = driver.findElement(By.id("hel"));
-        registrationLink.click();
-
-        WebElement registrationLink = driver.findElement(By.id("hel"));
-        registrationLink.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
