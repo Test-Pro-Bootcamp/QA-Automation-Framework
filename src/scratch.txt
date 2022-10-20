@@ -1,0 +1,22 @@
+class Scratch {
+    public static void main(String[] args) {
+        file2.code
+        login(1,2,3);
+        // code6
+        // code7
+        // code8
+    }
+
+    public static void login(parameter1,par2,par3){
+        // code4
+        // code5
+    }
+}
+----------------
+file2:
+
+class newFile {
+    // code1
+    // code2
+    // code3
+}
