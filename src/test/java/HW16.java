@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,30 +8,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class HW15 {
+public class HW16 {
 
-//    @Test
-//    public static void HW15 () throws InterruptedException {
-//        WebDriver driver = new ChromeDriver();
-//        try {
-//            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//            String url ="https://bbb.testpro.io/";
-//            String registrationURL = "https://bbb.testpro.io/registration.php";
-//            driver.get(url);
-//            WebElement registrationField = driver.findElement(By.id("hel"));
-//            registrationField.click();
-//            Thread.sleep(2000);
-//            Assert.assertEquals(driver.getCurrentUrl(),registrationURL);
-//
-//
-//
-//        }
-//        finally {
-//            driver.quit();
-//
-//        }
-
-//    }
     @Test
     public static void HomeWork15 () throws InterruptedException {
         WebDriver driver = new ChromeDriver();
@@ -50,12 +29,23 @@ public class HW15 {
             WebElement avatarElement = driver.findElement(By.cssSelector("[alt='Avatar of student']"));
             Assert.assertTrue(avatarElement.isDisplayed());
 
-            WebElement searchArea = driver.findElement(By.cssSelector("[type='search']"));
-            searchArea.click();
-            searchArea.sendKeys("Pluto");
+            WebElement newPlayList = driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']"));
+            newPlayList.click();
+            Thread.sleep(3000);
+            WebElement createPlayList = driver.findElement(By.xpath("//*[text()='New Playlist']"));
+            createPlayList.click();
+            Thread.sleep(3000);
+            WebElement inputPlayList = driver.findElement(By.cssSelector("[placeholder='↵ to save']"));
+            inputPlayList.click();
+            inputPlayList.sendKeys("super");
+            inputPlayList.sendKeys(Keys.RETURN);
+            WebElement createdPlayList = driver.findElement(By.xpath("//*[@id=\"playlists\"]/ul/li[3]/a"));
+            Assert.assertTrue(createdPlayList.isDisplayed());
+            Thread.sleep(3000);
 
-            WebElement searchResult = driver.findElement(By.cssSelector("ul>article"));
-            Assert.assertTrue(searchResult.getText().contains("Pluto"));
+//
+//            WebElement searchResult = driver.findElement(By.cssSelector("ul>article"));
+//            Assert.assertTrue(searchResult.getText().contains("Pluto"));
 //            String a = searchResult.getText();
 //            if (a.contains("Pluto")){
 //                Boolean testResult = true;
@@ -68,4 +58,6 @@ public class HW15 {
         }
 
     }
+
+
 }
