@@ -26,6 +26,7 @@ public class HW15_Nozima {
         String email = "nozishka86@gmail.com";
         String password = "te$t$tudent";
         String song = "Pluto";
+        String expectedSong = "Pluto Song";
 
         WebDriver chrome = new ChromeDriver();
 
@@ -51,8 +52,13 @@ public class HW15_Nozima {
         searchField.click();
         searchField.sendKeys(song);
 
-        WebElement plutoSong = chrome.findElement(By.xpath("//span[contains(text(), 'Pluto')]"));
-        Assert.assertTrue(plutoSong.isDisplayed());
+        WebElement actualSong = chrome.findElement(By.cssSelector("ul>article"));
+        String songName = actualSong.getText();
+        System.out.println(expectedSong + " in search results is: "+ songName);
+
+//        WebElement plutoSong = chrome.findElement(By.xpath("//span[contains(text(), 'Pluto')]"));
+//        Assert.assertTrue(plutoSong.isDisplayed());
+
         Thread.sleep(5000);
 
         chrome.quit();
