@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests {
+public class class1 {
+
 
     @Test
     public static void LoginValidEmailValidPasswordTest() {
@@ -33,7 +34,7 @@ public class LoginTests {
             WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
         }
-            finally {
+        finally {
             driver.quit();
         }
     }
@@ -116,26 +117,4 @@ public class LoginTests {
             driver.quit();
         }
     }
-
-    public static class Registration{
-        @Test
-        public static void registrationNavigation() {
-
-            WebDriver driver = new ChromeDriver();
-            try {
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                String url = "https://bbb.testpro.io/";
-                driver.get(url);
-
-                WebElement regLink = driver.findElement(By.id("hel"));
-                regLink.click();
-
-                WebElement regbutton = driver.findElement(By.cssSelector("[type='submit']"));
-                Assert.assertTrue(regbutton.isDisplayed());
-            }
-            finally{
-                driver.quit();
-            }
-        }
-            }
 }
