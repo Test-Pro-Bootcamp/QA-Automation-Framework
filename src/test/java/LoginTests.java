@@ -96,7 +96,7 @@ public class LoginTests {
         }
     }
     @Test
-    public static void LoginValidEmailEmptyPasswordTest() {
+    public static void LoginEmptyPasswordTest() {
 
         WebDriver driver = new ChromeDriver();
         try {
@@ -108,7 +108,7 @@ public class LoginTests {
             WebElement searchBar = driver.findElement(By.cssSelector("[type='search']"));
             searchBar.click();
             searchBar.sendKeys("Dark Days");
-            
+
 
             WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
