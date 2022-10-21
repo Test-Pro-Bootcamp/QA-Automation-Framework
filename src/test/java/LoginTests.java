@@ -138,4 +138,38 @@ public class LoginTests {
             }
         }
             }
+
+    @Test
+    public static void search() throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            String url = "https://bbb.testpro.io/";
+            driver.get(url);
+
+            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+            emailField.click();
+            emailField.sendKeys("demo@class.com");
+
+            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+            passwordField.click();
+            passwordField.sendKeys("te$t$tudent");
+
+            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+            submitButton.click();
+
+            WebElement searchButton = driver.findElement(By.cssSelector("[type='search']"));
+            searchButton .click();
+            searchButton.sendKeys("Pluto");
+
+            WebElement avatarIcon = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
+            Assert.assertTrue(avatarIcon.isDisplayed());
+        }
+        finally {
+            Thread.sleep(5000);
+            driver.quit();
+        }
+    }
 }
