@@ -9,10 +9,10 @@ import java.time.Duration;
 
 public class Hw14 {
     @Test
-    public static void Homework14Solution () throws InterruptedException {
+    public static void Homework14() throws InterruptedException {
 
         String url = "https://bbb.testpro.io/";
-        String registrationURL = "https://bbb.testpro.io/registration.php";
+        String registrationLink = "https://bbb.testpro.io/registration.php";
 
 
         WebDriver driver = new ChromeDriver();
@@ -28,7 +28,7 @@ public class Hw14 {
         Thread.sleep(7000);
 
 
-        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
+        Assert.assertEquals(driver.getCurrentUrl(), registrationLink);
         driver.quit();
     }
 
