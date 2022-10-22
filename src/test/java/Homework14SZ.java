@@ -17,6 +17,7 @@ public class Homework14SZ {
 
         String url = "https://bbb.testpro.io/";
         String registrationURL = "https://bbb.testpro.io/registration.php";
+<<<<<<< Updated upstream
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(url);
@@ -29,6 +30,17 @@ public class Homework14SZ {
 
         Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
         Thread.sleep(3000);
+=======
+        driver.get(url);
+        driver.get(registrationURL);
+
+       WebElement registrationLink = driver.findElement(By.id("hel")) ;
+       registrationLink.click();
+
+
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
+>>>>>>> Stashed changes
         driver.quit();
 
     }
