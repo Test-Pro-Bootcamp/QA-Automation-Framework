@@ -39,7 +39,7 @@ public class Homework14SZ {
 
         Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
 
-        driver.quit();
+        driver.quit ();
 
     }
 
