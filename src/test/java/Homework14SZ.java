@@ -10,19 +10,25 @@ import java.time.Duration;
 
 public class Homework14SZ {
     @Test
-    public static void registrationNavigationTest() {
+    public static void registrationNavigationTest() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
         String url = "https://bbb.testpro.io/";
+        String registrationURL = "https://bbb.testpro.io/registration.php";
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(url);
+        driver.manage().window().maximize();
 
-//        WebElement registrationLink = driver.findElement(By.id("hel")) ;
-//        registrationLink.click();
+       WebElement registrationLink = driver.findElement(By.id("hel")) ;
+       registrationLink.click();
+       Thread.sleep(2000);
 
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
+        Thread.sleep(3000);
         driver.quit();
 
     }
