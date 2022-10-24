@@ -43,10 +43,3 @@ public class HW17_Nozima extends BaseTest {
     }
 
 }
-
-//Create a test case addSongToPlaylist() using @Test annotations
-//and the helper/reusable methods we created
-//Navigate to "https://bbb.testpro.io/"
-//Log in with your credentials
-//Add a song to a playlist
-//Validate that there is a song added

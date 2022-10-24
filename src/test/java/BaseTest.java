@@ -14,7 +14,6 @@ public class BaseTest {
     static WebDriver driver;
     static String newPlaylistName = "Nozima's Songs";
 
-
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
