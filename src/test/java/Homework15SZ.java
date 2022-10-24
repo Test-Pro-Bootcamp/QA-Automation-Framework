@@ -20,7 +20,7 @@ import java.time.Duration;
 //        Copy and paste the link of the pull request (or your branch) to the field below, so we can check your homework
 public class Homework15SZ {
     @Test
-    public static void Searchsong () throws InterruptedException {
+    public static void Searchsong() throws InterruptedException {
 
         // open Chrome browser
         WebDriver driver = new ChromeDriver();
