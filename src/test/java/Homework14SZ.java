@@ -32,7 +32,7 @@ public class Homework14SZ {
         Thread.sleep(3000);
 
         driver.get(url);
-        driver.get(registrationURL);
+        driver.get (registrationURL);
 
 
 
