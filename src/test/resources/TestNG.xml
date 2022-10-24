@@ -5,10 +5,19 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
+<<<<<<< Updated upstream
             <class name="ChangeUsernameTests"/>
 <!--            <class name="BaseTest"/>-->
 <!--            <class name="LoginTests"/>-->
 <!--            <class name="RegistrationTests"/>-->
+=======
+            <class name="LoginTests"/>
+            <class name="BaseTest"/>
+            <class name="HW14"/>
+            <class name="HW15"/>
+            <class name="HW16"/>
+            <class name="HW17"></class>
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
