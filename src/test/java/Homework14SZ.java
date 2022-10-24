@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class Homework14SZ {
     @Test
-    public static void registrationNavigationTest() throws InterruptedException {
+    public static void registrationNavigationTest () throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
 
