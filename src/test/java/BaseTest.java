@@ -11,9 +11,10 @@ import java.time.Duration;
 
 public class BaseTest {
 
+
     static WebDriver driver;
     static String newPlaylistName = "Nozima's Songs";
-
+    
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
@@ -21,6 +22,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         }
     }
+
 
     public static void clickSubmitBtn() {
             WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
@@ -66,5 +68,4 @@ public class BaseTest {
     public void closeBrowser(){
         driver.quit();
     }
-
-}
+    }
