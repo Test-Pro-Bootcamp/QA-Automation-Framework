@@ -32,5 +32,8 @@ public class Homework17 extends BaseTest{
     private void clickAllSongs() {
         WebElement clickAllSongsBtn = driver.findElement(By.xpath("//a[@class='songs']"));
         clickAllSongsBtn.click();
-    }
-}
+
+
+
+
+    
