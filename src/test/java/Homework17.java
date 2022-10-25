@@ -1,65 +1,39 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework17 extends BaseTest {
-
-
-
+public class Homework17 extends BaseTest{
     @Test
-    public void addSongToPlaylist(){
-        //login
-        provideEmail("demo@class.com");
+   public void addSongToPlaylist() throws InterruptedException{
+        provideEmail("salma.ayad.87@gmail.com");
         providePassword();
         clickSubmitBtn();
-        //add a song to the playlist
-        clickViewAllBtn();
-        String getSongTitle = getSongTitleTxt();;
-        clickSongFromList();
-        clickAddToPlaylist();
-        addToSuperPlaylist();
-        clickOnSuperPlaylist();
+        clickAllSongs();
 
-        //Verify the song
-        String songFromSuperPlaylist = getSongTitleFromSuperPlaylist();
-        Assert.assertEquals(songFromSuperPlaylist, getSongTitle);
+        WebElement chooseSong = driver.findElement(By.xpath("//td[text()='Mid-Air Machine - If It_s All I Do']"));
+        chooseSong.click();
+        WebElement addToBtn = driver. findElement(By.cssSelector("button.btn-add-to"));
+        addToBtn.click();
+        Thread.sleep(3000);
+
+        WebElement playlistToAddSong = driver.findElement(By.xpath("//li[@class='favorites']"));
+        playlistToAddSong.click();
+        Thread.sleep(2000);
+       WebElement PlayList = driver.findElement(By.cssSelector("li.playlist.favorites"));
+       PlayList.click();
+
+       WebElement confirmSongIsAdded = driver.findElement(By.cssSelector("#favoritesWrapper > div"));
+       Assert.assertTrue(confirmSongIsAdded.getText().contains("Mid-Air Machine"));
     }
 
-    private String getSongTitleFromSuperPlaylist() {
 
-        WebElement superPlaylistSong = driver.findElement(By.xpath("//section[@id='playlistWrapper']//tr[@class='song-item']//td[@class='title']"));
-        return superPlaylistSong.getText();
-    }
+    private void clickAllSongs() {
+        WebElement clickAllSongsBtn = driver.findElement(By.xpath("//a[@class='songs']"));
+        clickAllSongsBtn.click();
 
-    private void clickOnSuperPlaylist() {
-        WebElement superPlaylistLink = driver.findElement(By.xpath("//a[text()='super']"));
-        superPlaylistLink.click();
-    }
 
-    private void addToSuperPlaylist() {
-        WebElement superPlaylist = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//li[contains(text(), 'super')]"));
-        superPlaylist.click();
-    }
 
-    private String getSongTitleTxt() {
-        WebElement getTitleTxt = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//tr[@class='song-item']//td[@class='title']"));
-        return getTitleTxt.getText();
-    }
 
-    private void clickAddToPlaylist() {
-        WebElement addToPlaylist = driver.findElement(By.xpath("//button[contains(@title, 'Add selected songs')]"));
-        addToPlaylist.click();
-    }
-
-    private void clickSongFromList() {
-        WebElement songList = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//tr[@class='song-item']"));
-        songList.click();
-
-    }
-
-    private void clickViewAllBtn() {
-        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-testid='home-view-all-recently-played-btn']"));
-        viewAllBtn.click();
-    }
-}
+    
