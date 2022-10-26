@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNG">
+
+    <test name="Testing PlaySong" preserve-order="false">
+        <classes>
+
+            <class name="HOMEWORK_18">
+                <methods>
+                    <include name="playSong" />
+                </methods>
+            </class>
+            <class name="BaseTest"/>
+
+        </classes>
+    </test>
+</suite>
+
+
+        <!--<class name="RegistrationTests"/>-->
+<!--<class name="ChangeUsernameTests"/>-->
