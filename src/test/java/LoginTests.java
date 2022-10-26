@@ -54,21 +54,6 @@ public class LoginTests extends BaseTest{
     }
 
 
-    private void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys(email);
-    }
-    private void providePassword() {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-    }
-    private void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
-    }
-
     @Test (enabled = false)
     public void LoginValidEmailEmptyPasswordTest () {
         WebDriver driver;
