@@ -5,11 +5,8 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="Homework17">
-                <methods>
-                    <include name="addSongToPlaylist" />
-                </methods>
-            </class>
+            <class name="LoginTests" />
+            <class name="RegistrationTests"/>
         </classes>
     </test>
 </suite>

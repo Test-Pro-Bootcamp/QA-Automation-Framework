@@ -39,6 +39,7 @@ public class Homework17 extends BaseTest {
     private void clickAllSongs() {
         WebElement clickAllSongsBtn = driver.findElement(By.xpath("//a[@class='songs']"));
         clickAllSongsBtn.click();
+
     }
 
     @Test
@@ -59,3 +60,4 @@ public class Homework17 extends BaseTest {
         Assert.assertTrue(confirmSongIsAdded.getText().contains("Mid-Air Machine"));
     }
 }
+
