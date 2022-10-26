@@ -8,7 +8,7 @@
             <class name="LoginTests"/>
 <!--            <class name="BaseTest"/>-->
             <class name="HomeWork16"/>
-            <class name="PlaySongTest"/>
+            <class name="HW18"/>
         </classes>
     </test>
 </suite>
