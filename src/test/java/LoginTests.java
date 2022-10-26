@@ -7,74 +7,69 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests {
-
-    @Test
+public class LoginTests extends BaseTest{
+    
+    
+    
+    @Test (priority = 0)
     public void LoginEmptyEmailPasswordTest () {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+
     }
 
-    @Test
+    @Test (priority = 1)
     public void LoginValidEmailValidPasswordTest ()  {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        provideEmail("demo@class.com");
+        providePassword();
+        clickSubmitBtn();
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys("dem@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
-
-        WebElement avatarIcon = driver.findElement(By.cssSelector("[alt='Avatar of student']"));
+        WebElement avatarIcon = driver.findElement(By.xpath("//img[contains(@alt,'Avatar of')]"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 
-        driver.quit();
     }
 
-    @Test
+    @Test (priority = 2)
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //create common method
+        provideEmail("dem@class.com");
+        providePassword();
+        clickSubmitBtn();
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys("dem@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
+//        This on goes to method
+//        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+//        emailField.click();
+//        emailField.sendKeys("dem@class.com");
+//
+//        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+//        passwordField.click();
+//        passwordField.sendKeys("te$t$tudent");
+//
+//        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+//        submitButton.click();
 
         // Vd
         Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        driver.quit();
     }
 
-    @Test
+
+    private void provideEmail(String email) {
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        emailField.click();
+        emailField.sendKeys(email);
+    }
+    private void providePassword() {
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        passwordField.click();
+        passwordField.sendKeys("te$t$tudent");
+    }
+    private void clickSubmitBtn() {
+        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        submitButton.click();
+    }
+
+    @Test (enabled = false)
     public void LoginValidEmailEmptyPasswordTest () {
         WebDriver driver;
         driver = new ChromeDriver();
@@ -99,7 +94,7 @@ public class LoginTests {
         driver.quit();
     }
 
-    @Test
+    @Test (enabled = false)
     public void SwitchToSongsMenu () throws InterruptedException {
         WebDriver driver;
         driver = new ChromeDriver();
@@ -130,7 +125,7 @@ public class LoginTests {
         driver.quit();
     }
 
-    @Test
+    @Test (enabled = false)
     public void SearchSong () throws InterruptedException {
         WebDriver driver;
         driver = new ChromeDriver();
