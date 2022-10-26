@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.time.Duration;
 
-public class BaseTest {
+public class  BaseTest {
 
     WebDriver driver;
     String url;
