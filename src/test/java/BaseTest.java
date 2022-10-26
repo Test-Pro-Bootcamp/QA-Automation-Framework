@@ -67,4 +67,29 @@ public class BaseTest {
         driver.quit();
     }
 
+    protected static void goToMyPlaylist() {
+        WebElement nozimaPlaylist = driver.findElement(By.xpath("//a[contains(text(),'Nozima')]"));
+        nozimaPlaylist.click();
+    }
+
+    protected static void selectMyPlaylist() {
+        WebElement myPlaylist = driver.findElement(By.xpath("//li[@class='playlist']"));
+        myPlaylist.click();
+    }
+
+    protected static void clickAddToBtn() {
+        WebElement addToBtn = driver.findElement(By.xpath("//button[@title='Add selected songs to…']"));
+        addToBtn.click();
+    }
+
+    protected static void clickSong() {
+        WebElement song = driver.findElement(By.xpath("//tr[@class='song-item']//td[contains(text(),'a Beat')]"));
+        song.click();
+    }
+
+    protected static void clickAllSongsLink() {
+        WebElement allSongs = driver.findElement(By.xpath("//a[text()='All Songs']"));
+        allSongs.click();
+        allSongs.click();
+    }
 }
