@@ -12,7 +12,6 @@ public class BaseTest {
 
     WebDriver driver;
     String url;
-
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
@@ -21,10 +20,10 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod
+  /*//  @AfterMethod
     public void teadDownBrowser() {
         driver.quit();
-    }
+    }*/
 
     @BeforeMethod
     public void launchBrowser() {
@@ -34,22 +33,28 @@ public class BaseTest {
         url = "https://bbb.testpro.io/";
         driver.get(url);
     }
+   /* @AfterMethod
+    public void tearDownBrowser() {
 
-    public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
-    }
-
+        driver.quit();
+    }*/
     public void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
-        emailField.sendKeys(email);
+        emailField.sendKeys("nargiza10041@gmail.com");
     }
-
     public void providePassword() {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys("te$t$tudent");
-
     }
+    public void clickSubmitBtn() throws InterruptedException{
+        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        submitButton.click();
+        Thread.sleep(2000);
+    }
+
+
+
+
 }
