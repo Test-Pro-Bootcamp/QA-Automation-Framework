@@ -1,65 +1,61 @@
-import org.openqa.selenium.By;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Homework17 extends BaseTest {
-
-
+    String signIn = "nargiza10041@gmail.com";
 
     @Test
-    public void addSongToPlaylist(){
-        //login
-        provideEmail("demo@class.com");
+    public void addSongToPlaylist() throws InterruptedException {
+        launchBrowser();
+        provideEmail(signIn);
         providePassword();
         clickSubmitBtn();
-        //add a song to the playlist
-        clickViewAllBtn();
-        String getSongTitle = getSongTitleTxt();;
-        clickSongFromList();
-        clickAddToPlaylist();
-        addToSuperPlaylist();
-        clickOnSuperPlaylist();
-
-        //Verify the song
-        String songFromSuperPlaylist = getSongTitleFromSuperPlaylist();
-        Assert.assertEquals(songFromSuperPlaylist, getSongTitle);
+        addNewSong();
+        selectSong();
+        addToButton();
+        addtoMyPlayslist();
+        clickOnNargizaPlaylist();
     }
 
-    private String getSongTitleFromSuperPlaylist() {
-
-        WebElement superPlaylistSong = driver.findElement(By.xpath("//section[@id='playlistWrapper']//tr[@class='song-item']//td[@class='title']"));
-        return superPlaylistSong.getText();
+    public void addNewSong() throws InterruptedException {
+        WebElement viewAllbutton = driver.findElement(By.xpath("//*[@data-testid ='home-view-all-recently-played-btn']"));
+        viewAllbutton.click();
+        Thread.sleep(2000);
     }
 
-    private void clickOnSuperPlaylist() {
-        WebElement superPlaylistLink = driver.findElement(By.xpath("//a[text()='super']"));
-        superPlaylistLink.click();
+    public void selectSong() throws InterruptedException {
+        WebElement songSelection = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//table[@class ='items']"));
+        songSelection.click();
+        Thread.sleep(2000);
     }
-
-    private void addToSuperPlaylist() {
-        WebElement superPlaylist = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//li[contains(text(), 'super')]"));
-        superPlaylist.click();
+    public void addToButton() throws InterruptedException{
+        WebElement addingButton = driver.findElement(By.xpath("//button[@class ='btn-add-to']"));
+        addingButton.click();
+        Thread.sleep(2000);
     }
-
-    private String getSongTitleTxt() {
-        WebElement getTitleTxt = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//tr[@class='song-item']//td[@class='title']"));
-        return getTitleTxt.getText();
+    public void addtoMyPlayslist() throws InterruptedException {
+        WebElement myPlaylistSelect = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//li[contains(text(),'Nargiza')]"));
+        myPlaylistSelect.click();
+        Thread.sleep(2000);
     }
-
-    private void clickAddToPlaylist() {
-        WebElement addToPlaylist = driver.findElement(By.xpath("//button[contains(@title, 'Add selected songs')]"));
-        addToPlaylist.click();
+    public void clickOnNargizaPlaylist() throws InterruptedException {
+        WebElement openPlaylist = driver.findElement(By.xpath("//a[text() ='Nargiza']"));
+        openPlaylist.click();
+        Thread.sleep(2000);
     }
+   }
 
-    private void clickSongFromList() {
-        WebElement songList = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//tr[@class='song-item']"));
-        songList.click();
 
-    }
 
-    private void clickViewAllBtn() {
-        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-testid='home-view-all-recently-played-btn']"));
-        viewAllBtn.click();
-    }
-}
+
+
+
+
