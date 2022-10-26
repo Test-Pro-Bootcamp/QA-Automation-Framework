@@ -14,9 +14,9 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test(priority = 1)
-    public void LoginValidEmailValidPasswordTest () {
 
+    @Test(priority = 1)
+    public void LoginValidEmailValidPasswordTest () throws InterruptedException {
         provideEmail("dem@class.com");
         providePassword();
         clickSubmitBtn();
@@ -27,6 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test(priority = 2)
+
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {
         provideEmail("dem@class.com");
         providePassword();
