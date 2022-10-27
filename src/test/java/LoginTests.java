@@ -11,13 +11,13 @@ public class LoginTests extends BaseTest{
     
 
     
-    @Test (enabled = false,priority = 0)
+    @Test (priority = 0)
     public void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
 
-    @Test (enabled = false,priority = 1)
+    @Test (priority = 1)
     public void LoginValidEmailValidPasswordTest ()  {
         provideEmail("demo@class.com");
         providePassword();
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest{
 
     }
 
-    @Test (enabled = false,priority = 2)
+    @Test (priority = 2)
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {
         //create common method
         provideEmail("dem@class.com");
