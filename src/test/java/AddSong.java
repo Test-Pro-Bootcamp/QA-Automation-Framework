@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 
@@ -16,7 +18,20 @@ public class AddSong extends BaseTest{
     @Test
     public void AddSongToPlaylistTest()throws InterruptedException{
 
+        provideEmail("demo@class.com");
+        providePassword();
+        clickSubmitBtn();
 
+        WebElement allSongsBank= driver.findElement(By.xpath("//a[@class='songs active']"));
+        allSongsBank.click();
+
+        WebElement pickTitleSong = driver.findElement(By.xpath("//tr[@class='song-item selected']//td[@class='title']"));
+        pickTitleSong.click();
+
+        WebElement addButton =driver.findElement(By.xpath("//button[@class='btn-add-to']"));
+        addButton.click();
+
+        WebElement
 
        Thread.sleep(5000);
     }
