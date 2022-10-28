@@ -7,7 +7,6 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class BaseTest {
-
     WebDriver driver;
     String url;
 
@@ -22,17 +21,16 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"baseURL"})
     public void launchBrowser(String baseURL) {
-
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = baseURL;
         driver.get(url);
     }
 
-    @AfterMethod
+  /*  @AfterMethod
     public void teadDownBrowser() {
         driver.quit();
-    }
+    }*/
 
     public void clickSubmitBtn() {
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
@@ -53,12 +51,18 @@ public class BaseTest {
     }
 
     @DataProvider(name="invalidCredentials")
-    public static Object[][] getCredentials(){
+    public static Object[][] getCredentials() {
 
-        return new Object[][] {
+        return new Object[][]{
                 {"invalid@class.com", "invalidPass"},
                 {"d@class.com", ""},
                 {"", ""}
+        };
+    }
+    @DataProvider(name = "loginData")
+    public static Object[][] getLoginCredentials() {
+        return new Object[][]{
+                {"Nargiza10041@gmail.com", "te$t$tudent"}
         };
     }
 }
