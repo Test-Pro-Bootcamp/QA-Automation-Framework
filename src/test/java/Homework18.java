@@ -15,9 +15,16 @@ public class Homework18 extends BaseTest{
        clickAllSongs();
        DoubleClickSongToPlay();
        //Validate the song is playing
-       WebElement songBarSelector = driver.findElement(By.xpath("//img[@alt='Sound bars']"));
-       Assert.assertTrue(songBarSelector.isDisplayed());
+       AssertSongIsPlaying();
+
+
    }
+
+    private void AssertSongIsPlaying() {
+        WebElement songBarSelector = driver.findElement(By.xpath("//img[@alt='Sound bars']"));
+        Assert.assertTrue(songBarSelector.isDisplayed());
+
+    }
 
 
     private void DoubleClickSongToPlay() {
