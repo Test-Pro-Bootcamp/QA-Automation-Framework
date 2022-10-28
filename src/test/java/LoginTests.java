@@ -123,8 +123,6 @@ public class LoginTests extends BaseTest {
         //Assert.assertTrue(driver.findElement().isDisplayed());
         Thread.sleep(5000);
 
-
-        url = "https://bbb.testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
