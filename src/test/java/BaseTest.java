@@ -46,21 +46,5 @@ public class BaseTest {
         WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
         loginButton.click();
     }
-    public void playASong() throws InterruptedException {
-
-        WebElement nextBtn = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        nextBtn.click();
-        Thread.sleep(3000);
-
-
-        WebElement playPauseBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-        playPauseBtn.click();
-        Thread.sleep(3000);
-
-        WebElement visualizer = driver.findElement(By.xpath
-                ("//button[@title='Click for a marvelous visualizer!']"));
-        Assert.assertTrue(visualizer.isDisplayed());
-    }
-
     }
 
