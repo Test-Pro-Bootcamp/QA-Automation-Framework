@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class ChangeUserNameTest extends BaseTest {
 
-    @Test(priority = 1, description = "changing user name")
+    @Test(enabled = false, priority = 1, description = "changing user name")
     public void changeUserNameVerifyTheChange() throws InterruptedException {
     
         provideEmail("demo@class.com");
