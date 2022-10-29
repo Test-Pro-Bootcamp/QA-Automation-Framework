@@ -5,7 +5,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 import javax.swing.*;
 
 import static sun.security.jgss.GSSUtil.login;
@@ -31,23 +30,17 @@ import static sun.security.jgss.GSSUtil.login;
 
     public void AddSongToPlaylistTest() throws InterruptedException {
         //log in
-        login();
-        // choose a song to add in playlist
-        String songTitle = "Lobo Loco";
-        selectSong(songTitle);
-        // add the song in play list
-        addSong();
-        // verify is song is added in Play list
-        Assert.assertTrue(isSongAdded(songTitle), "Is selected song");
-
-        Thread.sleep(1000);
-    }
-
-
-    public void login() throws InterruptedException {
         provideEmail("demo@class.com");
         providePassword();
         clickSubmitBtn();
+        //add a song to playlist
+        addingNewSong();
+    }
+
+    private void addingNewSong() {
+        WebElement viewAllButton = driver.findElement(By.xpath("//button[@data-testid='home-view-all-recently-played-btn']" ));
+        viewAllButton.click();
+
     }
 
     public void selectSong(String songTitle) throws InterruptedException {
