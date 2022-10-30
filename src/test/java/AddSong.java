@@ -5,9 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
 
-import static sun.security.jgss.GSSUtil.login;
 
 // following solution
 //        Create a new file Homework17.java file with @Test annotation in IntelliJ IDEA
@@ -38,9 +36,50 @@ import static sun.security.jgss.GSSUtil.login;
     }
 
     private void addingNewSong() {
+        clickViewAllCBtn();
+        String getSongTitle = getSongTitleTxt();
+        clickSongList();
+        clickAddToPlayList();
+        addToSuperPlaylist();
+        clickOnSuperPlaylist();
+        getSongTitleFromSuperPlaylist();
+        String songFromSuperPlaylist  = getSongTitleFromSuperPlaylist();
+        Assert.assertEquals(songFromSuperPlaylist.getSongTitle );
+    }
+
+    private String getSongTitleFromSuperPlaylist(){
+        WebElement superPlaylistSong = driver.findElement(By.xpath("//section [@id=\"playlistWrapper\"] //td[@class='title']" ));
+         return superPlaylistSong.getText() ;
+    }
+
+    private void clickOnSuperPlaylist() {
+        WebElement superPlaylistLink =driver.findElement(By.xpath("//section [@id=\"playlistWrapper\"] //td[@class='title']"));
+    }
+
+    private void addToSuperPlaylist() {
+        WebElement superPlaylist = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//li[contains(text(),'super')]"));
+        superPlaylist.click();
+    }
+
+    private String getSongTitleFromSuperPlaylist() {
+        WebElement getTitleTxt  =driver.findElement(By.xpath("//section[@ id='recentlyPlayedWrapper']//tr[@class= 'song-item']//td[@class='title']"));
+        return getTitleTxt.getText();
+    }
+
+    private void clickAddToPlayList() {
         WebElement viewAllButton = driver.findElement(By.xpath("//button[@data-testid='home-view-all-recently-played-btn']" ));
         viewAllButton.click();
 
+    }
+
+    private void clickSongList() {
+        WebElement songList = driver.findElement(By.xpath("//section[@ id='recentlyPlayedWrapper']//tr[@class= 'song-item']"));
+        songList.click();
+    }
+
+    private void clickViewAllCBtn() {
+        WebElement addToPlaylist = driver.findElement(By.xpath("//button[contains(@title. 'Add selected songs ')]"));
+        addToPlaylist.click();
     }
 
     public void selectSong(String songTitle) throws InterruptedException {
@@ -60,7 +99,7 @@ import static sun.security.jgss.GSSUtil.login;
 
         action.moveToElement(driver.findElement(By.xpath("//ul[@class ='menu submenu menu-add-to']/li[@class='playlist']"))).perform();
         action.click(driver.findElement(By.xpath("//ul[@class='menu sub menu menu-add-to']/li[@class='playlist']"))).perform();
-
+        Thread.sleep(2000);
     }
 
     public boolean isSongAdded(String songTitle) throws InterruptedException {
