@@ -19,7 +19,7 @@ public class DeleteMyPlaylistTests extends BaseTest {
         login();
         chooseAPlaylist();
         deleteSelectedPlaylist();
-        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist \"iulia's p laylist.\"");
+        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist \"iulia's playlist.\"");
 
 
     }
@@ -73,8 +73,8 @@ public class DeleteMyPlaylistTests extends BaseTest {
     }
 
     private void provideEmail() throws InterruptedException {
-        WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
-        Thread.sleep(3000);
+        WebElement emailField = driver.findElement(By.xpath("//input[@placeholder='Email Address']"));
+        Thread.sleep(5000);
         emailField.click();
         emailField.sendKeys(email);
 
