@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,12 +21,20 @@ public class BaseTest {
     }
 
     @BeforeMethod
+<<<<<<< Updated upstream
     @Parameters({"baseURL"})
     public void launchBrowser(String baseURL) {
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = baseURL;
+=======
+    @Parameters({"BaseUrl"})
+    public void launchBrowser(String BaseUrl) {
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseUrl;
+>>>>>>> Stashed changes
         driver.get(url);
     }
 
@@ -60,5 +69,23 @@ public class BaseTest {
                 {"d@class.com", ""},
                 {"", ""}
         };
+    }
+    public void newPlaylist() {
+        WebElement newPlayList = driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']"));
+        newPlayList.click();
+        WebElement createPlayList = driver.findElement(By.xpath("//*[text()='New Playlist']"));
+        createPlayList.click();
+        WebElement inputPlayList = driver.findElement(By.cssSelector("[placeholder='↵ to save']"));
+        inputPlayList.click();
+        inputPlayList.sendKeys("super");
+        inputPlayList.sendKeys(Keys.RETURN);
+    }
+
+    @DataProvider( name="invalidCredentials")
+    public static Object[][] getCredetials(){
+        return new Object[][]{
+                {"invalid@class.com", "invalispass"},{"dfdfs@clas.com", ""},{"",""}
+        };
+
     }
 }

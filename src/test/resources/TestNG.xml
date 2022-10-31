@@ -2,14 +2,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-
+    <parameter name="BaseUrl" value="https://bbb.testpro.io/"></parameter>
     <test name="Example Test" preserve-order="false">
+
         <classes>
+<<<<<<< Updated upstream
             <class name="Homework17">
                 <methods>
                     <include name="addSongToPlaylist" />
                 </methods>
             </class>
+=======
+            <class name="LoginTests"/>
+<!--            <class name="BaseTest"/>-->
+            <class name="HW19"/>
+            <class name="HomeWork16"></class>
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
