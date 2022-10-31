@@ -3,6 +3,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -13,6 +14,7 @@ import java.time.Duration;
 public class BaseTest {
 
     static WebDriver driver;
+    WebDriverWait wait;
     static String newPlaylistName = "Nozima's Songs";
 
     @BeforeSuite
@@ -51,8 +53,8 @@ public class BaseTest {
 
     public static void enterPlayListName() {
         WebElement playNameField = driver.findElement(By.xpath("//input[@name='name']"));
-        playNameField.sendKeys(newPlaylistName);
-        playNameField.sendKeys(Keys.ENTER);
+        playNameField.sendKeys(newPlaylistName,Keys.ENTER);
+//        playNameField.sendKeys(Keys.ENTER);
     }
 
     @BeforeMethod
@@ -60,8 +62,8 @@ public class BaseTest {
     public void launchBrowser(String BaseURL){
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String url = BaseURL;
-        driver.get(url);
+        driver.get(BaseURL);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(1));
     }
 
     @AfterMethod
