@@ -7,13 +7,14 @@
         <classes>
             <class name="LoginTests"/>
             <class name="Homework14"/>
-            <class name="Hw14"/>
-            <class name="Hw16"/>
-
-
-
+            <class name="RegistrationTests"/>
+            <class name="CreatePlaylistTests"/>
+            <class name="AddSongsToPlaylistTests"/>
+            <class name="PlayASongTests"/>
+            <class name="DeleteMyPlaylistTests"/>
 
             <class name="BaseTest"/>
+
         </classes>
     </test>
 </suite>
