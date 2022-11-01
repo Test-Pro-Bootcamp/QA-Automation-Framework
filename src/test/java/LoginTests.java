@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test(priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
+    @Test(enabled = false,priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest (String email, String password) {
 
         provideEmail(email); // "demo@class.com"
@@ -37,7 +37,6 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
-
     @Test(enabled = false)
     public void LoginValidEmailEmptyPasswordTest () {
         WebDriver driver;
@@ -89,7 +88,7 @@ public class LoginTests extends BaseTest {
         // WebElement songsMenu = driver.findElement(songMenuSelector);
         driver.findElement(songMenuSelector).click();
         Assert.assertTrue(driver.findElement(allButtonSelector).isDisplayed());
-        Thread.sleep(2000);
+
 
         driver.quit();
     }

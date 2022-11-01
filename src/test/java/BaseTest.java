@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -9,6 +10,7 @@ import java.time.Duration;
 public class BaseTest {
     WebDriver driver;
     String url;
+    WebDriverWait wait;
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -20,11 +22,13 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"baseURL"})
-    public void launchBrowser(String baseURL) {
+    public WebDriver launchBrowser(String baseURL) {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = baseURL;
         driver.get(url);
+        wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+
+        return null;
     }
 
   /*  @AfterMethod
@@ -64,5 +68,10 @@ public class BaseTest {
         return new Object[][]{
                 {"Nargiza10041@gmail.com", "te$t$tudent"}
         };
+    }
+    public void mainLogin(){
+        provideEmail("Nargiza10041@gmail.com");
+        providePassword("te$t$tudent");
+        clickSubmitBtn();
     }
 }
