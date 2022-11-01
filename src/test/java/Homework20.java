@@ -21,7 +21,7 @@ public class Homework20  extends BaseTest{
         }
         private void deletePlaylist(){
             WebElement delPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@title = 'Delete this playlist']")));
-           delPlaylist.click();
+            delPlaylist.click();
         }
     }
 

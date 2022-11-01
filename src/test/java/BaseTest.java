@@ -12,6 +12,7 @@ public class BaseTest {
     String url;
     WebDriverWait wait;
 
+
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
@@ -26,7 +27,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         url = baseURL;
         driver.get(url);
-        wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
         return null;
     }
