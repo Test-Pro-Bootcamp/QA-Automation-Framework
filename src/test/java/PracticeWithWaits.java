@@ -14,7 +14,7 @@ public class PracticeWithWaits extends BaseTest {
 
 
     @Test
-    public void deletePlaylist()  {
+    public void deletePlaylist() {
 
 
         provideEmail();
@@ -28,7 +28,7 @@ public class PracticeWithWaits extends BaseTest {
     }
 
     private String getConfirmationPopupText() {
-        By notificationMessageLocator=By.cssSelector("div.success.show");
+        By notificationMessageLocator = By.cssSelector("div.success.show");
         wait.until(ExpectedConditions.visibilityOfElementLocated(notificationMessageLocator));
         return driver.findElement(By.cssSelector("div.success.show")).getText();
 
