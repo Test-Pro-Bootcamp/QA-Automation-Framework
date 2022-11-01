@@ -11,12 +11,19 @@ public class PracticeWithWaits extends BaseTest {
     String email = "holostenco.yuliya@gmail.com";
     String Password = "te$t$tudent";
     String xpath = "//ul//li[@class='playlist playlist']";
-
+    String myPlaylistName="iulia's playlist";
 
     @Test
+    public void createPlaylist(){
+        provideEmail();
+        providePassword();
+        login();
+        createAPlaylist();
+        Assert.assertEquals(getConfirmationPopupText(), "Created playlist \"iulia's playlist.\"");
+
+    }
+    @Test
     public void deletePlaylist() {
-
-
         provideEmail();
         providePassword();
         login();
@@ -24,6 +31,24 @@ public class PracticeWithWaits extends BaseTest {
         deleteSelectedPlaylist();
         Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist \"iulia's playlist.\"");
 
+
+    }
+
+    private void createAPlaylist() {
+        By createAPlaylistButtonLocator=By.xpath("//*[@title='Create a new playlist']");
+        wait.until(ExpectedConditions.elementToBeClickable(createAPlaylistButtonLocator));
+        driver.findElement(createAPlaylistButtonLocator).click();
+
+        By newPlaylistLocator=By.xpath("//*[contains(text(),\"New Playlist\")]");
+        wait.until(ExpectedConditions.elementToBeClickable(newPlaylistLocator));
+        driver.findElement(newPlaylistLocator).click();
+
+By newPlaylistNameFieldLocator=By.xpath("//*[contains(@placeholder, 'to save')]");
+
+        wait.until(ExpectedConditions.elementToBeClickable(newPlaylistNameFieldLocator));
+        WebElement newPlaylistNameField= driver.findElement(newPlaylistNameFieldLocator);
+        newPlaylistNameField.click();
+        newPlaylistNameField.sendKeys(myPlaylistName + "\n");
 
     }
 
