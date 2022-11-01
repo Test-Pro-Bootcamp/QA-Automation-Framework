@@ -48,12 +48,12 @@ import org.testng.annotations.Test;
     }
 
     private String getSongTitleFromSuperPlaylist(){
-        WebElement superPlaylistSong = driver.findElement(By.xpath("//section [@id=\"playlistWrapper\"] //td[@class='title']" ));
+        WebElement superPlaylistSong = driver.findElement(By.xpath("//section [@id='playlistWrapper'] //td[@class='title']" ));
          return superPlaylistSong.getText() ;
     }
 
     private void clickOnSuperPlaylist() {
-        WebElement superPlaylistLink =driver.findElement(By.xpath("//section [@id=\"playlistWrapper\"] //td[@class='title']"));
+        WebElement superPlaylistLink =driver.findElement(By.xpath("//section [@id='playlistWrapper'] //td[@class='title']"));
     }
 
     private void addToSuperPlaylist() {
