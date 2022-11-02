@@ -4,9 +4,9 @@
 <suite name="TestNG">
     <parameter name="baseURL" value="https://bbb.testpro.io/"/>
 
-    <test name="DeletePlaylist" preserve-order="false">
+    <test name="deletePlaylist" preserve-order="false">
         <classes>
-            <class name="Homework19"/>
+            <class name="Homework20"/>
         </classes>
     </test>
 </suite>
