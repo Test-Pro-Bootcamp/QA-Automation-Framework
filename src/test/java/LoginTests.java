@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
     @Test(priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest (String email, String password) {
 
-        provideEmail(email); // "demo@class.com"
+        provideEmail(email); // "iq14111991@gmail.com"
         providePassword(password); // te$t$tudent
         clickSubmitBtn();
 

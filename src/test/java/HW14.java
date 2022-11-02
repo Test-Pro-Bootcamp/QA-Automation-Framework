@@ -19,12 +19,13 @@ public class HW14 {
         String registrationURL = "https://bbb.testpro.io/registration.php";
         driver.get(url);
 
-        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
         WebElement registrationLink = driver.findElement(By.cssSelector("[id= 'hel']"));
         registrationLink.click();
+        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
+
         WebElement registerButton = driver.findElement(By.cssSelector("[id= 'button']"));
         Assert.assertTrue(registerButton.isDisplayed());
-        Thread.sleep(5000);
-        driver.quit();
+//        Thread.sleep(5000);
+//        driver.quit();
     }
 }
