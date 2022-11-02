@@ -3,6 +3,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +18,8 @@ public class BaseTest {
 
     static WebDriver driver;
     WebDriverWait wait;
+    Actions actions;
+
     static String newPlaylistName = "Nozima's Songs";
 
     @BeforeSuite
@@ -25,36 +30,16 @@ public class BaseTest {
         }
     }
 
-    public static void clickSubmitBtn() {
-            WebElement loginButton = driver.findElement(By.xpath("//button[@type='submit']"));
-            loginButton.click();
+    public void logIn(String email, String password ){
+    driver.findElement(By.xpath("//*[@type='email']")).sendKeys(email);
+    driver.findElement(By.xpath("//*[@type='password']")).sendKeys(password);
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
 
-    public static void enterPassword(String password) {
-            WebElement passwordField = driver.findElement(By.xpath("//*[@type='password']"));
-            passwordField.click();
-            passwordField.sendKeys(password);
-    }
-
-    public static void enterEmail(String email) {
-        WebElement emailField = driver.findElement(By.xpath("//*[@type='email']"));
-            emailField.sendKeys(email);
-    }
-
-    public static void clickNewPlaylistBtn() {
-        WebElement newPButton = driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']"));
-        newPButton.click();
-    }
-
-    public static void clickDropDown() {
-        WebElement dropDownOption = driver.findElement(By.xpath("//li[contains(text(), 'New Playlist')]"));
-        dropDownOption.click();
-    }
-
-    public static void enterPlayListName() {
-        WebElement playNameField = driver.findElement(By.xpath("//input[@name='name']"));
-        playNameField.sendKeys(newPlaylistName,Keys.ENTER);
-//        playNameField.sendKeys(Keys.ENTER);
+    public void createPlaylist(){
+        driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']")).click();
+        driver.findElement(By.xpath("//li[contains(text(), 'New Playlist')]")).click();
+        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(newPlaylistName,Keys.ENTER);
     }
 
     @BeforeMethod
@@ -64,6 +49,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(BaseURL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        actions = new Actions(driver);
     }
 
     @AfterMethod
@@ -91,9 +77,7 @@ public class BaseTest {
         song.click();
     }
 
-    protected static void clickAllSongsLink() {
-        WebElement allSongs = driver.findElement(By.xpath("//a[text()='All Songs']"));
-        allSongs.click();
-        allSongs.click();
+    public void clickAllSongsLink() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='All Songs']"))).click();
     }
 }
