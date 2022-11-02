@@ -17,6 +17,7 @@ public class BaseTest {
     static WebDriver driver;
     static String url;
     static WebDriverWait wait;
+
     public static void browserConfigs() {
 
         driver.get(url);
@@ -47,28 +48,31 @@ public class BaseTest {
     }
 
     @DataProvider(name = "loginProvider")
-    public static Object[][] credentials()  {
+    public static Object[][] credentials() {
         return new Object[][]{
-                {"dankoyanka@gmail.com", "te$t$tudent"},
+                {"dankoyanka@gmail.com", "te$t$tudent" },
         };
 
     }
+
     public static void provideEmail(String email) {
         WebElement emailField = BaseTest.driver.findElement(By.cssSelector("[type = 'email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
+
     public static void providePassword(String password) {
         WebElement passwordField = BaseTest.driver.findElement(By.cssSelector("[type = 'password']"));
         passwordField.click();
         passwordField.sendKeys(password);
     }
+
     public static void clickSubmitBtn() {
-        WebElement loginButton= BaseTest.driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement loginButton = BaseTest.driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
 
-     public static void deletePlaylist() throws InterruptedException {
+    public static void deletePlaylist()  {
 
         WebDriverWait locatePlaylist = new WebDriverWait(driver, Duration.ofSeconds(10));
         locatePlaylist.until(ExpectedConditions.elementToBeClickable
@@ -78,18 +82,34 @@ public class BaseTest {
         WebDriverWait clickDelete = new WebDriverWait(driver, Duration.ofSeconds(10));
         clickDelete.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//button[@class='del btn-delete-playlist']"))).click();
-
-        WebDriverWait okDeleteBtn = new WebDriverWait(driver, Duration.ofSeconds(10));
-        okDeleteBtn.until(ExpectedConditions.elementToBeClickable
-                (By.xpath("//button[@class='ok']"))).click();
-
-
-        WebElement confirmDelete = driver.findElement
-                (By.xpath(" //div[@class='success show']"));
-        Assert.assertTrue(confirmDelete.isDisplayed());
+//
+//        WebDriverWait okDeleteBtn = new WebDriverWait(driver, Duration.ofSeconds(10));
+////        okDeleteBtn.until(ExpectedConditions.elementToBeClickable
+//                (By.xpath("//button[@class='ok']"))).click();
     }
 
-}
+
+    public WebElement getConfirmationPopUpText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return driver.findElement(By.cssSelector("div.success.show"));
+    }
+
+//    public WebElement confirmDelete() {
+//        WebElement confirmDelete = driver.findElement
+//                (By.xpath(" //div[@class='success show']"));
+//        Assert.assertTrue(confirmDelete.isDisplayed());
+//        return confirmDelete;
+    }
+
+
+
+//        WebElement confirmDelete = driver.findElement
+//                (By.xpath(" //div[@class='success show']"));
+//        Assert.assertTrue(confirmDelete.isDisplayed());
+//    }
+
+
 
 //    public void login( String email, String password) throws InterruptedException {
 //
