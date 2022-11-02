@@ -32,8 +32,7 @@ public class LoginTests {
 
             WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
-        }
-            finally {
+        } finally {
             driver.quit();
         }
     }
@@ -61,8 +60,7 @@ public class LoginTests {
 
             WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
-        }
-        finally {
+        } finally {
             driver.quit();
         }
     }
@@ -90,11 +88,11 @@ public class LoginTests {
 
             WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
-        }
-        finally {
+        } finally {
             driver.quit();
         }
     }
+
     @Test
     public static void LoginEmptyPasswordTest() {
 
@@ -117,7 +115,7 @@ public class LoginTests {
         }
     }
 
-    public static class Registration{
+    public static class Registration {
         @Test
         public static void registrationNavigation() {
 
@@ -132,44 +130,45 @@ public class LoginTests {
 
                 WebElement regbutton = driver.findElement(By.cssSelector("[type='submit']"));
                 Assert.assertTrue(regbutton.isDisplayed());
-            }
-            finally{
+            } finally {
+
                 driver.quit();
             }
         }
-            }
+    }
 
-    @Test
-    public static void search() throws InterruptedException {
+    public static class Homework15 {
+        @Test
+    public static void search(){
+            WebDriver driver = new ChromeDriver();
+            try {
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        WebDriver driver = new ChromeDriver();
-        try {
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                String url = "https://bbb.testpro.io/";
+                driver.get(url);
 
-            String url = "https://bbb.testpro.io/";
-            driver.get(url);
+                WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+                emailField.click();
+                emailField.sendKeys("demo@class.com");
 
-            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-            emailField.click();
-            emailField.sendKeys("demo@class.com");
+                WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+                passwordField.click();
+                passwordField.sendKeys("te$t$tudent");
 
-            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-            passwordField.click();
-            passwordField.sendKeys("te$t$tudent");
+                WebElement loginBtn = driver.findElement(By.cssSelector("[type='submit']"));
+                loginBtn.click();
 
-            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-            submitButton.click();
+                WebElement searchBtn = driver.findElement(By.cssSelector("[type='search']"));
+                searchBtn.click();
+                searchBtn.sendKeys("Pluto");
 
-            WebElement searchButton = driver.findElement(By.cssSelector("[type='search']"));
-            searchButton .click();
-            searchButton.sendKeys("Pluto");
-
-            WebElement avatarIcon = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
-            Assert.assertTrue(avatarIcon.isDisplayed());
+                WebElement viewAll = driver.findElement(By.cssSelector("[data-test = 'view-all-song-btn']"));
+                Assert.assertTrue(viewAll.isDisplayed());
         }
-        finally {
-            Thread.sleep(5000);
-            driver.quit();
+            finally {
+                driver.quit();
+            }
+            }
         }
     }
-}
+
