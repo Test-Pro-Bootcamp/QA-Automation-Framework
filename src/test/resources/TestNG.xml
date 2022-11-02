@@ -5,12 +5,10 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-<!--            <class name="LoginTests"/>-->
-            <class name="HW14"/>
+            <class name="HW15"/>
+            <class name="LoginTests"/>
             <class name="BaseTest">
-                <methods>
-                    <include name="registrationNavigation" />
-                </methods>
+                <methods/>
             </class>
         </classes>
     </test>
