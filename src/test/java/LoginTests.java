@@ -10,7 +10,11 @@ import java.time.Duration;
 public class LoginTests extends BaseTest{
 
     @Test
+
     public static void LoginValidEmailPasswordTest() {
+
+
+
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

@@ -13,7 +13,7 @@ import java.time.Duration;
 public class Homework16 extends BaseTest{
 
     @Test
-    private static void LoginGoodEmailGoodPassword() throws InterruptedException {
+    private static void  LoginValidEmailPasswordTest() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
