@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.time.Duration;
 
@@ -19,7 +21,7 @@ public class LoginTests extends BaseTest {
     @Test (enabled=true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest () {
 
-        logIn();
+//        logIn();
         // driver.findelement(how to find the element)
         // |
         // var = how to find element
@@ -35,15 +37,18 @@ public class LoginTests extends BaseTest {
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
     }
 
-    @Test(enabled = false, priority = 2)
-    public void LoginInvalidEmailPasswordTest () throws InterruptedException {
-        provideEmail("dem@class.com");
-        providePassword("");
-        clickSubmitBtn();
+    @Test
+    public void LoginValidEmailPasswordTest () {
 
-        // Vd
-        Thread.sleep(2000);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickSubmitBtn();
+
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+
 
     }
 
@@ -138,5 +143,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
+
+
 
 }

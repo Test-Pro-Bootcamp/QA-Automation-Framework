@@ -12,7 +12,7 @@ public class Homework19 extends BaseTest {
         // Use @Parameters for passing baseUrl
         // Given: Navigate to "https://bbb.testpro.io/"
         // Step1: Log in with your credentials
-        logIn();
+//        logIn();
         // Step2: Choose a playlist
         selectPlaylist();
         // Step3: Delete the playlist

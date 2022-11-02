@@ -23,8 +23,6 @@ public class BaseTest {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        } else {
-            System.setProperty("webdriver.chrome.driver", "Untitled/chromedriver");
         }
 
 
@@ -38,20 +36,8 @@ public class BaseTest {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
         driver = new ChromeDriver();
-        // Make webdriver load the pages REALLY slow
-        WebDriver augmentedDriver = new Augmenter().augment(driver);
-        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
-        networkConditions.setDownloadThroughput(100 * 1024);
-        networkConditions.setUploadThroughput(500 * 1024);
-        networkConditions.setLatency(Duration.ofMillis(5000));
-        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
-        // (comment out above lines to remove throttling)
-
-        // Wait for an element to show up for max of X seconds
-        // implicitlyWait(Duration.ofSeconds(60) will wait for UP to 60 seconds
-        // if element comes up after 1 second, it will move on
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
+        driver.manage().window().maximize();
         wait = new WebDriverWait(driver,Duration.ofSeconds(50));
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
@@ -64,23 +50,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
-    }
 
-    public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys(password);
-
-    }
 
     @DataProvider(name="invalidCredentials")
     public static Object[][] getCredentials(){
@@ -90,11 +60,5 @@ public class BaseTest {
                 {"d@class.com", ""},
                 {"", ""}
         };
-    }
-
-    public void logIn(){
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmitBtn();
     }
 }
