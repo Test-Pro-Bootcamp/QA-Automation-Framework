@@ -8,23 +8,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-
-
-//Create a new file Homework15.java file with @Test annotation in IntelliJ IDEA
-//        Create a test case search() using @Test annotation
-//        Navigate to "https://bbb.testpro.io/"
-//        Log in with your credentials
-//        Search for the song "Pluto" (use CSS locators to locate the elements)
-//        Validate that there is a song matched in a search results
-//        Create a new branch and commit your changes
-//        Push your code to a remote repository
-//        Create a pull request
-//        Copy and paste the link of the pull request (or your branch) to the field below, so we can check your homework
 public class HW15 {
     public static void main(String[] args) {
 
     }
-
     @Test
     public static void search() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
