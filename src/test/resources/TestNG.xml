@@ -5,9 +5,11 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="Homework17">
+            <class name="LoginTests"/>
+            <class name="HW14"/>
+            <class name="BaseTest">
                 <methods>
-                    <include name="addSongToPlaylist" />
+                    <include name="registrationNavigation" />
                 </methods>
             </class>
         </classes>

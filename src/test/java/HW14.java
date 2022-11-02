@@ -6,18 +6,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-public class RegistrationNavigation {
+public class HW14 {
     public static void main(String[] args) {
 
     }
     @Test
-    public static void RegistrationNavigation() throws InterruptedException {
+    public static void registrationNavigation() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String url = "https://bbb.testpro.io/";
+        String registrationURL = "https://bbb.testpro.io/registration.php";
         driver.get(url);
 
+        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
         WebElement registrationLink = driver.findElement(By.cssSelector("[id= 'hel']"));
         registrationLink.click();
         WebElement registerButton = driver.findElement(By.cssSelector("[id= 'button']"));
