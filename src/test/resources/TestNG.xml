@@ -10,6 +10,15 @@
                     <include name="LoginValidEmailEmptyPasswordTest" />
                 </methods>
             </class>
+<<<<<<< Updated upstream
+=======
+<!--            <class name="LoginTests"/>-->
+<!--            <class name="naldoury_BaseTest"/>-->
+<!--            <class name="registration"/>-->
+<!--            <class name="Homework15"/>-->
+<!--            <class name="Homework16"/>-->
+<!--            <class name="naldoury_Homework17"/>-->
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>

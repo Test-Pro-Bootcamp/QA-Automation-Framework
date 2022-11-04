@@ -16,12 +16,17 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+//        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/naldoury_TestNG_HW18.xml"
+//        oh we have missing characters for the name
+        // I think there should only be one suite in here. let's try commending TestNG.xml file
     }
 }
 
-task testHW18(type: Test) {
-    useTestNG() {
-        suites "src/test/resources/Homework18.xml"
-    }
-}
+//task testHW18(type: Test) {
+//    useTestNG() {
+//        suites "src/test/resources/Homework18.xml"//is this an issue here?
+//        // i think this is good, since there is only one suite and i'ts declared in another task
+////        lets try running our homework 18
+//    }
+//}
