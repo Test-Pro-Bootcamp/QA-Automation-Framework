@@ -5,11 +5,19 @@
 
     <test name="LoginTests" preserve-order="false">
         <classes>
+<<<<<<< Updated upstream
             <class name="LoginTests">
                 <methods>
                     <include name="LoginValidEmailEmptyPasswordTest" />
                 </methods>
             </class>
+=======
+            <class name="LoginTests"/>
+            <class name="BaseTest"/>
+            <class name="HmWrk14"/>
+            <class name="HmWrk15"/>
+            <class name="HmWrk16"/>
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
