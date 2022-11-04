@@ -3,6 +3,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,8 @@ public class  BaseTestIvan {
     WebDriver driver;
     WebDriverWait wait;
     String url;
+    Actions actions;
+
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -33,6 +36,7 @@ public class  BaseTestIvan {
         url = "https://bbb.testpro.io/";
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        actions = new Actions(driver);
     }
 
     @AfterMethod
@@ -71,5 +75,10 @@ public class  BaseTestIvan {
                 {"invalid@class.com", "invalispass"},{"dfdfs@clas.com", ""},{"",""}
         };
 
+    }
+    private void selectPlaylist() throws InterruptedException {
+        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        myPlaylist.click();
+        Thread.sleep(5000);
     }
 }

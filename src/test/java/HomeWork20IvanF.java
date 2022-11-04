@@ -21,9 +21,10 @@ public class HomeWork20IvanF extends BaseTestIvan{
         return driver.findElement(By.cssSelector("div.success.show"));
     }
 
-    private void deletePlaylist() {
+    private void deletePlaylist() throws Exception {
         WebElement deletePls = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='del btn-delete-playlist']")));
         deletePls.click();
+        deletingPlayList();
     }
 
 }
