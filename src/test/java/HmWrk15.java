@@ -32,8 +32,8 @@ public class HmWrk15 {
             searchBtn.click();
             searchBtn.sendKeys("Pluto");
 
-            WebElement viewAll = driver.findElement(By.cssSelector("[data-test = 'view-all-songs-btn']"));
-            Assert.assertTrue(viewAll.isDisplayed());
+            WebElement viewAllBtn = driver.findElement(By.cssSelector("[data-test = 'view-all-songs-btn']"));
+            Assert.assertTrue(viewAllBtn.isDisplayed());
         }
         finally {
             driver.quit();
