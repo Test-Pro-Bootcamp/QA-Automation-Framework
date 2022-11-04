@@ -10,6 +10,7 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
+<<<<<<< Updated upstream
     @Test(enabled = false, priority = 0)
     public void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(driver.getCurrentUrl(), url);
@@ -17,6 +18,49 @@ public class LoginTests extends BaseTest {
 
     @Test (enabled=true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest () {
+=======
+    @Test
+    public static void LoginValidEmailValidPasswordTest() {
+
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            String url = "https://bbb.testpro.io/";
+            driver.get(url);
+
+            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+            emailField.click();
+            emailField.sendKeys("demo@class.com");
+
+            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+            passwordField.click();
+            passwordField.sendKeys("te$t$tudent");
+
+            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+            submitButton.click();
+
+            WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of Student']"));
+            Assert.assertTrue(avatarIcon.isDisplayed());
+        } finally {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public static void LoginInValidEmailValidPasswordTest() {
+
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            String url = "https://bbb.testpro.io/";
+            driver.get(url);
+
+            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+            emailField.click();
+            emailField.sendKeys("dem@class.com");
+>>>>>>> Stashed changes
 
         login();
         // driver.findelement(how to find the element)
@@ -27,11 +71,18 @@ public class LoginTests extends BaseTest {
         By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
         By playlistLocator = By.cssSelector("#playlists h1");
 
+<<<<<<< Updated upstream
         wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
         WebElement avatarIcon = driver.findElement(avatarIconLocator);
         Assert.assertTrue(avatarIcon.isDisplayed());
         wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
+=======
+            Assert.assertEquals(driver.getCurrentUrl(), url);
+        } finally {
+            driver.quit();
+        }
+>>>>>>> Stashed changes
     }
 
     @Test(enabled = false, priority = 2)
@@ -46,11 +97,16 @@ public class LoginTests extends BaseTest {
 
     }
 
+<<<<<<< Updated upstream
     @Test(enabled = false)
     public void LoginValidEmailEmptyPasswordTest () {
         WebDriver driver;
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+=======
+    @Test
+    public static void seachSong() {
+>>>>>>> Stashed changes
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
@@ -59,6 +115,7 @@ public class LoginTests extends BaseTest {
         emailField.click();
         emailField.sendKeys("demo@class.com");
 
+<<<<<<< Updated upstream
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
 
@@ -137,5 +194,32 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
+=======
+            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+            emailField.click();
+            emailField.sendKeys("demo@class.com");
+
+            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+            passwordField.click();
+            passwordField.sendKeys("te$t$tudent");
+
+            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+            submitButton.click();
+
+            WebElement searchBar = driver.findElement(By.cssSelector("[type='search']"));
+            searchBar.click();
+            searchBar.sendKeys("Dark Days");
+
+            WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
+            Assert.assertTrue(avatarIcon.isDisplayed());
+
+        } finally {
+            driver.quit();
+        }
+    }
+}
+
+
+>>>>>>> Stashed changes
 
 }
