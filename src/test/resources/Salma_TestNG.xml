@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNG">
+    <parameter name="baseURL" value="https://bbb.testpro.io/" />
+       <test name="Example Test" preserve-order="false">
+        <classes>
+            <class name="Salma_LoginTests"/>
+            <class name="Salma_changeUserName"/>
+            <class name="Salma_Homework22_AllSongsTests"/>
+            <class name="Salma_BaseTest"/>
+            <class name="Salma_Homework17"/>
+            <class name="Salma_Homework18"/>
+            <class name="Salma_Homework19"/>
+            <class name="Salma_Homework20"/>
+            <class name="Salma_Homework21"/>
+            <class name="Salma_listOfSongs"/>
+        </classes>
+    </test>
+</suite>
+
+
