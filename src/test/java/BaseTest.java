@@ -1,9 +1,7 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -11,22 +9,15 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class BaseTest {
-
-
     protected WebDriver driver;
     String url;
     String email="holostenco.yuliya@gmail.com";
-    String Password="te$t$tudent";
-
-
+    String password ="te$t$tudent";
     @BeforeSuite
-
     public static void chromeConfigs() {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-
-
         }
     }
 
@@ -42,23 +33,15 @@ public class BaseTest {
         url = BaseURL;
         driver.get(url);
     }
-
-
-
-
-   protected WebElement waitForElementToBeClickable(WebElement iuliasWebElementLocator) {
+    protected WebElement waitForElementToBeClickable(WebElement webElementLocator) {
       return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-             ExpectedConditions.elementToBeClickable(iuliasWebElementLocator));
+             ExpectedConditions.elementToBeClickable(webElementLocator));
     }
 
     protected WebElement waitForVisibilityOfElement(WebElement webElementLocator) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions
                .visibilityOf(webElementLocator));
     }
-
-
-
-
     @AfterMethod
         public void tearDownBrowser() {
             driver.quit();
