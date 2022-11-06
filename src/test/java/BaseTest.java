@@ -13,13 +13,10 @@ import java.time.Duration;
 public class BaseTest {
 
 
-    WebDriver driver;
-
+    protected WebDriver driver;
     String url;
-
-    WebDriverWait wait;
-
-    Actions actions;
+    String email="holostenco.yuliya@gmail.com";
+    String Password="te$t$tudent";
 
 
     @BeforeSuite
@@ -33,7 +30,7 @@ public class BaseTest {
         }
     }
 
-    @BeforeMethod
+    @BeforeClass
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -41,36 +38,30 @@ public class BaseTest {
 
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
-        actions = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
     }
 
-   // @BeforeTest
-   // public void login() {
-       // By emailLocator = By.xpath("//input[@placeholder='Email Address']");
-        //wait.until(ExpectedConditions.elementToBeClickable(emailLocator));
-       // WebElement emailField = driver.findElement(emailLocator);
-       // emailField.click();
-       // emailField.sendKeys("holostenco.yuliya@gmail.com");
 
-       // By passwordLocator = By.xpath("//input[@type='password']");
-       // wait.until(ExpectedConditions.elementToBeClickable(passwordLocator));
-       // WebElement passwordField = driver.findElement(passwordLocator);
-        //passwordField.click();
-        //passwordField.sendKeys("te$t$tudent");
 
-       // By submitButtonLocator = By.xpath("//button[@type='submit']");
-       // wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-       // driver.findElement(submitButtonLocator).click();
 
+   protected WebElement waitForElementToBeClickable(WebElement iuliasWebElementLocator) {
+      return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+             ExpectedConditions.elementToBeClickable(iuliasWebElementLocator));
+    }
+
+    protected WebElement waitForVisibilityOfElement(WebElement webElementLocator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions
+               .visibilityOf(webElementLocator));
+    }
 
 
 
 
     @AfterMethod
-    public void tearDownBrowser() {
-        driver.quit();
+        public void tearDownBrowser() {
+            driver.quit();
+            driver = null;
+        }
     }
-}
