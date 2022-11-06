@@ -16,10 +16,22 @@ dependencies {
 
 test {
     useTestNG() {
-<<<<<<< Updated upstream
         suites "src/test/resources/TestNG.xml"
-=======
+    }
+}
+
+task testSmoke(type: Test){
+    useTestNG() {
+        suites "src/test/resources/SmokeSuite.xml"
+    }
+}
+task testRegression(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/regressionSuite.xml"
+    }
+}
+task testHomework18SZ(type: Test) {
+    useTestNG() {
         suites "src/test/resources/Homework18SZ.xml"
->>>>>>> Stashed changes
     }
 }
