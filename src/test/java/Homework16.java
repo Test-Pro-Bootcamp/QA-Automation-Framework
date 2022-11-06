@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class Homework16 extends BaseTest {
 
     @Test
-    public void search () {
+    public void createNewPlaylist () {
        /*
         1. Create a new file Homework16.java file with @Test annotation in IntelliJ IDEA
         2. Create a test case createNewPlaylist() using @Test annotation
@@ -45,7 +45,7 @@ public class Homework16 extends BaseTest {
 
             Assert.assertTrue(matchText.contains(myPlaylistName));
         } finally {
-            driver.close();
+            driver.quit();
         }
     }
 }
