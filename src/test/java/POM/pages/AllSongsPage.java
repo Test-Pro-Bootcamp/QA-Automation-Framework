@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 public class AllSongsPage extends BasePage{
     @FindBy(xpath = "//button[@title='Shuffle all songs']")
     WebElement shuffleBtn;
