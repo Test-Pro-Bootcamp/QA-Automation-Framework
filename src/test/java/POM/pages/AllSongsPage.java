@@ -1,32 +1,36 @@
 package POM.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class AllSongsPage extends BasePage{
-    By shuffleBtn = By.xpath("//button[@title='Shuffle all songs']");
-    By clearBtn = By.xpath("//button[contains(@title,'Clear')]");
-    By playingSong = By.xpath("//div[contains(@class, 'playing')]");
-    By bestSong = By.xpath("//tr[@class='song-item']//td[contains(text(),'a Beat')]");
+    @FindBy(xpath = "//button[@title='Shuffle all songs']")
+    WebElement shuffleBtn;
+    @FindBy(xpath = "//button[contains(@title,'Clear')]")
+    WebElement clearBtn;
+    @FindBy(xpath = "//div[contains(@class, 'playing')]")
+    WebElement playingSong;
+    @FindBy(xpath = "//tr[@class='song-item']//td[contains(text(),'a Beat')]")
+    WebElement bestSong;
 
     public AllSongsPage (WebDriver givenDriver){
         super(givenDriver);
     }
-
-    public void clickShuffleBtn(){
-        driver.findElement(shuffleBtn).click();
+    public AllSongsPage clickShuffleBtn(){
+        shuffleBtn.click();
+        return this;
     }
-
-    public void clickToPlaySong(){
-        actions.doubleClick(driver.findElement(bestSong)).perform();
+    public AllSongsPage clickToPlaySong(){
+        actions.doubleClick(bestSong).perform();
+        return this;
     }
-
     public boolean songIsPlaying(){
-        driver.findElement(playingSong).isDisplayed();
+        playingSong.isDisplayed();
         return true;
     }
     public boolean clearBtnIsDisplayed(){
-        driver.findElement(clearBtn).isDisplayed();
+        clearBtn.isDisplayed();
         return true;
     }
 }

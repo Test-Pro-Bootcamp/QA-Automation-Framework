@@ -1,38 +1,36 @@
 package POM.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-
-        By emailField = By.xpath("//*[@type='email']");
-        By passwordField = By.xpath("//*[@type='password']");
-        By loginBtn = By.xpath("//button[@type='submit']");
-
+        @FindBy(xpath = "//*[@type='email']")
+        WebElement emailField;
+        @FindBy(xpath = "//*[@type='password']")
+        WebElement passwordField;
+        @FindBy(xpath = "//button[@type='submit']")
+        WebElement loginBtn;
 
         public LoginPage(WebDriver givenDriver){
             super(givenDriver);
         }
-
-        public void provideEmail(String email){
-            driver.findElement(emailField).sendKeys(email);
+        public LoginPage provideEmail(String email){
+            emailField.sendKeys(email);
+            return this;
         }
-
-        public void providePassword(String password){
-            driver.findElement(passwordField).sendKeys(password);
+        public LoginPage providePassword(String password){
+           passwordField.sendKeys(password);
+           return this;
         }
-
-        public void clickLoginBtn(){
-
-            driver.findElement(loginBtn).click();
+        public LoginPage clickLoginBtn(){
+         loginBtn.click();
+         return this;
         }
-
-        public void signIn(String email, String password){
-            provideEmail(email);
-            providePassword(password);
-            clickLoginBtn();
+        public HomePage signIn(String email, String password){
+            provideEmail(email)
+                    .providePassword(password)
+                    .clickLoginBtn();
+            return new HomePage(driver);
         }
-
 }
