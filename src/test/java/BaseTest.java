@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -38,7 +39,7 @@ public class BaseTest {
     // Make baseURL parameter optional, if it is null, then set it to something)
     public void launchBrowser(@Optional String baseURL) {
         if (baseURL == null)
-            baseURL ="https://bbb.testpro.io";
+            baseURL ="https://bbb.testpro.io/";
         driver = new ChromeDriver();
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
@@ -68,21 +69,33 @@ public class BaseTest {
     }
 
     public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+//        By submitButton = By.cssSelector("[type='submit']");
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='submit']")));
+        //wait.until(ExpectedConditions.elementToBeClickable(submitButton));
         submitButton.click();
     }
 
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        //By emailField = By.cssSelector("[type='email']");
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));
         emailField.click();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        //By passwordField  = By.cssSelector("[type='password']");
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']")));
+       // wait.until(ExpectedConditions.elementToBeClickable(passwordField));
         passwordField.click();
         passwordField.sendKeys(password);
 
+    }
+    public void checkAvatar() {
+        By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
+
+        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
+        WebElement avatarIcon = driver.findElement(avatarIconLocator);
+        Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
     @DataProvider(name="invalidCredentials")
@@ -99,5 +112,6 @@ public class BaseTest {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();
+        checkAvatar();
     }
 }

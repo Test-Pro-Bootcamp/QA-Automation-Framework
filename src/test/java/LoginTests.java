@@ -23,167 +23,80 @@ public class LoginTests extends BaseTest {
     public void LoginValidEmailValidPasswordTest () {
 
         login();
+        //checkAvatar();
         // driver.findelement(how to find the element)
         // |
         // var = how to find element
         // driver.findelement(var)
 
-        By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
+//        By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
+//
+//
+//        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
+//        WebElement avatarIcon = driver.findElement(avatarIconLocator);
+//        Assert.assertTrue(avatarIcon.isDisplayed());
         By playlistLocator = By.cssSelector("#playlists h1");
-
-        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
-        WebElement avatarIcon = driver.findElement(avatarIconLocator);
-        Assert.assertTrue(avatarIcon.isDisplayed());
-        wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
-        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
+//        wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
+//        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
     }
 
-    // Test with POM
-    @Test
-    public void LoginValidEmailPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmitBtn();
-        Assert.assertTrue(homePage.isUserAvatarDisplayed());
-
-    }
-
-    // Test with POM for allpage
-    @Test
-    public void Shuffle(){
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-
-        HomePage homePage = loginPage.login();
-
-        homePage.clickOnAllSongs()
-                .shuffle();
-        Assert.assertTrue(homePage.isSongPlaying());
-
-    }
-
-    @Test
-    public void PlayASongFromAllSongs(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homey = new HomePage(driver);
-        AllSongsPage singysongy = new AllSongsPage(driver);
-
-        //Step1: Login
-        loginPage.login();
-        //Step2: Click on All Songs
-        homey.clickOnAllSongs();
-        //Step3: double click on first song
-        singysongy.doubleClickFirstSong();
-        //Step4: check if song is playing
-        Assert.assertTrue(homey.isSongPlaying());
-    }
-
-
-    @Test(enabled = false, priority = 2)
+    @Test(enabled = true, priority = 2)
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {
         provideEmail("dem@class.com");
         providePassword("");
         clickSubmitBtn();
 
         // Vd
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void LoginValidEmailEmptyPasswordTest () {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys("demo@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        submitButton.click();
-
-        WebElement avatarIcon = driver.findElement(By.cssSelector("[alt='Avatar of student']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
-        driver.quit();
+        provideEmail("demo@class.com");
+        //providePassword("");
+        clickSubmitBtn();
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void SwitchToSongsMenu () throws InterruptedException {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-        By emailSelector = By.cssSelector("[type='email']");
-        WebElement emailField = driver.findElement(emailSelector);
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        By avatarSelector = By.cssSelector("[alt='Avatar of student']");
-        By songMenuSelector = By.className("songs");
-        By allButtonSelector = By.className("btn-shuffle-all");
+        //By avatarSelector = By.cssSelector("[alt='Avatar of student']");
+        login();
 
-        emailField.click();
-        emailField.sendKeys("demo@class.com");
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-        submitButton.click();
-        Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
-        // WebElement songsMenu = driver.findElement(By.className("songs"));
-        // WebElement songsMenu = driver.findElement(songMenuSelector);
-        driver.findElement(songMenuSelector).click();
-        Assert.assertTrue(driver.findElement(allButtonSelector).isDisplayed());
-        Thread.sleep(2000);
+        //By songMenuSelector = By.className("songs");
+       // By allButtonSelector = By.className("btn-shuffle-all");
 
-        driver.quit();
+        WebElement songMenuSelector = wait.until(ExpectedConditions.elementToBeClickable( By.className("songs")));
+        //WebElement songsMenu = driver.findElement(songMenuSelector);
+        //driver.findElement(songMenuSelector).click(); //refactor ths
+//        wait.until(ExpectedConditions.elementToBeClickable(songMenuSelector));
+        songMenuSelector.click();
+        WebElement allButtonSelector = wait.until(ExpectedConditions.elementToBeClickable( By.className("btn-shuffle-all")));
+        //wait.until(ExpectedConditions.elementToBeClickable(songMenuSelector));
+        Assert.assertTrue(allButtonSelector.isDisplayed());
+
+
+        //driver.quit();
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void SearchSong () throws InterruptedException {
-        WebDriver driver;
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        login();
+//
+        //By searchBarSelector = By.id("searchForm");
+       // By allButtonSelector = By.className("btn-shuffle-all");
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-        By emailSelector = By.cssSelector("[type='email']");
-        WebElement emailField = driver.findElement(emailSelector);
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        By avatarSelector = By.cssSelector("[alt='Avatar of student']");
-        By searchBarSelector = By.id("searchForm");
-        By allButtonSelector = By.className("btn-shuffle-all");
-
-        emailField.click();
-        emailField.sendKeys("demo@class.com");
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-        submitButton.click();
-        Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
-        // WebElement songsMenu = driver.findElement(By.className("songs"));
+        WebElement searchBarSelector =  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='search']")));
+        searchBarSelector.click();
         // WebElement songsMenu = driver.findElement(songMenuSelector);
-        driver.findElement(searchBarSelector).click();
-        driver.findElement(searchBarSelector).sendKeys("Veggie Straws");
+        searchBarSelector.sendKeys("Veggie Straws");
+       // driver.findElement(searchBarSelector).sendKeys("Veggie Straws");
         //Assert.assertTrue(driver.findElement().isDisplayed());
-        Thread.sleep(5000);
 
 
-        url = "https://bbb.testpro.io/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
     }
 
 }
