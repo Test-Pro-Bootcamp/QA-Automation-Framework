@@ -7,28 +7,31 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
-
-    @FindBy(xpath = "//input[@type='email']")
-    WebElement emailField;
-    @FindBy(xpath = "//input[@type='password']")
-    WebElement passwordField;
-    @FindBy(xpath="//button[@type='submit']")
-    WebElement submitButton;
+    By emailFieldLocator = By.xpath("//input[@type='email']");
+    By passwordFieldLocator = By.xpath("//input[@type='password']");
+    By submitButtonLocator = By.xpath("//button[@type='submit']");
 
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
+
     public void provideEmail(String email) {
-        emailField.click();
+        WebElement emailField = driver.findElement(emailFieldLocator);
+        waitForElementToBeClickable(emailField).click();
         emailField.sendKeys(email);
     }
+
     public void providePassword(String password) {
-        passwordField.click();
-        passwordField.sendKeys(password);
+        WebElement passwordFiled = driver.findElement(passwordFieldLocator);
+        waitForElementToBeClickable(passwordFiled).click();
+        passwordFiled.sendKeys(password);
     }
+
     public void clickSubmitButton() {
-        submitButton.click();
+        WebElement submitButton = driver.findElement(submitButtonLocator);
+        waitForVisibilityOfElement(submitButton).click();
     }
+
     public void login() {
         provideEmail("holostenco.yuliya@gmail.com");
         providePassword("te$t$tudent");

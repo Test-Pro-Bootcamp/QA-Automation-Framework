@@ -11,11 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    WebDriver driver;
+   protected WebDriver driver;
     WebDriverWait wait;
     Actions actions;
-    By allSongsMenuItemLocator = By.cssSelector("li a.songs");
-
+    private By allSongsMenuItemLocator = By.cssSelector("li a.songs");
+    private By popUpMessageLocator = By.cssSelector("div.success.show");
     public BasePage(WebDriver givenDriver) {
 
         driver = givenDriver;
@@ -38,8 +38,8 @@ public class BasePage {
     }
 
     public String getConfirmationPopUpText() {
-        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notificationMessage = driver.findElement(popUpMessageLocator);
         waitForVisibilityOfElement(notificationMessage);
-        return driver.findElement(By.cssSelector("div.success.show")).getText();
+        return driver.findElement(popUpMessageLocator).getText();
     }
 }

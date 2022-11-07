@@ -5,10 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
-    By createNewPlaylistButtonLocator = By.xpath("//*[@title='Create a new playlist']");
-    By popUpMessageLocator = By.cssSelector("div.success.show");
-    String myPlaylistName = "Iulia's Playlist1";
-    By avatarLocator = By.cssSelector("img.avatar");
+    private By createNewPlaylistButtonLocator = By.xpath("//*[@title='Create a new playlist']");
+    private By newPlaylistDropdownMenuElementLocator = By.xpath("//*[contains(text(),\"New Playlist\")]");
+    private By newPlaylistNameFieldLocator = By.xpath("//*[contains(@placeholder, 'to save')]");
+    private By popUpMessageLocator = By.cssSelector("div.success.show");
+    private String myPlaylistName = "Iulia's Playlist1";
+    private By avatarLocator = By.cssSelector("img.avatar");
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -26,10 +28,11 @@ public class HomePage extends BasePage {
         WebElement createANewPlaylistElement = driver.findElement(createNewPlaylistButtonLocator);
         waitForElementToBeClickable(createANewPlaylistElement).click();
 
-        WebElement newPlaylistLink = driver.findElement(By.xpath("//*[contains(text(),\"New Playlist\")]"));
-        newPlaylistLink.click();
-
-        WebElement newPlaylistNameField = driver.findElement(By.xpath("//*[contains(@placeholder, 'to save')]"));
+        WebElement newPlaylistFromDropdownMenu = driver.findElement(newPlaylistDropdownMenuElementLocator);
+        newPlaylistFromDropdownMenu.click();
+    }
+    public void enterNewPlaylistName(){
+        WebElement newPlaylistNameField = driver.findElement(newPlaylistNameFieldLocator);
         waitForVisibilityOfElement(newPlaylistNameField).click();
         newPlaylistNameField.sendKeys(myPlaylistName + "\n");
     }
