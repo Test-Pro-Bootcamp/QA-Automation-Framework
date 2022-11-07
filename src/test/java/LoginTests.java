@@ -13,11 +13,23 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+String url= "https://bbb.testpro.io/";
+    @Test(priority = 0)
+=======
 
     @Test(enabled = false, priority = 0)
+
     public void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+
+
+    @Test(priority = 1)
+    public void LoginValidEmailValidPasswordTest () throws InterruptedException {
+
+        provideEmail();
+        providePassword();
+        clickSubmitBtn();
 
     @Test (enabled=true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest () {
@@ -84,8 +96,13 @@ public class LoginTests extends BaseTest {
 
     @Test(enabled = false, priority = 2)
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {
+
+        provideEmail();
+        providePassword()
+        
         provideEmail("dem@class.com");
         providePassword("");
+
         clickSubmitBtn();
 
         // Vd
@@ -105,7 +122,7 @@ public class LoginTests extends BaseTest {
 
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("adenik@yahoo.com");
 
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
