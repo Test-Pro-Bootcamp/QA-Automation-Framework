@@ -38,8 +38,10 @@ public class Homework19 extends BaseTest {
 
         WebElement delPlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         delPlaylist.click();
+        Thread.sleep(1000);
 
         try {
+            // This is applicable when there is at least one song in the playlist
             WebElement confirmOkElement = driver.findElement(By.xpath("//button[contains(@class,'ok')]"));
             confirmOkElement.click();
         } catch (NoSuchElementException e) {
