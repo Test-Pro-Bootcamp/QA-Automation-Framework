@@ -1,6 +1,17 @@
+import org.testng.annotations.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeSuite;
 
+import java.time.Duration;
+
+
 public class BaseTest {
+    static WebDriver driver;
+    static String url;
+
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -10,4 +21,43 @@ public class BaseTest {
         }
     }
 
-}
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) {
+
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        url = BaseURL;
+        driver.get(url);
+    }
+
+        @AfterMethod
+
+        public void tearBrowser() {
+            driver.quit();
+
+        }
+
+        public void clickSubmitBtn () {
+
+            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+            submitButton.click();
+        }
+
+
+        public void providePassword (String password) {
+
+            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+            passwordField.click();
+            passwordField.sendKeys(password);
+        }
+
+        public void provideEmail (String email) {
+            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+            emailField.click();
+            emailField.sendKeys(email);
+
+        }
+
+    }
+

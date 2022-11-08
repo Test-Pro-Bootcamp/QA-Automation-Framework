@@ -1,21 +1,40 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 
-public class LoginTests {
+
+public class LoginTests extends BaseTest {
 
     @Test
-    public static void LoginEmptyEmailPasswordTest () {
-
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+    public  void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    }
+    @DataProvider(name = "invalidCredentials")
+public Object[][] getDataFromDataProvider(){
+
+        return  new Object[][]{
+                {"invalid@gmail.com", "invalidPass"},
+                {"d@gmail.com", ""},
+                {"",""},
+        };
+}
+
+    @Test(dataProvider = "invalidCredentials")
+    public void LoginValidEmailValidPasswordTest (String email, String password) throws InterruptedException {
+        provideEmail(email);
+        providePassword(password);
+        clickSubmitBtn();
+
+        WebElement avatarIcon = driver.findElement(By.cssSelector("[alt='Avatar of student']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+        Thread.sleep(2000);
+
+
     }
 }
+
+
+
