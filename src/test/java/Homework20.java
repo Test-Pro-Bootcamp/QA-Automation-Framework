@@ -11,7 +11,7 @@ public class Homework20 extends BaseTest {
 
     @Test
     @Parameters({"baseURL"})
-    public void deletePlaylist(@Optional String baseURL) throws InterruptedException {
+    public void deletePlaylist(@Optional String baseURL) {
         // Create a test case deletePlaylist() using @Test annotations
         // Use the reusable methods
         // Use @Parameters for passing baseUrl
@@ -29,13 +29,13 @@ public class Homework20 extends BaseTest {
         Assert.assertTrue(getConfirmationPopupText().contains("Deleted playlist"));
     }
 
-    private void selectPlaylist() throws InterruptedException {
+    private void selectPlaylist() {
         WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         myPlaylist.click();
         // Thread.sleep(1000);
     }
 
-    private void pressDeletePlaylist() throws InterruptedException {
+    private void pressDeletePlaylist() {
 
         WebElement delPlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         delPlaylist.click();

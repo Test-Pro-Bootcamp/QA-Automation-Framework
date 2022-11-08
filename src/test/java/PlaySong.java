@@ -1,9 +1,7 @@
 import POM.pages.AllSongsPage;
 import POM.pages.HomePage;
 import POM.pages.LoginPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -82,7 +80,7 @@ public class PlaySong extends BaseTest{
     }
 
     @Test
-    public void renamePlaylist() throws InterruptedException {
+    public void renamePlaylist() {
         // Login
         login();
         // doubleclick on a playlist
@@ -94,14 +92,24 @@ public class PlaySong extends BaseTest{
     }
 
     private boolean doesPlaylistExist() {
-        WebElement playlistElement = driver.findElement(By.xpath("//a[text()='Edited Playlist Name']"));
-        return playlistElement.isDisplayed();
+        boolean playlistUpdated;;
+
+        try {
+            wait.until(ExpectedConditions.
+                    presenceOfElementLocated(
+                            By.xpath("//*[contains(text(), 'Updated playlist')]"))
+            );
+            playlistUpdated = true;
+        } catch (TimeoutException e) {
+            playlistUpdated = false;
+        }
+
+        return playlistUpdated;
     }
 
-    private void enterPlaylistName()  throws InterruptedException {
+    private void enterPlaylistName() {
         WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
         playlistInputField.sendKeys((Keys.chord(Keys.COMMAND, "a", Keys.BACK_SPACE)));
-        Thread.sleep(3000);
         playlistInputField.sendKeys("Edited Playlist Name");
         playlistInputField.sendKeys(Keys.ENTER);
     }
