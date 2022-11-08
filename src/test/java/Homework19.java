@@ -5,39 +5,35 @@ import org.testng.annotations.Test;
 
 public class Homework19 extends BaseTest {
 
+
     @Test
     public void deletePlaylist() throws InterruptedException {
-        // Create a test case deletePlaylist() using @Test annotations
-        // Use the reusable methods
-        // Use @Parameters for passing baseUrl
-        // Given: Navigate to "https://bbb.testpro.io/"
-        // Step1: Log in with your credentials
-        login();
-        // Step2: Choose a playlist
-        selectPlaylist();
-        // Step3: Delete the playlist
+        provideEmail("kaflimeerim@gmail.com");
+        providePassword("te$t$tudent");
+        clickSubmitBtn();
+        selectAPlaylist();
         pressDeletePlaylist();
-        // Step4: Validate that the playlist is deleted "Deleted playlist"
-        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist");
+        Assert.assertEquals(getConfirmationPopUpText(), "Deleted Playlist");
+        
     }
-
-    private void selectPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        myPlaylist.click();
-        Thread.sleep(5000);
-    }
-
-    private void pressDeletePlaylist() throws InterruptedException {
-        WebElement delPlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
-        delPlaylist.click();
+    private void selectAPlaylist() throws InterruptedException {
+        WebElement myNewSongs = driver.findElement(By.xpath("//a[contains(text(),'My new songs')]"));
+        myNewSongs.click();
         Thread.sleep(4000);
+
     }
+    private void pressDeletePlaylist() throws InterruptedException {
 
-    private String getConfirmationPopupText() {
-        return driver.findElement(By.cssSelector("div.success.show")).getText();
+        WebElement pressPlaylistBar = driver.findElement(By.xpath("//button[@title='Delete this playlist']"));
+        pressPlaylistBar.click();
+        Thread.sleep(4000);
+
+
     }
-
-
-
-
+    private String getConfirmationPopUpText() {
+        return driver.findElement(By.xpath("//html/body/div[2]")).getText();
 }
+}
+
+
+    
