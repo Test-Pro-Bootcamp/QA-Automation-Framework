@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,35 +12,44 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-   protected WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
-    private By allSongsMenuItemLocator = By.cssSelector("li a.songs");
-    private By popUpMessageLocator = By.cssSelector("div.success.show");
-    public BasePage(WebDriver givenDriver) {
+    protected WebDriver driver;
+    private static int WAIT_SECONDS = 10;
+    protected String myEmail = "holostenco.yuliya@gmail.com";
+    protected String myPassword = "te$t$tudent";
 
+
+    public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        actions = new Actions(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    public void clickOnAllSongs() {
-        driver.findElement(allSongsMenuItemLocator).click();
+    public void waitAndActionsClickWebElement(WebElement element) {
+        waitForElementToBeClickable(element);
+        new Actions(driver).click(element);
+    }
+
+    protected void actionsDoubleClickWebElement(WebElement element) {
+        waitForElementToBeClickable(element);
+        new Actions(driver).doubleClick(element);
+    }
+
+    protected void waitAndContextClickWebElement(WebElement element) {
+        waitForElementToBeClickable(element);
+        new Actions(driver).contextClick(element);
+    }
+
+    protected void waitAndInputText(WebElement webElementLocator, String text) {
+        waitForVisibilityOfElement(webElementLocator).sendKeys(text);
     }
 
     protected WebElement waitForElementToBeClickable(WebElement webElementLocator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+        return new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECONDS)).until(
                 ExpectedConditions.elementToBeClickable(webElementLocator));
     }
 
     protected WebElement waitForVisibilityOfElement(WebElement webElementLocator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions
+        return new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECONDS)).until(ExpectedConditions
                 .visibilityOf(webElementLocator));
     }
 
-    public String getConfirmationPopUpText() {
-        WebElement notificationMessage = driver.findElement(popUpMessageLocator);
-        waitForVisibilityOfElement(notificationMessage);
-        return driver.findElement(popUpMessageLocator).getText();
-    }
 }

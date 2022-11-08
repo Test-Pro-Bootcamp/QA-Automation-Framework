@@ -15,8 +15,8 @@ public class NewPlaylistTestsUsingPOM extends BaseTest {
         loginPage.login();
         homePage.createNewPlaylist();
         homePage.enterNewPlaylistName();
-        basePage.getConfirmationPopUpText();
-        Assert.assertEquals(basePage.getConfirmationPopUpText(), notificationMessage);
+        homePage.getConfirmationPopUpText();
+        Assert.assertEquals(homePage.getConfirmationPopUpText(), notificationMessage);
 
     }
 }

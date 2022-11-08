@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class PracticeWithWaits extends BaseTest {
@@ -10,22 +11,20 @@ public class PracticeWithWaits extends BaseTest {
 
     String email = "holostenco.yuliya@gmail.com";
     String Password = "te$t$tudent";
-    String xpath = "//ul//li[@class='playlist playlist']";
-    String myPlaylistName="iulia's playlist";
+    By newPlaylistLocator = By.xpath("//ul//li[@class='playlist playlist']");
+    String myPlaylistName = "iulia's playlist";
 
     @Test
-    public void createPlaylist(){
-        provideEmail();
-        providePassword();
+    public void createPlaylist() {
         login();
         createAPlaylist();
         Assert.assertEquals(getConfirmationPopupText(), "Created playlist \"iulia's playlist.\"");
 
     }
+
     @Test
     public void deletePlaylist() {
-        provideEmail();
-        providePassword();
+
         login();
         chooseAPlaylist();
         deleteSelectedPlaylist();
@@ -35,69 +34,61 @@ public class PracticeWithWaits extends BaseTest {
     }
 
     private void createAPlaylist() {
-        By createAPlaylistButtonLocator=By.xpath("//*[@title='Create a new playlist']");
-        wait.until(ExpectedConditions.elementToBeClickable(createAPlaylistButtonLocator));
-        driver.findElement(createAPlaylistButtonLocator).click();
+        WebElement createAPlaylistButton = driver.findElement(By.xpath("//*[@title='Create a new playlist']"));
+        waitForElementToBeClickable(createAPlaylistButton).click();
 
-        By newPlaylistLocator=By.xpath("//*[contains(text(),\"New Playlist\")]");
-        wait.until(ExpectedConditions.elementToBeClickable(newPlaylistLocator));
-        driver.findElement(newPlaylistLocator).click();
 
-By newPlaylistNameFieldLocator=By.xpath("//*[contains(@placeholder, 'to save')]");
+        WebElement newPlaylist = driver.findElement(By.xpath("//*[contains(text(),\"New Playlist\")]"));
+        waitForElementToBeClickable(newPlaylist).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(newPlaylistNameFieldLocator));
-        WebElement newPlaylistNameField= driver.findElement(newPlaylistNameFieldLocator);
-        newPlaylistNameField.click();
+
+        WebElement newPlaylistNameField = driver.findElement(By.xpath("//*[contains(@placeholder, 'to save')]"));
+        waitForElementToBeClickable(newPlaylistNameField).click();
         newPlaylistNameField.sendKeys(myPlaylistName + "\n");
 
     }
 
+    public void login() {
+        WebElement emailField = driver.findElement(By.xpath("//input[@placeholder='Email Address']"));
+        waitForElementToBeClickable(emailField);
+        emailField.click();
+        emailField.sendKeys(email);
+
+        WebElement passwordLocator = driver.findElement(By.xpath("//input[@type='password']"));
+        waitForElementToBeClickable(passwordLocator);
+        passwordLocator.click();
+        passwordLocator.sendKeys(Password);
+
+        WebElement submitButton =driver.findElement(By.xpath("//button[@type='submit']"));
+        waitForVisibilityOfElement(submitButton).click();
+
+
+    }
+
     private String getConfirmationPopupText() {
-        By notificationMessageLocator = By.cssSelector("div.success.show");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(notificationMessageLocator));
+        WebElement notificationMessage = driver.findElement(By.cssSelector("div.success.show"));
+        waitForVisibilityOfElement(notificationMessage);
         return driver.findElement(By.cssSelector("div.success.show")).getText();
 
 
     }
 
     private void deleteSelectedPlaylist() {
-        By playlistToDeleteLocator = By.xpath("//li[text()='Delete']");
-        wait.until(ExpectedConditions.elementToBeClickable(playlistToDeleteLocator));
-        driver.findElement(playlistToDeleteLocator).click();
+        WebElement playlistToDelete = driver.findElement(By.xpath("//li[text()='Delete']"));
+        waitForElementToBeClickable(playlistToDelete).click();
+
 
 
     }
 
     private void chooseAPlaylist() {
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-        WebElement playlist = driver.findElement(By.xpath(xpath));
+        WebElement playlist = driver.findElement(newPlaylistLocator);
+        waitForVisibilityOfElement(playlist);
+        Actions actions=new Actions(driver);
         actions.contextClick(playlist).perform();
     }
 
-    private void login() {
-        By submitButtonLocator = By.xpath("//button[@type='submit']");
-        wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-        driver.findElement(submitButtonLocator).click();
 
-
-    }
-
-    private void providePassword() {
-        By passwordLocator = By.xpath("//input[@type='password']");
-        wait.until(ExpectedConditions.elementToBeClickable(passwordLocator));
-        WebElement passwordField = driver.findElement(passwordLocator);
-        passwordField.click();
-        passwordField.sendKeys(Password);
-    }
-
-    private void provideEmail() {
-        By emailLocator = By.xpath("//input[@placeholder='Email Address']");
-        wait.until(ExpectedConditions.elementToBeClickable(emailLocator));
-        WebElement emailField = driver.findElement(emailLocator);
-        emailField.click();
-        emailField.sendKeys(email);
-
-    }
 }
 

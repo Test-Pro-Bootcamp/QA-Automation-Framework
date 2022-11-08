@@ -1,3 +1,5 @@
+import POM.BasePage;
+import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -6,14 +8,15 @@ import org.testng.annotations.Test;
 
 public class PlayASongTests extends BaseTest {
 
-    String email = "holostenco.yuliya@gmail.com";
-    String searchPhrase = "Waiting On A Train";
+   private String searchPhrase = "Waiting On A Train";
+   private By searchFieldLocator=(By.cssSelector("input[type=search]"));
 
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong() {
+        LoginPage loginPage=new LoginPage(driver);
+        loginPage.login();
+        BasePage basePage=new BasePage(driver);
 
-        login();
-        search();
         playSelectedSong();
         validatePlayOfTheSong();
 
@@ -39,11 +42,11 @@ public class PlayASongTests extends BaseTest {
     public void login() throws InterruptedException {
         WebElement emailField = driver.findElement(By.xpath("//input[@type='email']"));
         emailField.click();
-        emailField.sendKeys(email);
+        emailField.sendKeys(myEmail);
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@type='password']"));
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
+        passwordField.sendKeys(myPassword);
 
         WebElement submitBtn = driver.findElement(By.xpath("//button[@type='submit']"));
         submitBtn.click();
@@ -51,11 +54,7 @@ public class PlayASongTests extends BaseTest {
         Thread.sleep(3000);
     }
 
-    private void search() throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("input[type=search]"));
-        Thread.sleep(3000);
+    private void search()  {
 
-        searchField.sendKeys(searchPhrase);
-        Thread.sleep(2000);
     }
 }

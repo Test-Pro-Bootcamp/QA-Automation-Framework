@@ -15,6 +15,11 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
+    public String getConfirmationPopUpText() {
+        WebElement notificationMessage = driver.findElement(popUpMessageLocator);
+        waitForVisibilityOfElement(notificationMessage);
+        return driver.findElement(popUpMessageLocator).getText();
+    }
 
     public WebElement getAvatarIcon() {
         return driver.findElement(avatarLocator);
