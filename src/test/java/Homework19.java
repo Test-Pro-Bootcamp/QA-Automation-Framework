@@ -32,8 +32,8 @@ public class Homework19 extends BaseTest {
     }
     private String getConfirmationPopUpText() {
         return driver.findElement(By.xpath("//html/body/div[2]")).getText();
-
-
-
-    }
 }
+}
+
+
+    

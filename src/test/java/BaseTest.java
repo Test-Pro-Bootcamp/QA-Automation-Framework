@@ -1,16 +1,16 @@
+
 import org.testng.annotations.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeSuite;
+import org.openqa.selenium.chrome.ChromeDriver
 
 import java.time.Duration;
-
 
 public class BaseTest {
     static WebDriver driver;
     static String url;
+
 
 
     @BeforeSuite
@@ -18,8 +18,13 @@ public class BaseTest {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        } else {
+            System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
+
+
     }
+
 
     @BeforeMethod
     @Parameters({"BaseURL"})
