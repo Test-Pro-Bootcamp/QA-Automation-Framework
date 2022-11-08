@@ -9,14 +9,12 @@ import java.time.Duration;
 
 public class Homework14 {
 
-    //Create a test case registrationNavigation() using @Test annotation
     @Test
-    public static void registrationNavigation () throws InterruptedException {
+    public static void registrationNavigation () {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        //Using Selenium, Navigate to "https://bbb.testpro.io/"
         String url = "https://bbb.testpro.io/";
         String registrationURL = "https://bbb.testpro.io/registration.php";
         driver.get(url);
