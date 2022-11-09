@@ -1,6 +1,5 @@
 package POM.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,12 +16,14 @@ public class HomePage extends BasePage {
         super(sentDriver);
     }
 
-    public void clickViewAllBtn() {
+    public ViewAllPage clickViewAllSongs() {
         viewAllBtn.click();
+        return new ViewAllPage(driver);
     }
 
-    public void clickViewMyProfile() {
+    public HomePage clickViewMyProfile() {
         this.myAvatarIcon.click();
+        return this;
     }
 
 }
