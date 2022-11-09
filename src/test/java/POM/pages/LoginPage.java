@@ -45,5 +45,7 @@ public class LoginPage extends BasePage{
     }
 
 
-
+    public boolean isPageOpened() {
+        return driver.getCurrentUrl().contains("https://bbb.testpro.io");
+    }
 }
