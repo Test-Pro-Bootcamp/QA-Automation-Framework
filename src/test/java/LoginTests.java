@@ -7,7 +7,7 @@ public class LoginTests extends BaseTest{
     @Test
     public static void LoginValidEmailPasswordTest () {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = loginPage.signIn("nozishka86@gmail.com", "te$t$tudent");
+        HomePage homePage = loginPage.signIn("","");
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent");
 
@@ -36,14 +36,14 @@ public class LoginTests extends BaseTest{
         Assert.assertTrue(allSongsPage.songIsPlaying());
     }
 
-    @Test
+
+   @Test
     public void likePlutoSong(){
         LoginPage loginPage = new LoginPage(driver);
         AlbumsPage albumsPage = new AlbumsPage(driver);
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent").clickAlbums();
         albumsPage.clickArtist().clickHeartBtnPluto();
-
         Assert.assertTrue(albumsPage.isSongPlutoLiked());
     }
 }

@@ -3,6 +3,7 @@ package POM.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class AlbumsPage extends BasePage{
@@ -21,7 +22,8 @@ public class AlbumsPage extends BasePage{
         return this;
     }
     public AlbumsPage clickHeartBtnPluto(){
-        heartBtnPluto.click();
+        wait.until(ExpectedConditions.elementToBeClickable(heartBtnPluto)).click();
+//        heartBtnPluto.click();
         return this;
     }
     public boolean isSongPlutoLiked(){

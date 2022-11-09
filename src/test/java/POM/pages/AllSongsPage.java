@@ -3,10 +3,11 @@ package POM.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class AllSongsPage extends BasePage{
-    @FindBy(xpath = "//button[@title='Shuffle all songs']")
+    @FindBy(xpath = "//button[contains(@title,'Shuffle')]")
     WebElement shuffleBtn;
     @FindBy(xpath = "//button[contains(@title,'Clear')]")
     WebElement clearBtn;
@@ -19,7 +20,7 @@ public class AllSongsPage extends BasePage{
         super(givenDriver);
     }
     public AllSongsPage clickShuffleBtn(){
-        shuffleBtn.click();
+        wait.until(ExpectedConditions.elementToBeClickable(shuffleBtn)).click();
         return this;
     }
     public AllSongsPage clickToPlaySong(){

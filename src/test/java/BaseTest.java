@@ -3,15 +3,17 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 
 public class BaseTest {
@@ -30,30 +32,58 @@ public class BaseTest {
         }
     }
 
-    public void logIn(String email, String password ){
-    driver.findElement(By.xpath("//*[@type='email']")).sendKeys(email);
-    driver.findElement(By.xpath("//*[@type='password']")).sendKeys(password);
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    public void logIn(String email, String password) {
+        driver.findElement(By.xpath("//*[@type='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//*[@type='password']")).sendKeys(password);
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
 
-    public void createPlaylist(){
+    public void createPlaylist() {
         driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']")).click();
         driver.findElement(By.xpath("//li[contains(text(), 'New Playlist')]")).click();
-        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(newPlaylistName,Keys.ENTER);
+        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(newPlaylistName, Keys.ENTER);
     }
 
     @BeforeMethod
-    @Parameters ({"BaseURL"})
-    public void launchBrowser(String BaseURL){
-        driver = new ChromeDriver();
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
+//        driver = new ChromeDriver();
+//        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");//setting system properties of FirefoxDriver
+//        driver = new FirefoxDriver(); //creating an object of FireFox Driver (FireFox Driver declaration)
+        driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(BaseURL);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
     }
 
+    private WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = "http://localhost:4444/";
+
+        switch (browser) {
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+                return driver = new FirefoxDriver();
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "MicrosoftEdge":
+                System.setProperty("webdriver.edge.driver", "msedgedriver.exe");
+                return driver = new EdgeDriver();
+            case "grid-edge":
+                capabilities.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-chrome":
+                capabilities.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            default:
+                return driver = new ChromeDriver();
+        }
+    }
+
     @AfterMethod
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
     }
 
@@ -68,7 +98,7 @@ public class BaseTest {
     }
 
     protected static void clickAddToBtn() {
-        WebElement addToBtn = driver.findElement(By.xpath("//button[@title='Add selected songs to…']"));
+        WebElement addToBtn = driver.findElement(By.xpath("//button[contains(@title,'Add')]"));
         addToBtn.click();
     }
 
@@ -81,3 +111,17 @@ public class BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='All Songs']"))).click();
     }
 }
+
+//    @DataProvider(name = "invalidCredentials")
+//    public static Object[][] getCredentials() {
+//        return new Object[][]{
+//                {"invalid@class.com", "invalidPass"},
+//                {"d@class.com", ""},
+//                {"", ""}
+//        };
+//    }
+//}
+
+
+
+
