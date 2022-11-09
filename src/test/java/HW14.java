@@ -7,9 +7,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class HW14 {
-    public static void main(String[] args) {
 
-    }
     @Test
     public static void registrationNavigation() throws InterruptedException {
 
