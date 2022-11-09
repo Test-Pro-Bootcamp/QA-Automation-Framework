@@ -36,7 +36,8 @@ public class Homework15 {
         search.sendKeys("pluto");
         Thread.sleep(1000);
 
-        Assert.assertTrue(search.isDisplayed());
+        WebElement song = driver.findElement(By.cssSelector("[class='songs']>ul>article>span:nth-child(2)"));
+        Assert.assertTrue(song.isDisplayed());
         Thread.sleep(3000);
 
        driver.quit();
