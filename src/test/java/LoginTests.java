@@ -1,21 +1,33 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
-import java.time.Duration;
+import org.testng.annotations.*;
 
-public class LoginTests {
 
-    @Test
-    public static void LoginEmptyEmailPasswordTest () {
+public class LoginTests extends BaseTest{
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+    @Test(enabled = false, priority = 0)
+    public void LoginEmptyEmailPasswordTest() {
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    }
+
+
+    @Test(enabled = true,priority = 1)//(priority = 1,dataProvider = "invalidCredentials",dataProviderClass = BaseTest.class)
+    public void LoginValidEmailValidPassword()  {
+
+        login();
+
+        By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
+        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
+        WebElement avatarIcon = driver.findElement(avatarIconLocator);
+        Assert.assertTrue(avatarIcon.isDisplayed());
+
+
     }
 }
+
+
+
