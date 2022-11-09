@@ -14,20 +14,21 @@ public class LoginPageForPageFactoryPractice extends BasePage {
     WebElement submitButton;
 
     public LoginPageForPageFactoryPractice(WebDriver givenDriver) {
+
         super(givenDriver);
     }
     public void provideEmail(String email) {
         waitAndActionsClickWebElement(emailField);
         emailField.sendKeys(email);
+
     }
     public void providePassword(String password) {
         waitAndActionsClickWebElement(passwordField);
         passwordField.sendKeys(password);
     }
     public void clickSubmitButton() {
-      waitAndActionsClickWebElement(submitButton);
+        submitButton.click();
     }
-
     public void login() {
         provideEmail(myEmail);
         providePassword(myPassword);

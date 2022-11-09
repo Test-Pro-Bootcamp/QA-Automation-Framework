@@ -8,8 +8,8 @@ public class TestsForPlayASongFunction extends BaseTest {
 
     @Test
     public void playASong(){
-        LoginPageForPageFactoryPractice loginPage= new LoginPageForPageFactoryPractice(driver);
-        loginPage.login();
+        LoginPageForPageFactoryPractice loginPagePageFactory= new LoginPageForPageFactoryPractice(driver);
+        loginPagePageFactory.login();
         AllSongsPage allSongs =new AllSongsPage(driver);
         allSongs.search();
         allSongs.playSelectedSong();

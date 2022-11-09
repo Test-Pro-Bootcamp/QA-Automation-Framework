@@ -55,7 +55,6 @@ public class BaseTest {
             default:
                 return driver=new ChromeDriver();
         }
-
     }
     @AfterMethod
         public void tearDownBrowser() {

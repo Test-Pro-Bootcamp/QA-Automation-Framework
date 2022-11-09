@@ -16,10 +16,8 @@ public class BasePage {
     private static int WAIT_SECONDS = 10;
     protected String myEmail = "holostenco.yuliya@gmail.com";
     protected String myPassword = "te$t$tudent";
-
-
     public BasePage(WebDriver givenDriver) {
-        driver = givenDriver;
+        this.driver = givenDriver;
         PageFactory.initElements(driver, this);
     }
 
@@ -35,7 +33,7 @@ public class BasePage {
 
     protected void waitAndContextClickWebElement(WebElement element) {
         waitForElementToBeClickable(element);
-        new Actions(driver).contextClick(element);
+        new Actions(driver).contextClick(element).perform();
     }
 
     protected void waitAndInputText(WebElement webElementLocator, String text) {
@@ -46,7 +44,6 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECONDS)).until(
                 ExpectedConditions.elementToBeClickable(webElementLocator));
     }
-
     protected WebElement waitForVisibilityOfElement(WebElement webElementLocator) {
         return new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECONDS)).until(ExpectedConditions
                 .visibilityOf(webElementLocator));
