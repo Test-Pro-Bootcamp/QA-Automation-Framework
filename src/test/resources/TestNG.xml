@@ -4,11 +4,14 @@
 <suite name="TestNG">
 
     <test name="LoginTests" preserve-order="false">
-        <classes>
+     <classes>
+        <class name="Homework17"/>
             <class name="LoginTests"/>
-        </classes>
-    </test>
+                <class name="BaseTest">
+                    <methods/>
+                </class>
+            </classes>
+        </test>
 </suite>
 
-<!--<class name="RegistrationTests"/>-->
-<!--<class name="ChangeUsernameTests"/>-->
+
