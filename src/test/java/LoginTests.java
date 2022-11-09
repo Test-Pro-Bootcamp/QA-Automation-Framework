@@ -16,8 +16,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginValidEmailPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("demo@class.com");
         loginPage.providePassword("te$t$tudent");
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginEmptyPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.provideEmail("demo@class.com");
         loginPage.providePassword("");

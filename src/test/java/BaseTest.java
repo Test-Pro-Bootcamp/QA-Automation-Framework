@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -25,6 +26,7 @@ public class BaseTest {
     WebDriverWait wait;
     Actions actions;
 
+    ThreadLocal<WebDriver> threadDriver;
 
 
     @BeforeSuite
@@ -51,7 +53,10 @@ public class BaseTest {
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
         driver = pickBrowser(System.getProperty("browser"));
-        actions = new Actions(driver);
+        threadDriver = new ThreadLocal<>();
+        threadDriver.set(driver);
+
+        actions = new Actions(getDriver());
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
 //        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
@@ -66,12 +71,29 @@ public class BaseTest {
         // if element comes up after 1 second, it will move on
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
         driver.get(url);
 
     }
+
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String username = "khaledzamanqa";
+        String authkey = "e33oiUgYlTNRArFJpW8NCYZmvEzDi9jIQC6qvdHg4UOxL82EHd";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        // Configure your capabilities here
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "106.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+    }
+
 
     private WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -91,6 +113,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 return driver = new ChromeDriver();
         }
@@ -99,6 +123,11 @@ public class BaseTest {
     @AfterMethod
     public void tearDownBrowser() {
         driver.quit();
+        threadDriver.remove();
+    }
+
+    public WebDriver getDriver() {
+        return threadDriver.get();
     }
 
     public void clickSubmitBtn() {
