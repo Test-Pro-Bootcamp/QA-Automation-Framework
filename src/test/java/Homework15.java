@@ -16,7 +16,6 @@ public class Homework15 {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         String url = "https://bbb.testpro.io/";
-        //String registrationURL = "https://bbb.testpro.io/registration.php";
         driver.get(url);
 
         WebElement email = driver.findElement(By.cssSelector("[type='email']"));
