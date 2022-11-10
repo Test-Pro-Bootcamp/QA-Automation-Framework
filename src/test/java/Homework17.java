@@ -36,7 +36,7 @@ public class Homework17 extends BaseTest{
         // Verify that the song was added to the HW17 Playlist
         verifySongAddedToPlaylist();
     }
-    
+
     private void getAllSongs() {
         WebElement allSongs = driver.findElement(By.xpath("//*[@id=\"sidebar\"]/section[1]/ul/li[3]/a"));
         allSongs.click();
