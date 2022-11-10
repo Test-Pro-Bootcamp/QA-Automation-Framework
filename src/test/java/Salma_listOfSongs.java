@@ -6,7 +6,10 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+
 public class Salma_listOfSongs extends Salma_BaseTest {
+
+
   @Test
     public void listOfSongsWebElements(){
       //verify playlist Salma has 3 songs
