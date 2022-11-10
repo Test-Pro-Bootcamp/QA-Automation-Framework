@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chromium.ChromiumNetworkConditions;
 import org.openqa.selenium.chromium.HasNetworkConditions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,12 +25,11 @@ public class BaseTest {
     public static void chromeConfigs() {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            // System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
         } else {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
-
-
     }
 
     @BeforeMethod
@@ -39,7 +39,8 @@ public class BaseTest {
     public void launchBrowser(@Optional String baseURL) {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
-        driver = new ChromeDriver();
+        // driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
