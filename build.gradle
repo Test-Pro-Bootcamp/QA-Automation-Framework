@@ -16,8 +16,10 @@ dependencies {
 
 test {
     useTestNG() {
+
         suites "src/test/resources/Salma_TestNG.xml"
         systemProperty "browser", System.getProperty ("browser")
+
     }
 }
 task HW22(type: Test){
