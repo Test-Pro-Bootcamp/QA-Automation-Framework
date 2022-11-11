@@ -3,6 +3,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Homework17 extends BaseTest {
 
 
@@ -10,9 +13,7 @@ public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist(){
         //login
-        provideEmail("demo@class.com");
-        providePassword("");
-        clickSubmitBtn();
+        login();
         //add a song to the playlist
         clickViewAllBtn();
         String getSongTitle = getSongTitleTxt();;
@@ -22,14 +23,21 @@ public class Homework17 extends BaseTest {
         clickOnSuperPlaylist();
 
         //Verify the song
-        String songFromSuperPlaylist = getSongTitleFromSuperPlaylist();
-        Assert.assertEquals(songFromSuperPlaylist, getSongTitle);
+        List<String> songsFromSuperPlaylist = getSongTitleFromSuperPlaylist();
+        Assert.assertTrue(songsFromSuperPlaylist.contains(getSongTitle));
     }
 
-    private String getSongTitleFromSuperPlaylist() {
+    private List<String> getSongTitleFromSuperPlaylist() {
+        List<String> songs = new ArrayList<>();
 
-        WebElement superPlaylistSong = driver.findElement(By.xpath("//section[@id='playlistWrapper']//tr[@class='song-item']//td[@class='title']"));
-        return superPlaylistSong.getText();
+        List<WebElement> superPlaylistSongs = driver.findElements(By.xpath("//section[@id='playlistWrapper']//tr[@class='song-item']//td[@class='title']"));
+        if(superPlaylistSongs != null && !superPlaylistSongs.isEmpty()) {
+            for(WebElement each : superPlaylistSongs) {
+                songs.add(each.getText());
+            }
+        }
+
+        return songs;
     }
 
     private void clickOnSuperPlaylist() {
