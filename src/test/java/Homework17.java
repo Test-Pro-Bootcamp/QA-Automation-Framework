@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 
-
 import java.time.Duration;
 
 public class Homework17 extends BaseTest{
