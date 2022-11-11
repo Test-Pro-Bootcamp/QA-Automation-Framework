@@ -7,94 +7,36 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests {
+public class LoginTests extends BaseTest {
 
-    @Test
-    public static void LoginValidEmailValidPasswordTest() {
+    @Test(priority = 0)
+    public void LoginValidEmailValidPasswordTest() throws InterruptedException {
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmitBtn();
 
-        WebDriver driver = new ChromeDriver();
-        try {
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-            String url = "https://bbb.testpro.io/";
-            driver.get(url);
-
-            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-            emailField.click();
-            emailField.sendKeys("demo@class.com");
-
-            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-            passwordField.click();
-            passwordField.sendKeys("te$t$tudent");
-
-            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-            submitButton.click();
-
-            WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
-            Assert.assertTrue(avatarIcon.isDisplayed());
-        } finally {
-            driver.quit();
-        }
+        WebElement avatarIcon = driver.findElement(By.xpath("//img[contains(@alt,'Avatar of')]"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
     }
+    @Test(priority = 1)
+    public void LoginInValidEmailPasswordTest() throws InterruptedException {
+        provideEmail("dem@class.com");
+        providePassword("te$t$tudent");
+        clickSubmitBtn();
 
-    @Test
-    public static void LoginInValidEmailPasswordTest() {
-
-        WebDriver driver = new ChromeDriver();
-        try {
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-            String url = "https://bbb.testpro.io/";
-            driver.get(url);
-
-            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-            emailField.click();
-            emailField.sendKeys("dem@class.com");
-
-            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-            passwordField.click();
-            passwordField.sendKeys("te$t$tudent");
-
-            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-            submitButton.click();
-
-            WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
-            Assert.assertTrue(avatarIcon.isDisplayed());
-        } finally {
-            driver.quit();
-        }
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+    @Test(priority = 2)
+    public void LoginValidEmailEmptyPasswordTest() throws InterruptedException {
+        provideEmail("demo@class.com");
+        providePassword("");
+        clickSubmitBtn();
 
-    @Test
-    public static void LoginValidEmailEmptyPasswordTest() {
+        Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        WebDriver driver = new ChromeDriver();
-        try {
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-            String url = "https://bbb.testpro.io/";
-            driver.get(url);
-
-            WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-            emailField.click();
-            emailField.sendKeys("demo@class.com");
-
-            WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-            passwordField.click();
-            passwordField.sendKeys("");
-
-            WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-            submitButton.click();
-
-            WebElement avatarIcon = driver.findElement(By.cssSelector("[alt = 'Avatar of student']"));
-            Assert.assertTrue(avatarIcon.isDisplayed());
-        } finally {
-            driver.quit();
-        }
     }
-
-    @Test
-    public static void LoginEmptyPasswordTest() {
+    @Test (enabled = false, description = "example search ")
+    public void LoginEmptyPasswordTest() {
 
         WebDriver driver = new ChromeDriver();
         try {
@@ -115,60 +57,6 @@ public class LoginTests {
         }
     }
 
-    public static class Registration {
-        @Test
-        public static void registrationNavigation() {
 
-            WebDriver driver = new ChromeDriver();
-            try {
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                String url = "https://bbb.testpro.io/";
-                driver.get(url);
-
-                WebElement regLink = driver.findElement(By.id("hel"));
-                regLink.click();
-
-                WebElement regbutton = driver.findElement(By.cssSelector("[type='submit']"));
-                Assert.assertTrue(regbutton.isDisplayed());
-            } finally {
-
-                driver.quit();
-            }
-        }
-    }
-
-    public static class Homework15 {
-        @Test
-    public static void search(){
-            WebDriver driver = new ChromeDriver();
-            try {
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-                String url = "https://bbb.testpro.io/";
-                driver.get(url);
-
-                WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-                emailField.click();
-                emailField.sendKeys("demo@class.com");
-
-                WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-                passwordField.click();
-                passwordField.sendKeys("te$t$tudent");
-
-                WebElement loginBtn = driver.findElement(By.cssSelector("[type='submit']"));
-                loginBtn.click();
-
-                WebElement searchBtn = driver.findElement(By.cssSelector("[type='search']"));
-                searchBtn.click();
-                searchBtn.sendKeys("Pluto");
-
-                WebElement viewAll = driver.findElement(By.cssSelector("[data-test = 'view-all-song-btn']"));
-                Assert.assertTrue(viewAll.isDisplayed());
-        }
-            finally {
-                driver.quit();
-            }
-            }
-        }
     }
 

@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class HmWrk14 {
     @Test
-    public static void registrationNavigation() throws InterruptedException {
+    public  void registrationNavigation() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         try {

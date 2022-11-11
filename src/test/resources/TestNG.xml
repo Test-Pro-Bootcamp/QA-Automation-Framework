@@ -6,9 +6,11 @@
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
-            <class name="BaseTest"/>
-            <class name="HmWrk14"/>
-            <class name="HmWrk15"/>
+<!--            <class name="BaseTest"/>-->
+<!--            <class name="HmWrk14"/>-->
+<!--            <class name="HmWrk15"/>-->
+<!--            <class name="HmWrk16"/>-->
+                <class name="AddSongHmw17"/>
         </classes>
     </test>
 </suite>

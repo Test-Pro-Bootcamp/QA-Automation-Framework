@@ -14,12 +14,11 @@ import java.time.Duration;
 public class HmWrk16 {
 
     @Test
-    public static void createNewPlaylist() {
+    public void createNewPlaylist() {
 
         By usernameLocator = By.xpath("//*[@type='email']");
         By passwordLocator = By.xpath("//*[@type='password']");
         By loginButton = By.xpath("//*[@type='submit']");
-        By avatarIconLocator = By.xpath("//*[@alt = 'Avatar of Student']");
         By NewPlaylistBtn = By.xpath("//i[@title='Create a new playlist']");
         By createNewPlaylist = By.xpath("//*[contains(text(),'New Playlist')]");
         By newPlaylistName = By.xpath("//*[@name='name']");
@@ -30,7 +29,6 @@ public class HmWrk16 {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             String url = "https://bbb.testpro.io/";
             driver.get(url);
-
 
             driver.findElement(usernameLocator).sendKeys("demo@class.com");
             driver.findElement(passwordLocator).sendKeys("te$t$tudent");

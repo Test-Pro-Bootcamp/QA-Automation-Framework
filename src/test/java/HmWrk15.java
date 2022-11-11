@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class HmWrk15 {
     @Test
-    public static void search(){
+    public void search(){
         WebDriver driver = new ChromeDriver();
         try {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
