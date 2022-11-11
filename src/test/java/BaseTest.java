@@ -4,13 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import org.testng.annotations.DataProvider;
-
-import javax.swing.*;
-import java.time.Duration;
 
 
 public class BaseTest {
@@ -19,11 +17,12 @@ public class BaseTest {
     WebDriverWait wait;
     Actions actions;
 
+
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe")
 
 
         }
@@ -44,14 +43,19 @@ public class BaseTest {
     @AfterMethod
     public void tearBrowser() {
 
-        driver.quit();
+
     }
 
-    public void clickSubmitBtn() {
+
 
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
+    }
 
+    public void provideEmail(String email) {
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        emailField.click();
+        emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
@@ -62,26 +66,22 @@ public class BaseTest {
 
     }
 
-    public void provideEmail(String email) {
-
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys(email);
-
-    }
 
     @DataProvider(name = "invalidCredentials")
     public static Object[][] getCredentials() {
         return new Object[][]{
                 {"invalid@gmail.com", "invalidPass"},
                 {"d@gmail.com", ""},
-                {"", ""},
-        };
+  
     }
 
     public void login(){
 
+
         provideEmail("kaflimeerim@gmail.com");
+
+        provideEmail("demo@class.com");
+
         providePassword("te$t$tudent");
         clickSubmitBtn();
     }
