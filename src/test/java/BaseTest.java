@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -25,13 +26,15 @@ public class BaseTest {
     WebDriverWait wait;
     Actions actions;
 
+    static ThreadLocal<WebDriver> threadDriver;
+
 
     @BeforeSuite
-    public static void chromeConfigs() {
+    public void chromeConfigs() {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            // System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-            System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            // System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
         } else {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
@@ -45,31 +48,29 @@ public class BaseTest {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
         // driver = new ChromeDriver();
-        // driver = new FirefoxDriver();
         driver = pickBrowser();
-        actions = new Actions(driver);
-        // Make webdriver load the pages REALLY slow
-//        WebDriver augmentedDriver = new Augmenter().augment(driver);
-//        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
-//        networkConditions.setDownloadThroughput(100 * 1024);
-//        networkConditions.setUploadThroughput(500 * 1024);
-//        networkConditions.setLatency(Duration.ofMillis(5000));
-//        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
-        // (comment out above lines to remove throttling)
 
-        // Wait for an element to show up for max of X seconds
-        // implicitlyWait(Duration.ofSeconds(60) will wait for UP to 60 seconds
-        // if element comes up after 1 second, it will move on
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        if(threadDriver == null) {
+            threadDriver = new ThreadLocal<>();
+        }
+        threadDriver.set(driver);
 
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
-        driver.get(url);
+        getDriver().get(url);
 
     }
 
-    private WebDriver pickBrowser() throws MalformedURLException {
+    public static WebDriver getDriver() {
+        WebDriver webDriver = threadDriver.get();
+        return webDriver;
+    }
+
+    private static WebDriver pickBrowser() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://192.168.0.20:4444";
 
@@ -92,6 +93,9 @@ public class BaseTest {
             case "edge":
                 webDriver = new EdgeDriver();
                 break;
+            case "cloud":
+                webDriver = getLambdaTestDriver();
+                break;
             default:
                 webDriver = new ChromeDriver();
         }
@@ -99,24 +103,42 @@ public class BaseTest {
         return webDriver;
     }
 
-    @AfterMethod
-    public void tearDownBrowser() {
-        driver.quit();
+    private static WebDriver getLambdaTestDriver() throws MalformedURLException {
+        String userName = "jyoti.thapa92";
+        String authKey = "isSBt9VnPk6P8NkgS5J4r1as3AkOzMDN94SMxiGCaagTBNknhf";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        String url = "https://" + userName + ":" + authKey + hub;
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "108.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("plugin", "git-testng");
+
+        return new RemoteWebDriver(new URL(url), caps);
     }
 
-    public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+    @AfterMethod
+    public static void tearDownBrowser() {
+        getDriver().quit();
+        threadDriver.remove();
+    }
+
+    public static void clickSubmitBtn() {
+        WebElement submitButton = getDriver().findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
     }
 
-    public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+    public static void provideEmail(String email) {
+        WebElement emailField = getDriver().findElement(By.cssSelector("[type='email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
 
-    public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+    public static void providePassword(String password) {
+        WebElement passwordField = getDriver().findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys(password);
 
@@ -132,7 +154,7 @@ public class BaseTest {
         };
     }
 
-    public void login(){
+    public static void login(){
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();

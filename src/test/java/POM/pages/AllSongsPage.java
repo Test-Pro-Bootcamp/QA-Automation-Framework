@@ -9,7 +9,7 @@ public class AllSongsPage extends BasePage{
 
     //Locators
     By shuffleBtnLocator = By.cssSelector(".btn-shuffle-all");
-    By firstSongLocator = By.cssSelector(".play");
+    By firstSongLocator = By.xpath("//section[@id='songsWrapper']//tr[@class='song-item'][1]/td[2]");
 
     public AllSongsPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -21,7 +21,9 @@ public class AllSongsPage extends BasePage{
     }
 
     public void doubleClickFirstSong() {
-        actions.doubleClick(driver.findElement(firstSongLocator));
+        WebElement firstSong = driver.findElement(firstSongLocator);
+        actions.doubleClick(firstSong).perform();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(soundBarPlayLocator));
     }
 
     public void contextClickFirstSong() {

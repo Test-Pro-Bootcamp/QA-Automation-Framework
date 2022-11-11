@@ -18,9 +18,9 @@ public class BasePage {
     @FindBy(xpath="//li/a[@class='queue']")
     WebElement currentQueueMenuItem;
 
-    By avatarLocator = By.cssSelector("img.avatar");
+    By avatarLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
     By soundBarPlayLocator = By.cssSelector("[data-testid = 'sound-bar-play']");
-    By allSongsMenuItemLocator = By.cssSelector("li a.songs");
+    By allSongsMenuItemLocator = By.xpath("//li/a[@class='songs']");
 
     public BasePage (WebDriver givenDriver){
         driver = givenDriver;
