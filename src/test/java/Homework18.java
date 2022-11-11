@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 
-
 import java.time.Duration;
 
 import static org.testng.Assert.assertTrue;

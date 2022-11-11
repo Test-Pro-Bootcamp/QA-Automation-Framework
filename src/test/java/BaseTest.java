@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 public class BaseTest {
-    WebDriver driver;
+    static WebDriver driver;
     String url;
 
     @BeforeSuite
@@ -28,17 +28,17 @@ public class BaseTest {
         url = "https://bbb.testpro.io/";
         driver.get(url);
     }
-    public void provideEmail(String email) {
+    public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
-    public void providePassword() {
+    public static void providePassword() {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys("te$t$tudent");
     }
-    public void clickSubmitBtn() {
+    public static void clickSubmitBtn() {
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         driver.manage().window().maximize();
         submitButton.click();
