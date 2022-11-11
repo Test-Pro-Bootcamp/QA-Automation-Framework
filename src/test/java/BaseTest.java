@@ -4,13 +4,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chromium.ChromiumNetworkConditions;
 import org.openqa.selenium.chromium.HasNetworkConditions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 
 public class BaseTest {
@@ -36,11 +41,12 @@ public class BaseTest {
     // Send a parameter for 'baseURL' specified in XML
     @Parameters({"baseURL"})
     // Make baseURL parameter optional, if it is null, then set it to something)
-    public void launchBrowser(@Optional String baseURL) {
+    public void launchBrowser(@Optional String baseURL) throws MalformedURLException {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
         // driver = new ChromeDriver();
-        driver = new FirefoxDriver();
+        // driver = new FirefoxDriver();
+        driver = pickBrowser();
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
@@ -61,6 +67,36 @@ public class BaseTest {
         url = baseURL;
         driver.get(url);
 
+    }
+
+    private WebDriver pickBrowser() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = "http://192.168.0.20:4444";
+
+        String browser = System.getProperty("browser");
+        WebDriver webDriver = null;
+
+        switch (browser) {
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+                webDriver = new FirefoxDriver();
+                break;
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                webDriver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+                break;
+            case "grid-chrome":
+                capabilities.setCapability("browserName", "chrome");
+                webDriver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+                break;
+            case "edge":
+                webDriver = new EdgeDriver();
+                break;
+            default:
+                webDriver = new ChromeDriver();
+        }
+
+        return webDriver;
     }
 
     @AfterMethod
