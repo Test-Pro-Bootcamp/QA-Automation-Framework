@@ -1,6 +1,10 @@
+
 import POM.pages.AllSongsPage;
 import POM.pages.HomePage;
 import POM.pages.LoginPage;
+
+import POM.AllSongsPlaylist;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -14,6 +18,7 @@ public class PlaySong extends BaseTest{
 
     @Test
     public void playSong() throws InterruptedException {
+
         // test case here
         // Class23 Example
 
@@ -32,6 +37,14 @@ public class PlaySong extends BaseTest{
         songsPage.playFromContextMenu();
         //Assert.assertTrue(isSongPlaying());
         Assert.assertTrue(songsPage.isSongPlaying());
+
+
+        login();
+        chooseAllSongsList();
+        contextClickFirstSong();
+        choosePlay();
+        Assert.assertTrue(isSongPlaying());
+
     }
 
     //    helper methods
