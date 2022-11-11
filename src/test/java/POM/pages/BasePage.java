@@ -19,19 +19,29 @@ public class BasePage {
     @FindBy(xpath = "//a[contains(text(),'Albums')]")
     WebElement albumsMenuItem;
 
-    public BasePage(WebDriver givenDriver){
+    @FindBy(xpath = "//a[text()='Favorites']")
+    WebElement favoritesMenuItem;
+
+    public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public BasePage clickAllSongs(){
+    public BasePage clickAllSongs() {
         wait.until(ExpectedConditions.elementToBeClickable(allSongsMenuItem)).click();
         return this;
     }
-    public BasePage clickAlbums(){
+
+    public BasePage clickAlbums() {
         wait.until(ExpectedConditions.elementToBeClickable(albumsMenuItem)).click();
         return this;
     }
+
+    public BasePage clickFavorites() {
+        wait.until(ExpectedConditions.elementToBeClickable(favoritesMenuItem)).click();
+        return this;
+    }
 }
+

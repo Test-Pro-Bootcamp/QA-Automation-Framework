@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class LoginPage extends BasePage{
-        @FindBy(xpath = "//*[@type='email']")
+    @FindBy(xpath = "//*[@type='email']")
         WebElement emailField;
         @FindBy(xpath = "//*[@type='password']")
         WebElement passwordField;

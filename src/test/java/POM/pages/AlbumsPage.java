@@ -11,23 +11,19 @@ public class AlbumsPage extends BasePage{
     WebElement artistMakaih;
     @FindBy(xpath = "//button[contains(@title,'Like Pluto')]")
     WebElement heartBtnPluto;
-    @FindBy(xpath = "//button[@title='Unlike Pluto by Makaih Beats']")
-    WebElement likedPlutoSong;
+
 
     public AlbumsPage(WebDriver givenDriver){
         super(givenDriver);
     }
     public AlbumsPage clickArtist(){
-        artistMakaih.click();
+        wait.until(ExpectedConditions.elementToBeClickable(artistMakaih)).click();
+//        artistMakaih.click();
         return this;
     }
     public AlbumsPage clickHeartBtnPluto(){
         wait.until(ExpectedConditions.elementToBeClickable(heartBtnPluto)).click();
 //        heartBtnPluto.click();
         return this;
-    }
-    public boolean isSongPlutoLiked(){
-        likedPlutoSong.isDisplayed();
-        return true;
     }
 }

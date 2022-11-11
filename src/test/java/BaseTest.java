@@ -14,13 +14,15 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
 
     static WebDriver driver;
-    WebDriverWait wait;
-    Actions actions;
+    static WebDriverWait wait;
+    static Actions actions;
+    static ThreadLocal<WebDriver> threadDriver;
 
     static String newPlaylistName = "Nozima's Songs";
 
@@ -46,18 +48,40 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
+    public static void launchBrowser(String BaseURL) throws MalformedURLException {
 //        driver = new ChromeDriver();
 //        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");//setting system properties of FirefoxDriver
 //        driver = new FirefoxDriver(); //creating an object of FireFox Driver (FireFox Driver declaration)
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(BaseURL);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        actions = new Actions(driver);
+        threadDriver.set(driver);
+//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+        getDriver().get(BaseURL);
     }
 
-    private WebDriver pickBrowser(String browser) throws MalformedURLException {
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
+    public static WebDriver lambdaTest() throws MalformedURLException {
+        String username = "nozishka86";
+        String authkey = "6P2kntJAyxKhTfJZ2jxDSD34Rr3GEtJpbfyefcZ4IQbppC6TMD";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        // Configure your capabilities here
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("resolution","1440x900");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "106.0");
+        caps.setCapability("build", "TestNG With Java");
+//        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+    }
+
+    private static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://localhost:4444/";
 
@@ -77,6 +101,8 @@ public class BaseTest {
             case "grid-chrome":
                 capabilities.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
+                return lambdaTest();
             default:
                 return driver = new ChromeDriver();
         }
@@ -84,7 +110,8 @@ public class BaseTest {
 
     @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
     }
 
     protected static void goToMyPlaylist() {
@@ -107,7 +134,7 @@ public class BaseTest {
         song.click();
     }
 
-    public void clickAllSongsLink() {
+    public static void clickAllSongsLink() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='All Songs']"))).click();
     }
 }

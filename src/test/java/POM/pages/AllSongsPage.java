@@ -28,7 +28,7 @@ public class AllSongsPage extends BasePage{
         return this;
     }
     public boolean songIsPlaying(){
-        playingSong.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(playingSong));
         return true;
     }
     public boolean clearBtnIsDisplayed(){

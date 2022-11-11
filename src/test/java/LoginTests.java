@@ -2,22 +2,22 @@ import POM.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTests extends BaseTest{
-    
+public class LoginTests extends BaseTest {
+
     @Test
-    public static void LoginValidEmailPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = loginPage.signIn("","");
+    public static void LoginValidEmailPasswordTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = loginPage.signIn("", "");
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent");
 
-        Assert.assertEquals(driver.getCurrentUrl(), homePage.homepageURL());
+        Assert.assertEquals(getDriver().getCurrentUrl(), homePage.homepageURL());
     }
 
     @Test
-    public void shuffleSongs(){
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+    public static void shuffleSongs() {
+        AllSongsPage allSongsPage = new AllSongsPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent").clickAllSongs();
         allSongsPage.clickShuffleBtn();
@@ -26,9 +26,9 @@ public class LoginTests extends BaseTest{
     }
 
     @Test
-    public void playSongFromAllSongsPage(){
-        LoginPage loginPage = new LoginPage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+    public static void playSongFromAllSongsPage() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        AllSongsPage allSongsPage = new AllSongsPage(getDriver());
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent").clickAllSongs();
         allSongsPage.clickToPlaySong();
@@ -36,14 +36,16 @@ public class LoginTests extends BaseTest{
         Assert.assertTrue(allSongsPage.songIsPlaying());
     }
 
-
    @Test
     public void likePlutoSong(){
-        LoginPage loginPage = new LoginPage(driver);
-        AlbumsPage albumsPage = new AlbumsPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        AlbumsPage albumsPage = new AlbumsPage(getDriver());
+        FavoritesPage favoritesPage = new FavoritesPage(getDriver());
+
 
         loginPage.signIn("nozishka86@gmail.com", "te$t$tudent").clickAlbums();
         albumsPage.clickArtist().clickHeartBtnPluto();
-        Assert.assertTrue(albumsPage.isSongPlutoLiked());
+        favoritesPage.clickFavorites();
+        Assert.assertTrue(favoritesPage.isSongPlutoLiked());
     }
 }
