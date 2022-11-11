@@ -26,7 +26,6 @@ public class BaseTest {
     Actions actions;
 
 
-
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
@@ -36,9 +35,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
 
-
     }
-
     @BeforeMethod
     // Send a parameter for 'baseURL' specified in XML
     @Parameters({"baseURL"})
@@ -67,7 +64,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        // thread.sleep(60000) -- will wait 60s always
+            baseURL = "https://bbb.testpro.io";
+        driver = new ChromeDriver();
+        actions = new Actions(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         url = baseURL;
         driver.get(url);
 
@@ -119,19 +119,19 @@ public class BaseTest {
 
     }
 
-    @DataProvider(name="invalidCredentials")
+   /* @DataProvider(name="invalidCredentials")
     public static Object[][] getCredentials(){
 
         return new Object[][] {
                 {"invalid@class.com", "invalidPass"},
                 {"d@class.com", ""},
                 {"", ""}
-        };
-    }
+        };*/
 
-    public void login(){
+    public void login() {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();
+
     }
 }
