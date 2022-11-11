@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NewPlaylistTestsUsingPOM extends BaseTest {
-    private String notificationMessage = "Created playlist \"Iulia's Playlist1.\"";
+    private String notificationMessage = "Created playlist \"Iulia's Playlist.\"";
 
     @Test
     public void createANewPlaylist() {

@@ -9,7 +9,7 @@ public class HomePage extends BasePage {
     private By newPlaylistDropdownMenuElementLocator = By.xpath("//*[contains(text(),\"New Playlist\")]");
     private By newPlaylistNameFieldLocator = By.xpath("//*[contains(@placeholder, 'to save')]");
     private By popUpMessageLocator = By.cssSelector("div.success.show");
-    private String myPlaylistName = "Iulia's Playlist1";
+    private String myPlaylistName = "Iulia's Playlist";
     private By avatarLocator = By.cssSelector("img.avatar");
 
     public HomePage(WebDriver givenDriver) {
