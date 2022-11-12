@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -16,8 +17,9 @@ import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
+    protected Actions actions;
     String url;
-    ThreadLocal<WebDriver> threadDriver;
+   protected ThreadLocal<WebDriver> threadDriver;
 
    protected String myEmail = "holostenco.yuliya@gmail.com";
    protected String myPassword = "te$t$tudent";
@@ -30,24 +32,26 @@ public class BaseTest {
         }
     }
 
-    @BeforeClass
+    @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-       // ChromeOptions chromeOptions = new ChromeOptions();
-       // chromeOptions.addArguments("--disable-notifications");
-//System.setProperty("webdriver.gecko.driver", "geckodriver");
-//driver= new FirefoxDriver();
+
+
        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().window().maximize();
+       threadDriver=new ThreadLocal<>();
+       threadDriver.set(driver);
+       actions =new Actions(getDriver());
+        getDriver().manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
-
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
     }
 
-   // public WebDriver getDriver(){
-      //  return threadDriver.get();
-   // }
+    public  WebDriver getDriver(){
+       return threadDriver.get();
+    }
     protected WebElement waitForElementToBeClickable(WebElement webElementLocator) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(
                 ExpectedConditions.elementToBeClickable(webElementLocator));
@@ -62,7 +66,7 @@ public class BaseTest {
         String gridURL="http://192.168.1.159:4444";
         switch(browser){
             case "firefox":
-                System.setProperty("webdriver.gecko.driver","geckodriver");
+                System.setProperty("webdriver.gecko.driver","geckodriver.exe");
                 return  driver=new FirefoxDriver();
             case "safari":
                 return driver= new SafariDriver();
@@ -82,6 +86,7 @@ public class BaseTest {
     }
     @AfterMethod
         public void tearDownBrowser() {
-            driver.quit();
+            getDriver().quit();
+            threadDriver.remove();
         }
     }

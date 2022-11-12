@@ -1,3 +1,4 @@
+import POM.HomePage;
 import POM.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -5,66 +6,32 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class  LoginTests extends BaseTest {
-   
+public class  LoginTests extends BaseTest1 {
+   private String invalidEmail="holost@gmail.com";
+   private By avatarLocator=By.xpath("//*[contains(@alt,'Avatar of')]");
 
-
-
-    @Test
-    public void LoginEmptyEmailPasswordTest() throws InterruptedException{
-
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        tearDownBrowser();
-    }
-   // @DataProvider(name="invalidCredentials")
-//public Object[] [] getDataFromProviders(){
-
-       // return  new Object[][]{
-               // {"Invalid@class.com", "InvalidPass"},
-               // {"demo@class.com", ""},
-                {//"",""}
-        };
-
-    @Test
-    public void LoginValidEmailValidPasswordTest() throws InterruptedException {
-
-        LoginPage loginPage=new LoginPage(driver);
-
-        provideEmail("holostenco.yuliya@gmail.com"); //"holostenco.yuliya@gmail.com"
-        providePassword(); //te$t$tudent
-        clickonSubmitBtn();
-        Thread.sleep(2000);
-        WebElement avatarIcon= driver.findElement(By.xpath("//*[contains(@alt,'Avatar of')]"));
+   @Test
+    public void LoginValidEmailValidPasswordTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage= new HomePage(driver);
+        loginPage.login();
+        WebElement avatarIcon= driver.findElement(avatarLocator);
         Assert.assertTrue(avatarIcon.isDisplayed());
-
-
     }
 
     @Test
-    public void LoginInValidEmailPasswordTest() throws InterruptedException{
-        provideEmail("holost@gmail.com");
-        providePassword();
-        clickonSubmitBtn();
-        Thread.sleep(2000);
-        Assert.assertEquals(driver.getCurrentUrl(),url);
+    public void LoginInValidEmailPasswordTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage= new HomePage(driver);
+        loginPage.provideEmail(invalidEmail);
+        loginPage.providePassword(myPassword);
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
-
-
-    private void clickonSubmitBtn() {
-        WebElement submitBtn= driver.findElement(By.xpath("//button[@type='submit']"));
-        submitBtn.click();
-
-    }
-
-    private void providePassword() {
-        WebElement passwordField= driver.findElement(By.xpath("//input[@type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-    }
-
-    private void provideEmail(String email) {
-        WebElement emailField= driver.findElement(By.xpath("//input[@type='email']"));
-        emailField.click();
-        emailField.sendKeys(email);
+    @Test
+    public void LoginEmptyEmailPasswordTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 }
