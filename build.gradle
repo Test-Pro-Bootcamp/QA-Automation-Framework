@@ -35,3 +35,8 @@ task testHomework18SZ(type: Test) {
         suites "src/test/resources/Homework18SZ.xml"
     }
 }
+task testHomework19SZ(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/Homework19SZ.xml"
+    }
+}
