@@ -3,6 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Test
+
 public class Homework19SZ extends BaseTest{
 
 //    Create a new file Homework19.java file with @Test annotation in IntelliJ IDEA
@@ -22,7 +24,7 @@ public class Homework19SZ extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
         login();
-        
+
         selectingPlaylist();
         
         removePlaylist();
@@ -30,16 +32,17 @@ public class Homework19SZ extends BaseTest{
         Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist");
 
 
+
     }
 
     private void selectingPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.xpath("//section[@id='playlists']/ul/li[3]"));
+        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         myPlaylist.click();
         Thread.sleep(5000);
     }
 
     private void removePlaylist() throws InterruptedException{
-        WebElement removePlaylistButton = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        WebElement removePlaylistButton = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         removePlaylistButton.click();
         Thread.sleep(4000);
     }
