@@ -9,6 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import t.pages.AllSongsPage_t;
+import t.pages.HomePage_t;
+import t.pages.LoginPage_t;
 
 import java.time.Duration;
 
@@ -61,6 +64,21 @@ public class LoginTests extends BaseTest {
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
     }
 
+    // Test with POM// test this one
+    @Test
+    public void LoginValidEmailPasswordTestt () {
+        //WebDriver driver;
+        LoginPage_t loginPage= new LoginPage_t(driver);
+        HomePage_t homePage = new HomePage_t(driver);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue(homePage.isUserAvatarDisplayed());
+
+    }
+  
+
 
     // Test with POM for allpage
     @Test(enabled = false)
@@ -75,6 +93,20 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.isSongPlaying());
 
     }
+    @Test
+    public void Shufflet(){
+
+        AllSongsPage_t allSongsPage = new AllSongsPage_t(driver);
+        LoginPage_t loginPage = new LoginPage_t(driver);
+
+        HomePage_t homePage = loginPage.login();
+
+        homePage.clickOnAllSongs()
+                .shuffle();
+        Assert.assertTrue(homePage.isSongPlaying());
+
+    }
+
 
     @Test(enabled = false)
     public void PlayASongFromAllSongs(){
@@ -89,7 +121,8 @@ public class LoginTests extends BaseTest {
         //Step3: double click on first song
         singysongy.doubleClickFirstSong();
         //Step4: check if song is playing
-        Assert.assertTrue(homey.isSongPlaying());
+        //Thread.sleep(3000);
+         //Assert.assertTrue(homey.isSongPlaying());
     }
 
 
@@ -196,5 +229,19 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
+    
+      @Test
+    public void LoginValidEmailPasswordTest () {
+        //WebDriver driver;
+        LoginPage loginPage = new LoginPage (driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue(homePage.isUserAvatarDisplayed());
+
+    }
+
 
 }
