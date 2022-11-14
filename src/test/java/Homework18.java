@@ -1,31 +1,37 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.openqa.selenium.interactions.Actions;
+
 
 public class Homework18 extends BaseTest {
 
     @Test
     public void playSong() throws InterruptedException {
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        enterEmail("nozishka86@gmail.com");
+        enterPassword("te$t$tudent");
         clickSubmitBtn();
 
-        playASong();
+        clickNewPlaylistBtn();
+        clickDropDown();
+        enterPlayListName();
 
-        WebElement visualizer = driver.findElement(By.xpath("//button[@title='Click for a marvelous visualizer!']"));
-        Assert.assertTrue(visualizer.isDisplayed());
-    }
+        clickAllSongsLink();
+        clickSong();
+        clickAddToBtn();
+        selectMyPlaylist();
+        goToMyPlaylist();
 
-    private void playASong() throws InterruptedException {
-
-        WebElement nextBtn = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        nextBtn.click();
+        Actions actions = new Actions(driver);
+        WebElement mySong = driver.findElement(By.xpath("//tr[@class='song-item']//td[contains(text(),'a Beat')]"));
+        actions.contextClick(mySong).perform();
         Thread.sleep(2000);
-        WebElement playPauseBtn = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-        playPauseBtn.click();
 
+        WebElement playBtn = driver.findElement(By.xpath("//nav[@class='menu song-menu']//*[contains(text(), 'Play')]"));
+        playBtn.click();
+        Thread.sleep(3000);
+
+        WebElement playState = driver.findElement(By.xpath("//div[contains(@class, 'playing')]"));
+        Assert.assertTrue(playState.isDisplayed());
+        Thread.sleep(3000);
     }
-
-
 }
