@@ -9,13 +9,8 @@ public class Homework20 extends BaseTest{
 
         @Test
         public void deletePlaylistWait(){
-            enterEmail("nozishka86@gmail.com");
-            enterPassword("te$t$tudent");
-            clickSubmitBtn();
-
-            clickNewPlaylistBtn();
-            clickDropDown();
-            enterPlayListName();
+            logIn("nozishka86@gmail.com","te$t$tudent");
+            createPlaylist();
 
             goToMyPlaylist();
 

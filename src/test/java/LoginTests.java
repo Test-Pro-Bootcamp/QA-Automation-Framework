@@ -35,7 +35,6 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(allSongsPage.songIsPlaying());
     }
-
    @Test
     public void likePlutoSong(){
         LoginPage loginPage = new LoginPage(getDriver());
