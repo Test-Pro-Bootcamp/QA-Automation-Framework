@@ -29,16 +29,15 @@ public class Homework19SZ extends BaseTest{
         
         removePlaylist();
 
-        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist");
-
-
+        Assert.assertTrue(getConfirmationPopupText().contains("Deleted playlist"));
 
     }
 
     private void selectingPlaylist() throws InterruptedException {
+        Thread.sleep(5000);
         WebElement myPlaylist = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]"));
         myPlaylist.click();
-        Thread.sleep(5000);
+
     }
 
     private void removePlaylist() throws InterruptedException{
