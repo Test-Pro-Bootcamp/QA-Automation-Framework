@@ -43,4 +43,3 @@ public class BasePage {
         return this;
     }
 }
-

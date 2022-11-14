@@ -1,3 +1,4 @@
+
 import POM.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -49,3 +50,4 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(favoritesPage.isSongPlutoLiked());
     }
 }
+
