@@ -21,8 +21,7 @@ test {
     }
 }
 
-task testHW21(type: Test){
-    useTestNG(){
-        suites "src/test/resources/Homework21.xml"
-    }
-}
+//task testHW21(type: Test){
+//    useTestNG(){
+//        suites "src/test/resources/Homework21.xml"
+//    }

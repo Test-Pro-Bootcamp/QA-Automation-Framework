@@ -18,7 +18,6 @@ public class BasePage {
     WebElement allSongsMenuItem;
     @FindBy(xpath = "//a[contains(text(),'Albums')]")
     WebElement albumsMenuItem;
-
     @FindBy(xpath = "//a[text()='Favorites']")
     WebElement favoritesMenuItem;
 

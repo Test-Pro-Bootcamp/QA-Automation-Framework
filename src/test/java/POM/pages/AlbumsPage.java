@@ -12,7 +12,6 @@ public class AlbumsPage extends BasePage{
     @FindBy(xpath = "//button[contains(@title,'Like Pluto')]")
     WebElement heartBtnPluto;
 
-
     public AlbumsPage(WebDriver givenDriver){
         super(givenDriver);
     }
