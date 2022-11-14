@@ -25,7 +25,7 @@ public class Homework19SZ extends BaseTest{
     public void deletePlaylist() throws InterruptedException {
         login();
 
-        selectingPlaylist();
+       selectingPlaylist();
         
         removePlaylist();
 
@@ -36,13 +36,13 @@ public class Homework19SZ extends BaseTest{
     }
 
     private void selectingPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
+        WebElement myPlaylist = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]"));
         myPlaylist.click();
         Thread.sleep(5000);
     }
 
     private void removePlaylist() throws InterruptedException{
-        WebElement removePlaylistButton = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        WebElement removePlaylistButton = driver.findElement(By.xpath("//*[@id='playlistWrapper']/header/div[3]/span/button"));
         removePlaylistButton.click();
         Thread.sleep(4000);
     }
