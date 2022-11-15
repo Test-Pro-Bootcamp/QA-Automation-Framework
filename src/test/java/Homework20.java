@@ -56,8 +56,7 @@ public class Homework20 extends BaseTest {
 
         Assert.assertEquals(true, soundBars.isDisplayed());
 
-
-        WebDriverWait wait = new WebDriverWait((WebDriver) soundBars,Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//*[@id=\"mainFooter\"]/div[2]/div[2]/div/button[1]/div/img")));
 
         tearDownBrowser();
