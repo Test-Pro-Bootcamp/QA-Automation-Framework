@@ -16,8 +16,15 @@ public class AllSongsPage extends BasePage{
     @FindBy(xpath = "//tr[@class='song-item']//td[contains(text(),'a Beat')]")
     WebElement bestSong;
 
+    String urlAllSongsPage = "https://bbb.testpro.io/#!/songs";
+
     public AllSongsPage (WebDriver givenDriver){
         super(givenDriver);
+    }
+
+    public String getUrlAllSongsPage(){
+
+        return urlAllSongsPage;
     }
     public AllSongsPage clickShuffleBtn(){
         wait.until(ExpectedConditions.elementToBeClickable(shuffleBtn)).click();

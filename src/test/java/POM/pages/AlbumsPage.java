@@ -7,14 +7,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class AlbumsPage extends BasePage{
+
     @FindBy(xpath = "//section[@id='albumsWrapper']//a[contains(text(),'Makaih')]")
     WebElement artistMakaih;
     @FindBy(xpath = "//button[contains(@title,'Like Pluto')]")
     WebElement heartBtnPluto;
 
+    String urlAlbumsPage = "https://bbb.testpro.io/#!/albums";
 
     public AlbumsPage(WebDriver givenDriver){
         super(givenDriver);
+    }
+
+    public String getUrlAlbumsPage(){
+
+        return urlAlbumsPage;
     }
     public AlbumsPage clickArtist(){
         wait.until(ExpectedConditions.elementToBeClickable(artistMakaih)).click();
