@@ -42,20 +42,20 @@ public class BaseTest {
         driver = new ChromeDriver();
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
-//        WebDriver augmentedDriver = new Augmenter().augment(driver);
-//        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
-//        networkConditions.setDownloadThroughput(100 * 1024);
-//        networkConditions.setUploadThroughput(500 * 1024);
-//        networkConditions.setLatency(Duration.ofMillis(5000));
-//        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
+        WebDriver augmentedDriver = new Augmenter().augment(driver);
+        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
+        networkConditions.setDownloadThroughput(100 * 1024);
+        networkConditions.setUploadThroughput(500 * 1024);
+        networkConditions.setLatency(Duration.ofMillis(5000));
+        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
         // (comment out above lines to remove throttling)
 
         // Wait for an element to show up for max of X seconds
         // implicitlyWait(Duration.ofSeconds(60) will wait for UP to 60 seconds
         // if element comes up after 1 second, it will move on
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver,Duration.ofSeconds(50));
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
         driver.get(url);
@@ -68,18 +68,18 @@ public class BaseTest {
     }
 
     public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='submit']")));
         submitButton.click();
     }
 
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));
         emailField.click();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']")));
         passwordField.click();
         passwordField.sendKeys(password);
 

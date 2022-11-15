@@ -14,12 +14,12 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-    @Test(enabled = false, priority = 0)
+    @Test(enabled = false)
     public void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test (enabled=true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
+    @Test // (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest () {
 
         login();
@@ -32,6 +32,7 @@ public class LoginTests extends BaseTest {
         By playlistLocator = By.cssSelector("#playlists h1");
 
         wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
+
         WebElement avatarIcon = driver.findElement(avatarIconLocator);
         Assert.assertTrue(avatarIcon.isDisplayed());
         wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
@@ -39,7 +40,7 @@ public class LoginTests extends BaseTest {
     }
 
     // Test with POM
-    @Test
+    @Test (enabled = false)
     public void LoginValidEmailPasswordTest () {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
