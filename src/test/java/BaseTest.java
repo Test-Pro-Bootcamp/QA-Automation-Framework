@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
@@ -12,7 +13,7 @@ public class BaseTest {
     static WebDriver driver;
     String url;
     static WebDriverWait wait;
-
+//    Actions actions = new Actions(driver);
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -21,7 +22,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         }
     }
-
+    @AfterTest
     public void tearDownBrowser() {
         driver.quit();
     }

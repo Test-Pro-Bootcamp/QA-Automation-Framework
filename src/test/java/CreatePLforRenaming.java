@@ -12,14 +12,14 @@ import java.time.Duration;
 public class CreatePLforRenaming extends BaseTest{
 
     @Test
-    public static void createPLforRenaming() throws InterruptedException {
+    public void createPLforRenaming() throws InterruptedException {
 
         provideEmail("iq14111991@gmail.com");
         providePassword();
         clickSubmitBtn();
         createPlProcess();
     }
-    public static void createPlProcess() throws InterruptedException {
+    public void createPlProcess() throws InterruptedException {
         createNewPlayListsButton ();
         newPlayLists();
         newPlayListsKeyField();
@@ -46,13 +46,13 @@ public class CreatePLforRenaming extends BaseTest{
         }
 
 
-        public static void Check(){
+        public void Check(){
             WebElement newPlaylist = driver.findElement(By.xpath("//a[contains(text(), 'CreatePLforRenaming')]"));
             Assert.assertTrue(newPlaylist.isDisplayed());
 
             wait = new WebDriverWait(driver,Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//*[@id=\"sidebar\"]/section[1]/ul/li[1]/a")));
 
-            driver.quit();
+            tearDownBrowser();
     }
 }

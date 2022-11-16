@@ -1,6 +1,7 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.v104.console.model.ConsoleMessage;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,7 +36,6 @@ public class Homework21 extends BaseTest {
 
         WebElement toClear = driver.findElement(By.name("name"));
         toClear.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
-//      toClear.clear();
         toClear.sendKeys("It's WORKING????");
         toClear.sendKeys(Keys.ENTER );
 
@@ -44,7 +44,6 @@ public class Homework21 extends BaseTest {
     private void verifyRenamedPL (){
         WebElement verifyRenamedPL = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/header/div[2]/h1"));
         Assert.assertEquals(true, verifyRenamedPL.isDisplayed());
-        tearDownBrowser();
     }
 
 }
