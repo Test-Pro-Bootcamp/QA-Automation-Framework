@@ -2,13 +2,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
 public class BaseTest {
-    static WebDriver driver;
+    WebDriver driver;
+    Actions actions;
+
     String url;
 
     @BeforeSuite
@@ -29,6 +32,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = "https://bbb.testpro.io/";
         driver.get(url);
+        actions = new Actions(driver);
     }
     public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));

@@ -42,10 +42,10 @@ public class Homework20 extends BaseTest {
     }
 
     private void selectAndLaunchTheSong(){
-        Actions actions = new Actions(driver);
+//        Actions actions = new Actions(driver);
         WebElement selectAndLaunchTheSong = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/div/div/div[1]/table/tr[3]"));
         actions.contextClick(selectAndLaunchTheSong).perform();
-        actions.contextClick(selectAndLaunchTheSong).perform();
+//        actions.contextClick(selectAndLaunchTheSong).perform();
         WebElement hitPlayBtn = driver.findElement(By.xpath("//*[@id=\"app\"]/nav/ul/li[1]"));
         hitPlayBtn.click();
     }
