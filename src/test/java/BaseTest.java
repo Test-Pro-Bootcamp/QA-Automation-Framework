@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import org.testng.annotations.DataProvider;
 
+import java.time.Duration;
+
 
 public class BaseTest {
     WebDriver driver;
@@ -22,7 +24,7 @@ public class BaseTest {
     public static void chromeConfigs() {
         // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe")
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
 
         }
@@ -42,11 +44,12 @@ public class BaseTest {
 
     @AfterMethod
     public void tearBrowser() {
+        driver.quit();
 
 
     }
 
-
+    public void clickSubmitBtn() {
 
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
@@ -72,16 +75,14 @@ public class BaseTest {
         return new Object[][]{
                 {"invalid@gmail.com", "invalidPass"},
                 {"d@gmail.com", ""},
-  
+
+        };
     }
 
     public void login(){
 
 
         provideEmail("kaflimeerim@gmail.com");
-
-        provideEmail("demo@class.com");
-
         providePassword("te$t$tudent");
         clickSubmitBtn();
     }
