@@ -16,11 +16,9 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         loginPage.login();
-        homePage.getAvatarIcon();
-        homePage.userAvatarIsDisplayed();
         Assert.assertTrue(homePage.userAvatarIsDisplayed());
     }
-    @Test
+     @Test
     public void LoginInValidEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -34,6 +32,6 @@ public class LoginTests extends BaseTest {
     public void LoginEmptyEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.clickSubmitButton();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 }

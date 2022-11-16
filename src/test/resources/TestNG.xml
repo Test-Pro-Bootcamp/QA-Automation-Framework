@@ -2,23 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-
-    <test name="Example Test" preserve-order="false">
+    <test name="Login Tests" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="Homework14"/>
-            <class name="RegistrationTests"/>
-            <class name="CreatePlaylistTests"/>
-            <class name="AddSongsToPlaylistTests"/>
-            <class name="PlayASongTests"/>
-            <class name="DeleteMyPlaylistTests"/>
-            <class name="PracticeWithWaits"/>
-            <class name="RenameAPlaylist"/>
-            <class name="NewPlaylistTestsUsingPOM"/>
-
-
-            <class name ="BaseTest"/>
-
+            <class name="CucumberRunner"/>
         </classes>
     </test>
 </suite>
