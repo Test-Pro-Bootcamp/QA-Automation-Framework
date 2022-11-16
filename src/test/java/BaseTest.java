@@ -24,6 +24,7 @@ public class BaseTest {
     String url;
     WebDriverWait wait;
     Actions actions;
+    ThreadLocal <WebDriver> threadDriver;
 
 
 
@@ -51,7 +52,9 @@ public class BaseTest {
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
         driver = pickBrowser(System.getProperty("browser"));
-        actions = new Actions(driver);
+        threadDriver = new ThreadLocal<>();
+        threadDriver.set(driver);
+        actions = new Actions(getDriver());
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
 //        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
@@ -69,8 +72,12 @@ public class BaseTest {
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
-        driver.get(url);
+        getDriver().get(url);
 
+    }
+
+    private WebDriver getDriver() {
+        return threadDriver.get();
     }
 
     private WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -95,10 +102,20 @@ public class BaseTest {
                 return driver = new ChromeDriver();
         }
     }
+    /*DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability("browserName", "Chrome");
+    capabilities.setCapability("browserVersion", "108.0");
+    HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+    ltOptions.put("username", "Nargiza1004");
+    ltOptions.put("accessKey", "TocIBk4cKEHoVQZnP4PG1oYpgDaYGQ8HM37PtNdIVoPoQKRwYk");
+    ltOptions.put("platformName", "Windows 10");
+    ltOptions.put("project", "Untitled");
+    capabilities.setCapability("LT:Options", ltOptions);*/
 
     @AfterMethod
     public void tearDownBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadDriver.remove();
     }
 
     public void clickSubmitBtn() {
