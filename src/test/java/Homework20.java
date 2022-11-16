@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class Homework20 extends BaseTest {
 
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong(){
         //login
         provideEmail("iq14111991@gmail.com");
         providePassword();
@@ -25,7 +25,7 @@ public class Homework20 extends BaseTest {
 
     }
 
-    private void playSongFromPlaylist() throws InterruptedException {
+    private void playSongFromPlaylist(){
         openPlaylist();
 
         selectAndLaunchTheSong();
@@ -50,17 +50,13 @@ public class Homework20 extends BaseTest {
         hitPlayBtn.click();
     }
 
-    private void verifySongPlaying() throws InterruptedException {
+    private void verifySongPlaying(){
 
         WebElement soundBars = driver.findElement(By.xpath("//*[@id=\"mainFooter\"]/div[2]/div[2]/div/button[1]/div/img"));
-
-        Assert.assertEquals(true, soundBars.isDisplayed());
-
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//*[@id=\"mainFooter\"]/div[2]/div[2]/div/button[1]/div/img")));
 
-        tearDownBrowser();
-
+        Assert.assertTrue(soundBars.isDisplayed());
     }
 }
 
