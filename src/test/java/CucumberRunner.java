@@ -7,8 +7,8 @@
 
 
     @CucumberOptions(
-            features = {"src/test/resources/features/Login.feature"})
-
+            features = {"src/test/resources/features/Login.feature"}
+    )
     public class CucumberRunner extends AbstractTestNGCucumberTests {
 
         private TestNGCucumberRunner testNGCucumberRunner;
@@ -20,8 +20,7 @@
         }
 
         @DataProvider
-        public Object[][] features() {
-            return testNGCucumberRunner.provideScenarios();
+        public Object[][] features() {return testNGCucumberRunner.provideScenarios();
         }
 
         @AfterClass(alwaysRun = true)
