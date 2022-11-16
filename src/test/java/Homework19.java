@@ -1,43 +1,56 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.v104.console.model.ConsoleMessage;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
+
 
 public class Homework19 extends BaseTest {
 
-    @Test
-    public void deletePlaylist() throws InterruptedException {
-        // Create a test case deletePlaylist() using @Test annotations
-        // Use the reusable methods
-        // Use @Parameters for passing baseUrl
-        // Given: Navigate to "https://bbb.testpro.io/"
-        // Step1: Log in with your credentials
-        login();
-        // Step2: Choose a playlist
-        selectPlaylist();
-        // Step3: Delete the playlist
-        pressDeletePlaylist();
-        // Step4: Validate that the playlist is deleted "Deleted playlist"
-        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist");
+    @Test(priority=1)
+    public void deletePlayList() throws InterruptedException {
+
+        provideEmail("iq14111991@gmail.com");
+        providePassword();
+        clickSubmitBtn();
+        deletePL();
+    }
+    private void deletePL() throws InterruptedException {
+
+        chosePL();
+        getPlaylistLink();
+        deleteChosenPL();
+        verifyRemovedPL();
     }
 
-    private void selectPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        myPlaylist.click();
-        Thread.sleep(5000);
+    private void chosePL(){
+
+        WebElement chosePL = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
+        chosePL.click();
     }
+    public void getPlaylistLink() {
 
-    private void pressDeletePlaylist() throws InterruptedException {
-        WebElement delPlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
-        delPlaylist.click();
-        Thread.sleep(4000);
+        WebElement getPlaylistLink = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
+        getPlaylistLink.click();
+        driver.navigate().refresh();
     }
+        private void deleteChosenPL(){
 
-    private String getConfirmationPopupText() {
-        return driver.findElement(By.cssSelector("div.success.show")).getText();
+        WebElement getPlaylistLink = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
+        getPlaylistLink.click();
+        driver.navigate().refresh();
+        WebElement deleteChosenPL = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/header/div[3]/span/button"));
+        deleteChosenPL.click();
     }
+    private void verifyRemovedPL (){
 
-
-
+        WebElement verifyRemovedPL = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
+        Assert.assertEquals(true, verifyRemovedPL.isDisplayed());
+        tearDownBrowser();
+    }
 
 }
