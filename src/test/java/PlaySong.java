@@ -32,6 +32,16 @@ public class PlaySong extends BaseTest{
         songsPage.playFromContextMenu();
         //Assert.assertTrue(isSongPlaying());
         Assert.assertTrue(songsPage.isSongPlaying());
+
+
+
+
+        login();
+        chooseAllSongsList();
+        Assert.assertTrue(isSongPlaying());
+
+
+
     }
 
     //    helper methods
