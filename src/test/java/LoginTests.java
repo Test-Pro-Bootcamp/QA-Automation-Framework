@@ -1,52 +1,48 @@
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.support.ui.ExpectedCondition;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.testng.Assert;
-//import org.testng.annotations.Test;
-//
-//import java.time.Duration;
-//
-//public class LoginTests extends BaseTest {
-//
+import PagesIvaF.HomePageIvan;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import org.testng.annotations.TestInstance;
+import java.time.Duration;
+
+public class LoginTests extends BaseTestIvan {
 //    @Test(enabled = false, priority = 0)
 //    public void LoginEmptyEmailPasswordTest () {
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
+////        Assert.assertEquals(driver.getCurrentUrl(), url);
+////    }
+//    @Test
+//    public void LoginWithValidEmailPasswordTest(){
+//        LoginPageIvan loginPage = new LoginPageIvan(driver);
+//        HomePageIvan homePage = new HomePageIvan(driver);
+//
+//        loginPage.provideEmail("fedorov.ivan@hotmail.com");
+//        loginPage.providePasswod("te$t$tudent");
+//        loginPage.clickSubmitBtn();
+//        Assert.assertTrue(homePage.isUserAvatarDisplayed());
+//
 //    }
-//
+
 //    @Test (enabled=true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
-//    public void LoginValidEmailValidPasswordTest () {
-//
+//    public void LoginValidEmailValidPasswordTest ()
+//    {
 //        logIn();
-//        // driver.findelement(how to find the element)
-//        // |
-//        // var = how to find element
-//        // driver.findelement(var)
-//
 //        By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
 //        By playlistLocator = By.cssSelector("#playlists h1");
-//
 //        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
 //        WebElement avatarIcon = driver.findElement(avatarIconLocator);
 //        Assert.assertTrue(avatarIcon.isDisplayed());
 //        wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
 //        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));
 //    }
+
 //
-//    @Test(enabled = false, priority = 2)
-//    public void LoginInvalidEmailPasswordTest () throws InterruptedException {
-//        provideEmail("dem@class.com");
-//        providePassword("");
-//        clickSubmitBtn();
-//
-//        // Vd
-//        Thread.sleep(2000);
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
-//
-//    }
-//
+
+
 //    @Test(enabled = false)
 //    public void LoginValidEmailEmptyPasswordTest () {
 //        WebDriver driver;
@@ -72,6 +68,7 @@
 //        driver.quit();
 //    }
 //
+
 //    @Test(enabled = false)
 //    public void SwitchToSongsMenu () throws InterruptedException {
 //        WebDriver driver;
@@ -138,5 +135,7 @@
 //        Assert.assertEquals(driver.getCurrentUrl(), url);
 //        driver.quit();
 //    }
-//
-//}
+
+}
+
+
