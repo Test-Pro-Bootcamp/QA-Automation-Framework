@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class RegistrationTests {
+public class RegistrationTests extends BaseTest {
 
     @Test
     public static void RegistrationSuccessTest () {
@@ -16,6 +16,5 @@ public class RegistrationTests {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
     }
 }
