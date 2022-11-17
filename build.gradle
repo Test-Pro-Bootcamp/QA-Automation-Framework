@@ -11,11 +11,20 @@ repositories {
 
 dependencies {
     testImplementation 'org.testng:testng:7.6.1'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.6.0'
 }
 
 test {
     useTestNG() {
+<<<<<<< Updated upstream
         suites "src/test/resources/TestNG.xml"
     }
 }
+=======
+        suites "src/test/resources/${suite}.xml"
+        systemProperty "browser", System.getProperty("browser")
+    }
+}
+
+
+>>>>>>> Stashed changes
