@@ -21,7 +21,7 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         }
     }
-    @AfterTest
+//    @AfterTest
     public void tearDownBrowser() {
         driver.quit();
     }
@@ -34,17 +34,17 @@ public class BaseTest {
         driver.get(url);
         actions = new Actions(driver);
     }
-    public static void provideEmail(String email) {
+    public void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
-    public static void providePassword() {
+    public void providePassword() {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys("te$t$tudent");
     }
-    public static void clickSubmitBtn() {
+    public void clickSubmitBtn() {
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         driver.manage().window().maximize();
         submitButton.click();

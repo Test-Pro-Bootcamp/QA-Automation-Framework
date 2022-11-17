@@ -1,51 +1,34 @@
 package POM.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage{
 
-    // Declaring the locators
-    //By emailFieldLocator = By.cssSelector("[type='email']");
-    @FindBy(css="[type='email']")
-    WebElement emailField;
-    //By passwordFieldLocator = By.cssSelector("[type='password']");
-    @FindBy(css="[type='password']")
-    WebElement passwordField;
-    //By submitButtonLocator = By.cssSelector("[type='submit']");
-    @FindBy(css="[type='submit']")
-    WebElement submitButton;
+    By emailFieldLocator = By.cssSelector("[type='email']");
+    By passwordFieldLocator = By.cssSelector("[type='password']");
+    By submitButtonSelector = By.cssSelector("[type='submit']");
 
-    //passing the driver from our LoginTests page
-    public LoginPage(WebDriver givenDriver){
-        super(givenDriver);
+    public LoginPage(WebDriver givenDriver) {
+        super  (givenDriver);
     }
 
-    public LoginPage clickSubmitBtn(){
-        submitButton.click();
-        return this;
+    public void clickSubmitBtn(){
+        driver.findElement(submitButtonSelector).click();
     }
 
-    public LoginPage provideEmail(String email){
-        emailField.sendKeys(email);
-        return this;
+    public void provideEmail(String email){
+        driver.findElement(emailFieldLocator).sendKeys(email);
     }
-
-    public LoginPage providePassword(String password){
-        passwordField.sendKeys(password);
-        return this;
+    public void providePassword(String password){
+        driver.findElement(passwordFieldLocator).sendKeys(password);
     }
+    public void login() {
+        driver.manage().window().maximize();
+        provideEmail("iq14111991@gmail.com");
+        providePassword("te$t$tudent");
 
-    public HomePage login(){
-        provideEmail("demo@class.com")
-                .providePassword("te$t$tudent")
-                .clickSubmitBtn();
-        return new HomePage(driver);
-    }
-
-
-    public boolean isPageOpened() {
-        return driver.getCurrentUrl().contains("https://bbb.testpro.io");
+        clickSubmitBtn();
     }
 }
