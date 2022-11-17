@@ -3,9 +3,15 @@
 
 <suite name="TestNG">
 
+    <parameter name="BaseURL" value="https://bbb.testpro.io/" />
+    <test name="BrowserFactory" preserve-order="false">
+        <classes>
+            <class name="LoginTests">
+
+
     <test name="LoginTests" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
+
         </classes>
     </test>
 </suite>
