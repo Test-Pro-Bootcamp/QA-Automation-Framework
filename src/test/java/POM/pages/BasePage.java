@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +14,9 @@ public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
     Actions actions;
+
+    @FindBy(xpath="//li/a[@class='queue']")
+    WebElement currentQueueMenuItem;
 
     By avatarLocator = By.cssSelector("img.avatar");
     By soundBarPlayLocator = By.cssSelector("[data-testid = 'sound-bar-play']");
@@ -43,5 +47,8 @@ public class BasePage {
         return new AllSongsPage(driver);
     }
 
-
+    public CurrentQueuePage navigateToCurrentQueue() {
+        this.currentQueueMenuItem.click();
+        return new CurrentQueuePage(driver);
+    }
 }
