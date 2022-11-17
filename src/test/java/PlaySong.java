@@ -1,3 +1,7 @@
+import POM.pages.AllSongPage;
+import POM.pages.BasePage;
+import POM.pages.HomePage;
+import POM.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,28 +12,25 @@ public class PlaySong extends BaseTest {
 
 
     @Test
-    public void playSong(){
-        login();
-        chooseAllSongs();
-        contextClickFirstSong();
-        choosePlay();
-        Assert.assertTrue(isSongPlaying());
+    public void playSong()  {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongPage songsPage = new AllSongPage(driver);
+       // login();
+        loginPage.login();
+        //chooseAllSongs();
+        homePage.clickOnAllSongs();
+        //contextClickFirstSong();
+        songsPage.contextClickFirstSong();
+       // choosePlay();
+        songsPage.playFromContextMenu();
+       // Assert.assertTrue(isSongPlaying());
+        Assert.assertTrue(songsPage.isSongPlaying());
     }
 
-
+//
     private void chooseAllSongs() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
-    }
-
-    private void contextClickFirstSong() {
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        actions.contextClick(firstSong).perform();
-    }
-
-    private void choosePlay() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playback"))).click();
 
     }
     public boolean isSongPlaying(){

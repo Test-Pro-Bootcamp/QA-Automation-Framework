@@ -37,17 +37,15 @@ public class LoginTests extends BaseTest {
 
     }
     @Test
-    public void Shuffle() throws InterruptedException {
+    public void Shuffle() {
         AllSongPage allSongPage = new AllSongPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        BasePage basePages = new BasePage(driver);
+        HomePage homePage = loginPage.login();
 
-        //step:1 Login;
-        loginPage.login();
-        //step:2 Click on ALl Songs
-        basePages.clickOnAllSongs();
-        //step:3 Shuffle all songs
-        allSongPage.shuffle();
+        homePage.clickOnAllSongs()
+                .shuffle();
+        Assert.assertTrue(homePage.isSongPlaying());
+
 
     }
 

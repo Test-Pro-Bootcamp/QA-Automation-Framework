@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
 
-    By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
 
 
     public HomePage(WebDriver givenDriver) {
@@ -15,14 +14,6 @@ public class HomePage extends BasePage {
 
     }
 
-    public WebElement getUserAvatar() {
-        return driver.findElement(avatarIconLocator);
 
     }
 
-    public boolean isUserAvatarDisplayed() {
-        return driver.findElement(avatarIconLocator).isDisplayed();
-
-    }
-
-}
