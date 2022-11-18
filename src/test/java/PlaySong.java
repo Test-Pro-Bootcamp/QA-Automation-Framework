@@ -107,7 +107,9 @@ public class PlaySong extends BaseTest{
     }
 
     private void doubleClickChoosePlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        ////*[@id="playlists"]/ul/li[4]
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"playlists\"]/ul/li[4]")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
         WebElement element = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actions.doubleClick(element).perform();
     }

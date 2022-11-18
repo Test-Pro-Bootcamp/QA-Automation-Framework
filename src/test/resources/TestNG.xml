@@ -5,7 +5,16 @@
 
     <test name="LoginTests" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
+            <class name="LoginTestsF">
+<!--                <methods>-->
+<!--                    <include name="LoginValidEmailValidPasswordTest" />-->
+<!--                </methods>-->
+            </class>
+<!--            <class name="KoelLogin">-->
+<!--                &lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <include name="LoginValidEmailValidPasswordTest" />&ndash;&gt;-->
+<!--                &lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--            </class>-->
         </classes>
     </test>
 </suite>
