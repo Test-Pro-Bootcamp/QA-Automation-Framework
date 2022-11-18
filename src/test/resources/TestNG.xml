@@ -2,11 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
+<<<<<<< Updated upstream
 
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
+=======
+    <test name="LoginTests" preserve-order="false">
+        <classes>
+            <class name="CucumberRunner"/>
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
