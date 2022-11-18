@@ -6,12 +6,16 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class LoginPage extends BasePage{
+
     @FindBy(xpath = "//*[@type='email']")
         WebElement emailField;
         @FindBy(xpath = "//*[@type='password']")
         WebElement passwordField;
         @FindBy(xpath = "//button[@type='submit']")
         WebElement loginBtn;
+
+        @FindBy(xpath = "//img[contains(@alt,'Koel')]")
+        WebElement koelLogo;
 
         public LoginPage(WebDriver givenDriver){
             super(givenDriver);
@@ -34,4 +38,12 @@ public class LoginPage extends BasePage{
                     .clickLoginBtn();
             return new HomePage(driver);
         }
+    public boolean isPageOpened() {
+        return driver.getCurrentUrl().contains("https://bbb.testpro.io");
+    }
+
+    public boolean loginPageIsStillOpen() {
+            koelLogo.isDisplayed();
+            return true;
+    }
 }
