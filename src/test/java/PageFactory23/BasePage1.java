@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
@@ -40,5 +41,8 @@ public class BasePage1 {
     public AllSongsPage clickOnAllSongs(){
         driver.findElement(allSongsMenuItemLocator).click();
         return new AllSongsPage(driver);
+    }
+    public void chooseAllSongsList() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
     }
 }
