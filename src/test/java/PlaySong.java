@@ -99,7 +99,7 @@ public class PlaySong extends BaseTest{
     }
 
     private void enterPlaylistName()  throws InterruptedException {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
+        WebElement playlistInputField = driver.findElement(By.cssSelector("i "));
         playlistInputField.sendKeys((Keys.chord(Keys.COMMAND, "a", Keys.BACK_SPACE)));
         Thread.sleep(3000);
         playlistInputField.sendKeys("Edited Playlist Name");
