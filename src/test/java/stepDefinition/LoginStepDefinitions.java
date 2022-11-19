@@ -1,12 +1,14 @@
 package stepDefinition;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,8 +20,9 @@ public class LoginStepDefinitions {
     WebDriver driver;
     WebDriverWait wait;
 
-    @Given("I open browser")
+    @Before
     public void openBrowser() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
@@ -47,10 +50,12 @@ public class LoginStepDefinitions {
 
     @And("I submit")
     public void iSubmit() {
-        wait.until(ExpectedConditions.
+        WebElement element = driver.findElement(By.cssSelector("[type='submit']"));
+        element.click();
+      /*  wait.until(ExpectedConditions.
                 elementToBeClickable(
                         By.cssSelector("[type='submit']")))
-                .click();
+                .click();*/
     }
 
     @Then("I am logged in")
