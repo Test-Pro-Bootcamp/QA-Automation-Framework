@@ -6,13 +6,16 @@
     <test name="Example Test" preserve-order="false">
         <classes>
 <!--            <class name="BaseTest"/>-->
-            <class name="CucumberRunner"/>
-<!--                    <methods>-->
-<!--                        <include name="Shuffle"></include>-->
-<!--                        <include name="PlayASongFromAllSongs"></include>-->
-<!--                        <include name="playFromContest"></include>-->
-<!--&lt;!&ndash;                        <include name="LoginWithValidEmailPasswordTest"></include>&ndash;&gt;-->
-<!--                    </methods>-->
+            <class name="TestLogin">
+                    <methods>
+                        <include name="Shuffle"></include>
+                        <include name="PlayASongFromAllSongs"></include>
+                        <include name="playFromContest"></include>
+<!--                        <include name="LoginWithValidEmailPasswordTest"></include>-->
+                    </methods>
+            </class>
+
+
         </classes>
     </test>
 </suite>
