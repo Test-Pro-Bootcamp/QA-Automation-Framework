@@ -8,14 +8,14 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class TestLogin extends BaseTestIvan{
-    @Test
+    @Test(enabled = false)
     public void LoginWithValidEmailPasswordTest(){
         LoginPageIvan loginPage = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPage.login();
         Assert.assertTrue(homePageIvan.isUserAvatarDisplayed());
 
     }
-    @Test(priority = 1)
+    @Test(enabled = false)
     public void Shuffle(){
         LoginPageIvan loginPageIvan = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPageIvan.login();
@@ -25,7 +25,7 @@ public class TestLogin extends BaseTestIvan{
         allSongsIvan.shuffle();
         Assert.assertTrue((homePageIvan.isSongPlaying()));
     }
-    @Test(priority = 2)
+    @Test(enabled = false)
     public void PlayASongFromAllSongs() throws Exception{
         LoginPageIvan loginPageIvan = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPageIvan.login();
@@ -34,13 +34,21 @@ public class TestLogin extends BaseTestIvan{
 
 
     }
-    @Test(priority = 3)
+    @Test(enabled = false)
     public void playFromContest(){
         LoginPageIvan loginPage = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPage.login();
         homePageIvan.clickOnAllSongs().contextClickFirstSong().playFromContextMenu();
         Assert.assertTrue(homePageIvan.isSongPlaying());
+    }
+
+    @Test
+    public void loginTest(){
+        LoginPageIvan loginPage = new LoginPageIvan(driver);
+        loginPage.login();
+
 
     }
+
 
 }

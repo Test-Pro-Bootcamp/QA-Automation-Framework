@@ -40,38 +40,57 @@ public class  BaseTestIvan {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
     }
-//    @BeforeMethod
-//    public static void launchBrowser() throws MalformedURLException {
+
+
+
+//    before and aftermethod for normal execution
+    @BeforeMethod
+    public static void launchBrowser() throws MalformedURLException {
 //        System.setProperty("webdriver.gecko.driver", "geckodriver");
-//        //driver = new ChromeDriver();
-//        //driver = new FirefoxDriver();
-//        //driver = new SafariDriver();
+        driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
+        //driver = new SafariDriver();
 //        threadDriver = new ThreadLocal<>();
 //        driver = pickBrowser(System.getProperty("browser"));
 //        threadDriver.set(driver);
-//        //actions = new Actions(getDriver());
-//        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        //actions = new Actions(getDriver());
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        url = "https://bbb.testpro.io/";
+        driver.get(url);
+    }
+        @AfterMethod
+    public  void tearDownBrowser(){
+        driver.quit();
+    }
+
+
+
+
+//   @before and @aftermethod for  parallel testing
+//    @BeforeMethod
+//    public void setUpBrowser() throws MalformedURLException {
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("browserName","firefox");
+//        capabilities.setCapability("browserName","chrome");
 //        url = "https://bbb.testpro.io/";
+//        threadDriver = new ThreadLocal<>();
+//        driver = pickBrowser(System.getProperty("browser"));
+//        threadDriver.set(driver);
+//        actions = new Actions(getDriver());
+//        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        getDriver().manage().window().maximize();
 //        getDriver().get(url);
+//    }
+
+//    @AfterMethod
+//    public  void tearDownBrowser(){
 //
+//        getDriver().quit();
+//        threadDriver.remove();
 //
 //    }
-    @BeforeMethod
-    public void setUpBrowser() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName","firefox");
-        capabilities.setCapability("browserName","chrome");
-        url = "https://bbb.testpro.io/";
-        threadDriver = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver.set(driver);
-        actions = new Actions(getDriver());
-        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        getDriver().manage().window().maximize();
-        getDriver().get(url);
-    }
 
 
     public static WebDriver lambdaTest() throws MalformedURLException{
@@ -116,13 +135,6 @@ public class  BaseTestIvan {
         return threadDriver.get();
     }
 
-    @AfterMethod
-    public  void tearDownBrowser(){
-
-        getDriver().quit();
-        threadDriver.remove();
-
-    }
 
 
     public static void emailLogin() {

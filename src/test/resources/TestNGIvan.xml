@@ -7,12 +7,12 @@
         <classes>
 <!--            <class name="BaseTest"/>-->
             <class name="TestLogin">
-                    <methods>
-                        <include name="Shuffle"></include>
-                        <include name="PlayASongFromAllSongs"></include>
-                        <include name="playFromContest"></include>
-<!--                        <include name="LoginWithValidEmailPasswordTest"></include>-->
-                    </methods>
+<!--                    <methods>-->
+<!--                        <include name="loginTest"></include>&ndash;&gt;-->
+<!--                        <include name="PlayASongFromAllSongs"></include>-->
+<!--                        <include name="playFromContest"></include>-->
+<!--&lt;!&ndash;                        <include name="LoginWithValidEmailPasswordTest"></include>&ndash;&gt;-->
+<!-- </methods>-->
             </class>
 
 
