@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -55,6 +52,7 @@ public class BaseTest {
         threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
+        getDriver().manage().window().setSize(new Dimension(1920, 1080));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().manage().window().maximize();
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
@@ -73,7 +71,7 @@ public class BaseTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         // Configure your capabilities here
         caps.setCapability("platform", "Windows 10");
-        caps.setCapability("resolution","1440x900");
+        caps.setCapability("resolution","1920x1080");
         caps.setCapability("browserName", "Chrome");
         caps.setCapability("version", "106.0");
         caps.setCapability("build", "TestNG With Java");
@@ -85,7 +83,7 @@ public class BaseTest {
     private static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://localhost:4444/";
-
+        capabilities.setCapability("resolution","1920x1080");
         switch (browser) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
