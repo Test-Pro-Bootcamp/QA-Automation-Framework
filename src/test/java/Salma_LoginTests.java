@@ -24,7 +24,6 @@ public class Salma_LoginTests extends Salma_BaseTest{
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homepage = new HomePage(getDriver());
         loginPage.logIn();
-
         Assert.assertTrue(homepage.isUserAvatarDisplayed());
 
 

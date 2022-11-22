@@ -33,8 +33,7 @@ public class HomePage extends BasePage{
     }
     //Method to verify user avatar is displayed
     public boolean isUserAvatarDisplayed(){
-        //return driver.findElement(avatarLocator).isDisplayed();
-        //We don't need driver.findElement when we use page factory
+       wait.until(ExpectedConditions.visibilityOf(avatarImage));
         return avatarImage.isDisplayed();
     }
 

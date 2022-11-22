@@ -38,15 +38,9 @@ public class Salma_BaseTest {
     @Parameters({"baseURL"})
     public void launchBrowser(String baseURL) throws MalformedURLException {
         //driver = new ChromeDriver();
-        //System.setProperty("webdriver.gecko.driver", "geckodriver");
-        //driver= new FirefoxDriver();
-        //driver = new SafariDriver()
         threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-        //systemProperty "browser", System.getProperty("browser")  --> add this to build.gradle
-        //driver = pickBrowser("firefox");
-        //driver = pickBrowser("safari");
         actions = new Actions(getDriver());
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait= new WebDriverWait(getDriver(), Duration.ofSeconds(5));

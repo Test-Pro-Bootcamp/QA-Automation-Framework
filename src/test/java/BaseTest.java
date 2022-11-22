@@ -35,8 +35,6 @@ public class BaseTest {
         } else {
             System.setProperty("webdriver.chrome.driver", "chromedriver");
         }
-
-
     }
 
     @BeforeMethod
