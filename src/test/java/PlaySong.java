@@ -40,7 +40,7 @@ public class PlaySong extends BaseTest {
 
 
      @Test
-  void hoverOverPlayButton() throws InterruptedException {
+  void hoverOverPlayButton()  {
 
         login();
         chooseAllSongs();
@@ -48,7 +48,7 @@ public class PlaySong extends BaseTest {
         Assert.assertTrue(hoverPlay().isDisplayed());
         hoverPlay().click();
         Assert.assertTrue(isSongPlaying());
-        Thread.sleep(5000);
+
 
     }
 
