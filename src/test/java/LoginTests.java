@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-    @Test(enabled = false, priority = 0)
+    @Test(enabled = true, priority = 0)
     public void LoginEmptyEmailPasswordTest () {
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }

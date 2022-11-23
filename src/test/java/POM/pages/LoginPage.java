@@ -17,6 +17,9 @@ public class LoginPage extends BasePage{
     @FindBy(css="[type='submit']")
     WebElement submitButton;
 
+    @FindBy(css="[id='hel']")
+    WebElement registrationLink;
+
     //passing the driver from our LoginTests page
     public LoginPage(WebDriver givenDriver){
         super(givenDriver);
@@ -42,6 +45,10 @@ public class LoginPage extends BasePage{
                 .providePassword("te$t$tudent")
                 .clickSubmitBtn();
         return new HomePage(driver);
+    }
+
+    public void navigateToRegistration() {
+        registrationLink.click();
     }
 
 
