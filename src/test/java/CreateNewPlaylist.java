@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateNewPlaylist extends BaseTest{
@@ -10,13 +11,18 @@ public class CreateNewPlaylist extends BaseTest{
         clickCreatePlaylistBtn();
         clickNewPlaylistOption();
         sendKeysPlaylistNewNameField();
+        getContextMenu();
+    }
+
+    private void getContextMenu() {
+        driver.findElement(By.cssSelector("[name='name']")).sendKeys(" ",Keys.ENTER);
 
     }
 
     private void sendKeysPlaylistNewNameField() {
         WebElement playlistNameFiled = driver.findElement(By.cssSelector("[name='name']"));
         playlistNameFiled.sendKeys("Happy Holidays");
-        playlistNameFiled.sendKeys(Keys.ENTER);
+
     }
 
     private void clickNewPlaylistOption() {
