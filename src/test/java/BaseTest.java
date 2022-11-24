@@ -71,7 +71,7 @@ public class  BaseTest {
         };
     }
     public void login() {
-        provideEmail("demo@class.com");
+        provideEmail("yuliyakis85@gmail.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();
     }
