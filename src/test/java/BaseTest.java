@@ -29,7 +29,6 @@ public class  BaseTest {
     WebDriverWait wait;
     Actions actions;
 
-
     @BeforeSuite
     public static void chromeConfigs() {
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
@@ -46,33 +45,15 @@ public class  BaseTest {
             baseURL = "https://bbb.testpro.io";
         driver = new ChromeDriver();
         actions = new Actions(driver);
-        // Make webdriver load the pages REALLY slow
-//        WebDriver augmentedDriver = new Augmenter().augment(driver);
-//        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
-//        networkConditions.setDownloadThroughput(100 * 1024);
-//        networkConditions.setUploadThroughput(500 * 1024);
-//        networkConditions.setLatency(Duration.ofMillis(5000));
-//        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
-        // (comment out above lines to remove throttling)
-
-        // Wait for an element to show up for max of X seconds
-        // implicitlyWait(Duration.ofSeconds(60) will wait for UP to 60 seconds
-        // if element comes up after 1 second, it will move on
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // thread.sleep(60000) -- will wait 60s always
         url = baseURL;
         driver.get(url);
-
     }
-
     @AfterMethod
     public void tearDownBrowser() {
         driver.quit();
     }
-
-
     public void clickSubmitBtn() {
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
@@ -100,12 +81,9 @@ public class  BaseTest {
                 {"", ""}
         };
     }
-
     public void login() {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmitBtn();
     }
 }
-
-
