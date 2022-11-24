@@ -4,13 +4,11 @@
 <suite name="TestNG">
 
     <test name="LoginTests" preserve-order="false">
+        <parameter name="baseURL" value="https://bbb.testpro.io/"/>
      <classes>
 <!--        <class name="LoginTests"/>-->
-<!--            <class name="Homework20"/>-->
-<!--                <class name="LoginTests"/>-->
-<!--                    <class name="BaseTest"/>-->
-                         <class name="LoginTests">
-
+<!--            <class name="BaseTest"/>-->
+                <class name="CustomTests">
                     <methods/>
                 </class>
             </classes>
