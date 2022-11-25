@@ -26,10 +26,9 @@ public class LoginTests extends BaseTest {
 
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        BasePage basePage = new BasePage(driver);
 
         loginPage.login();
-        basePage.clickOnAllSongs();
+        allSongsPage.clickOnAllSongs();
         allSongsPage.shuffleSongs();
     }
     @Test
@@ -37,11 +36,10 @@ public class LoginTests extends BaseTest {
 
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        BasePage soundBars = new HomePage(driver);
-        BasePage basePage = new BasePage(driver);
+        AllSongsPage soundBars = new AllSongsPage(driver);
 
         loginPage.login();
-        basePage.clickOnAllSongs();
+        allSongsPage.clickOnAllSongs();
         allSongsPage.choseASong();
         allSongsPage.doubleClickChosenSong();
         Assert.assertTrue(soundBars.isSongPlaying());
@@ -53,10 +51,10 @@ public class LoginTests extends BaseTest {
         MyAlbumsPage myAlbumsPage = new MyAlbumsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         MyAlbumsPage thumbnails = new MyAlbumsPage(driver);
-        BasePage basePage = new BasePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
 
         loginPage.login();
-        basePage.clickOnAlbums();
+        allSongsPage.clickOnAlbums();
         myAlbumsPage.changeViewAsList();
         Assert.assertTrue(thumbnails.isViewChanged());
 

@@ -2,6 +2,7 @@ package POM.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage{
@@ -23,6 +24,13 @@ public class LoginPage extends BasePage{
     }
     public void providePassword(String password){
         driver.findElement(passwordFieldLocator).sendKeys(password);
+    }
+    public WebElement getUserAvatar(){
+        return driver.findElement(avatarLocator);
+    }
+
+    public boolean isUserAvatarDisplayed(){
+        return driver.findElement(avatarLocator).isDisplayed();
     }
     public void login() {
         driver.manage().window().maximize();

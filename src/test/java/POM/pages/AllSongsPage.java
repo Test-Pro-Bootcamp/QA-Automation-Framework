@@ -25,4 +25,17 @@ public class AllSongsPage extends BasePage{
         driver.findElement((By) chosenSongLocator).click();
         return new AllSongsPage(driver);
     }
+    public boolean isSongPlaying() {
+        WebElement soundBarVisualizer = driver.findElement(soundBarPlayLocator);
+        return soundBarVisualizer.isDisplayed();
+    }
+
+    public AllSongsPage clickOnAllSongs(){
+        driver.findElement(allSongsMenuItemLocator).click();
+        return new AllSongsPage(driver);
+    }
+    public MyAlbumsPage clickOnAlbums(){
+        driver.findElement(albumsMenuLocator).click();
+        return new MyAlbumsPage(driver);
+    }
 }
