@@ -7,35 +7,35 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AllSongsPage extends BasePage{
 
-    //Locators
-    By shuffleBtnLocator = By.cssSelector(".btn-shuffle-all");
-    By firstSongLocator = By.cssSelector(".play");
+    By shufleBtnLocator = By.cssSelector(".btn-shuffle-all");
+    By chosenSongLocator = By.xpath("//*[@id=\"songsWrapper\"]/div/div/div[1]/table/tr[19]");
 
     public AllSongsPage(WebDriver givenDriver) {
+
         super(givenDriver);
     }
-
-    public AllSongsPage shuffle(){
-        driver.findElement(shuffleBtnLocator).click();
-        return this;
+    public void shuffleSongs(){
+        driver.findElement(shufleBtnLocator).click();
+    }
+    public void doubleClickChosenSong(){
+        WebElement chosenSongLocator = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/div/div/div[1]/table/tr[19]"));
+        actions.doubleClick( chosenSongLocator).perform();
+    }
+    public AllSongsPage choseASong(){
+        driver.findElement((By) chosenSongLocator).click();
+        return new AllSongsPage(driver);
+    }
+    public boolean isSongPlaying() {
+        WebElement soundBarVisualizer = driver.findElement(soundBarPlayLocator);
+        return soundBarVisualizer.isDisplayed();
     }
 
-    public void doubleClickFirstSong() {
-        actions.doubleClick(driver.findElement(firstSongLocator));
+    public AllSongsPage clickOnAllSongs(){
+        driver.findElement(allSongsMenuItemLocator).click();
+        return new AllSongsPage(driver);
     }
-
-    public void contextClickFirstSong() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        WebElement firstSong = driver.findElement(By.cssSelector(".all-songs tr.song-item:nth-child(1)"));
-        actions.contextClick(firstSong).perform();
+    public MyAlbumsPage clickOnAlbums(){
+        driver.findElement(albumsMenuLocator).click();
+        return new MyAlbumsPage(driver);
     }
-
-    public void playFromContextMenu() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playback"))).click();
-    }
-
-    //Shuffle
-    //Add to Favorite
-    //PlaySong
-    //SortByTitle
 }
