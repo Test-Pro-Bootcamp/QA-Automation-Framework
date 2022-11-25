@@ -1,14 +1,10 @@
 package Homework;
 
-import POM.pages.BasePage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v104.console.model.ConsoleMessage;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import POM.FactoryPages.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import java.time.Duration;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class Homework17 extends BasePage {
 
@@ -16,7 +12,7 @@ public class Homework17 extends BasePage {
         super(givenDriver);
     }
 
-    public void addNewSong(){
+    public void addNewSong() {
         getAllSongs();
 
         selectASong();
@@ -40,6 +36,7 @@ public class Homework17 extends BasePage {
         WebElement selectASong = driver.findElement(By.xpath("//*[@id=\"songsWrapper\"]/div/div/div[1]/table/tr[19]/td[2]"));
         selectASong.click();
     }
+
     public void addASong() {
         WebElement addSongBtn = driver.findElement(By.xpath("//button[contains(@title,'Add selected songs to')]"));
         addSongBtn.click();
@@ -60,7 +57,6 @@ public class Homework17 extends BasePage {
         WebElement addedSongToPlaylist = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/div/div/div[1]/table/tr[2]/td[2]"));
         Assert.assertTrue(addedSongToPlaylist.isDisplayed());
 
-        driver.quit();
     }
 
 }

@@ -1,16 +1,10 @@
 package Homework;
-import POM.pages.BasePage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v104.console.model.ConsoleMessage;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+
+import POM.FactoryPages.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import java.time.Duration;
-
-import static org.testng.Assert.assertTrue;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class Homework18 extends BasePage {
 
@@ -26,14 +20,14 @@ public class Homework18 extends BasePage {
         verifySongPlaying();
     }
 
-    private void openPlaylist(){
+    private void openPlaylist() {
 
         WebElement openPlaylist = driver.findElement(By.xpath("//*[@id=\"playlists\"]/ul/li[3]/a"));
         openPlaylist.click();
 
     }
 
-    private void selectAndLaunchTheSong(){
+    private void selectAndLaunchTheSong() {
         WebElement selectAndLaunchTheSong = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/div/div/div[1]/table/tr[3]"));
         actions.contextClick(selectAndLaunchTheSong).perform();
 
@@ -41,7 +35,7 @@ public class Homework18 extends BasePage {
         hitPlayBtn.click();
     }
 
-    private void verifySongPlaying()  {
+    private void verifySongPlaying() {
 
         WebElement soundBars = driver.findElement(By.xpath("//*[@id=\"mainFooter\"]/div[2]/div[2]/div/button[1]/div/img"));
 

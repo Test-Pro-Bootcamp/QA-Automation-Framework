@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+
 import java.time.Duration;
 
 public class BaseTest {
@@ -16,11 +17,11 @@ public class BaseTest {
 
     @BeforeSuite
     public static void chromeConfigs() {
-        // This is for Windows users
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         }
     }
+
     @AfterMethod
     public void tearDownBrowser() {
         driver.quit();
@@ -46,6 +47,7 @@ public class BaseTest {
         passwordField.click();
         passwordField.sendKeys("te$t$tudent");
     }
+
     public void clickSubmitBtn() {
         WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
         driver.manage().window().maximize();

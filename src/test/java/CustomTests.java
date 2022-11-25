@@ -2,7 +2,7 @@ import Homework.Homework17;
 import Homework.Homework18;
 import Homework.Homework19;
 import Homework.Homework20;
-import POM.pages.*;
+import POM.FactoryPages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,52 +12,37 @@ public class CustomTests extends BaseTest {
 
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        BasePage basePage = new BasePage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.login();
-        basePage.clickOnAllSongs();
+        homePage.clickOnAllSongs();
         allSongsPage.shuffleSongs();
     }
 
     @Test
     public void PlaySong() {
         LoginPage loginPage = new LoginPage(driver);
-        BasePage basePage = new BasePage(driver);
-        BasePage soundBars = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
+        HomePage soundBars = new HomePage(driver);
         AllSongsPage allSongsPage = new AllSongsPage(driver);
 
         loginPage.login();
-        basePage.clickOnAllSongs();
-        allSongsPage.doubleClickChosenSong();
-        Assert.assertTrue(soundBars.isSongPlaying());
-    }
-
-    @Test
-    public void DoubleClickASong() {
-
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-        BasePage soundBars = new HomePage(driver);
-        BasePage basePage = new BasePage(driver);
-        loginPage.login();
-        basePage.clickOnAllSongs();
-        allSongsPage.choseASong();
+        homePage.clickOnAllSongs();
         allSongsPage.doubleClickChosenSong();
         Assert.assertTrue(soundBars.isSongPlaying());
     }
 
     @Test
     public void ViewAsList() {
-
-        MyAlbumsPage myAlbumsPage = new MyAlbumsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        MyAlbumsPage thumbnails = new MyAlbumsPage(driver);
+        MyAlbumsPage myAlbumsPage = new MyAlbumsPage(driver);
+        MyAlbumsPage thumbnailsEnable = new MyAlbumsPage(driver);
         BasePage basePage = new BasePage(driver);
 
         loginPage.login();
         basePage.clickOnAlbums();
         myAlbumsPage.changeViewAsList();
-        Assert.assertTrue(thumbnails.isViewChanged());
+        Assert.assertTrue(thumbnailsEnable.isViewChanged());
 
     }
 
