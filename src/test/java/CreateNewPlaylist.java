@@ -12,6 +12,8 @@ public class CreateNewPlaylist extends BaseTest{
         clickNewPlaylistOption();
         sendKeysPlaylistNewNameField();
         getContextMenu();
+        WebElement newPlaylist = driver.findElement(By.xpath("//a[text()='Happy Holidays']"));
+        Assert.assertTrue(newPlaylist.isDisplayed());
     }
 
     private void getContextMenu() {
