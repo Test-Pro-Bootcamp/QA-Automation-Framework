@@ -8,14 +8,14 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class TestLogin extends BaseTestIvan{
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void LoginWithValidEmailPasswordTest(){
         LoginPageIvan loginPage = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPage.login();
         Assert.assertTrue(homePageIvan.isUserAvatarDisplayed());
 
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Shuffle(){
         LoginPageIvan loginPageIvan = new LoginPageIvan(getDriver());
         HomePageIvan homePageIvan = loginPageIvan.login();

@@ -6,7 +6,8 @@
     <test name="Example Test" preserve-order="false">
         <classes>
 <!--            <class name="BaseTest"/>-->
-            <class name="TestLogin">
+            <class name="TestLogin"/>
+            <class name="IvanFPlayListTest">
 <!--                    <methods>-->
 <!--                        <include name="loginTest"></include>&ndash;&gt;-->
 <!--                        <include name="PlayASongFromAllSongs"></include>-->
