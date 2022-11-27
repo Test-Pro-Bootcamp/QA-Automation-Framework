@@ -27,8 +27,8 @@ public class LoginTests extends BaseTest {
     @Test(enabled = true, priority = 0)//(priority = 1,dataProvider = "invalidCredentials",dataProviderClass = BaseTest.class)
     public void LoginValidEmailValidPasswordTest() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePages = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePages = new HomePage(getDriver());
 
         loginPage.provideEmail("kaflimeerim@gmail.com");
         loginPage.providePassword("te$t$tudent");
@@ -39,7 +39,7 @@ public class LoginTests extends BaseTest {
     @Test
     public void Shuffle() {
         AllSongPage allSongPage = new AllSongPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = loginPage.login();
 
         homePage.clickOnAllSongs()
@@ -50,10 +50,10 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void PlaySongFromAllSongs() throws InterruptedException {
+    public void PlaySongFromAllSongs() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        BasePage basePages = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        BasePage basePages = new BasePage(getDriver());
         AllSongPage allSongPage = new AllSongPage(driver);
 
         loginPage.login();
