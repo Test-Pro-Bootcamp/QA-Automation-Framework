@@ -46,4 +46,5 @@ public class CreateDuplicatePlaylist extends BaseTest {
         WebElement createPlaylistBtn = driver.findElement(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
         createPlaylistBtn.click();
     }
+
 }
