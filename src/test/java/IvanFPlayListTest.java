@@ -21,4 +21,23 @@ public class IvanFPlayListTest extends BaseTestIvan{
         int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
         Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists+1, "Playlist not created");
     }
+    @Test
+    public void createPlaylistshort() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        int initialNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
+        homePageIvan.createPlaylist("na");
+        int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
+        Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists, "Playlist created!!!!!!");
+    }
+    @Test
+    public void createPlaylistlong() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        int initialNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
+        homePageIvan.createPlaylist("namenamenamenam");
+        int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
+        Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists, "Playlist created!!!!!!");
+    }
+
 }
