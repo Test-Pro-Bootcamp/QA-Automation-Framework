@@ -6,14 +6,24 @@ import org.testng.annotations.Test;
 
 public class CreateDuplicatePlaylist extends BaseTest {
     @Test
-    public void createNewPlaylist(){
+    public void createTheSameNamePlaylist(){
         login();
         clickCreatePlaylistBtn();
         clickNewPlaylistOption();
         sendKeysPlaylistNewNameField();
         getContextMenu();
+        clickCreatePlaylistBtn();
+        clickNewPlaylistOption();
+        sendKeysPlaylistNewNameField2();
+        getContextMenu();
         WebElement newPlaylist = driver.findElement(By.xpath("//a[text()='Happy Holidays']"));
-        Assert.assertTrue(newPlaylist.isDisplayed());
+        WebElement newPlaylist2 = driver.findElement(By.xpath("//a[text()='Happy Holidays']"));
+        Assert.assertNotEquals(newPlaylist,newPlaylist2);
+    }
+
+    private void sendKeysPlaylistNewNameField2() {
+        WebElement PlaylistNameField2 = driver.findElement(By.cssSelector("[name='name']"));
+        PlaylistNameField2.sendKeys("Happy Holidays");
     }
 
     private void getContextMenu() {
