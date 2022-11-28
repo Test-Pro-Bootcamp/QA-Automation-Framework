@@ -5,6 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -21,7 +22,10 @@ public class BaseTest {
     static Actions actions;
     static ThreadLocal<WebDriver> threadDriver;
 
-    static String newPlaylistName = "Nozima's Songs";
+    static String newPlaylistName = "";
+
+    @FindBy(xpath="//a[contains(text(),'Nozima')]")
+    WebElement nozimaPlaylist ;
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -37,12 +41,6 @@ public class BaseTest {
         driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
 
-    public void createPlaylist() {
-        driver.findElement(By.cssSelector("[class='fa fa-plus-circle create']")).click();
-        driver.findElement(By.xpath("//li[contains(text(), 'New Playlist')]")).click();
-        driver.findElement(By.xpath("//input[@name='name']")).sendKeys(newPlaylistName, Keys.ENTER);
-    }
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public static void launchBrowser(String BaseURL) throws MalformedURLException {
@@ -52,10 +50,10 @@ public class BaseTest {
         threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(driver);
-        getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        getDriver().manage().window().setSize(new Dimension(1920, 1080));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         getDriver().manage().window().maximize();
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(3));
         actions = new Actions(getDriver());
         getDriver().get(BaseURL);
     }
@@ -113,8 +111,7 @@ public class BaseTest {
         threadDriver.remove();
     }
 
-    protected static void goToMyPlaylist() {
-        WebElement nozimaPlaylist = driver.findElement(By.xpath("//a[contains(text(),'Nozima')]"));
+    protected void goToMyPlaylist() {
         nozimaPlaylist.click();
     }
 

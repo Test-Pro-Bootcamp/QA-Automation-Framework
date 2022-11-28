@@ -1,3 +1,4 @@
+import POM.pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -9,8 +10,9 @@ public class Homework20 extends BaseTest{
 
         @Test
         public void deletePlaylistWait(){
+            HomePage homePage = new HomePage(driver);
             logIn("nozishka86@gmail.com","te$t$tudent");
-            createPlaylist();
+            homePage.createPlaylist("Nozima");
 
             goToMyPlaylist();
 

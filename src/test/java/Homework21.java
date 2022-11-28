@@ -1,3 +1,4 @@
+import POM.pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,8 +12,9 @@ public class Homework21 extends BaseTest{
 
     @Test
     public void renamePlaylist(){
+        HomePage homePage = new HomePage(driver);
         logIn("nozishka86@gmail.com", "te$t$tudent");
-        createPlaylist();
+        homePage.createPlaylist("Nozima");
         hoverPlaylist();
         rightClickOnPlaylist();
         editPlaylist();

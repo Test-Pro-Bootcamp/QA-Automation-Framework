@@ -1,3 +1,4 @@
+import POM.pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -8,8 +9,9 @@ public class Homework18 extends BaseTest {
 
     @Test
     public void playSong() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
         logIn("nozishka86@gmail.com","te$t$tudent");
-        createPlaylist();
+        homePage.createPlaylist("Nozima's Songs");
 
         clickAllSongsLink();
         clickSong();

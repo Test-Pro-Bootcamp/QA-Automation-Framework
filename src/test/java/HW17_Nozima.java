@@ -1,3 +1,4 @@
+import POM.pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -7,8 +8,9 @@ public class HW17_Nozima extends BaseTest {
 
     @Test
     public void addSongToPlaylist(){
+        HomePage homePage = new HomePage(driver);
         logIn("nozishka86@gmail.com","te$t$tudent");
-        createPlaylist();
+        homePage.createPlaylist("Nozima");
 
 
         WebElement allSongs = driver.findElement(By.xpath("//a[text()='All Songs']"));
