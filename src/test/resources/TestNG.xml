@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
-    <parameter name="baseURL" value="https://bbb.testpro.io/"/>
-
-    <test name="playSong" preserve-order="true">
+<suite name="TestNG" parallel="methods" thread-count="2">
+    <test name="LoginTests">
         <classes>
-            <class name="PageFactory23.PlaySong"/>
+            <class name="test.LoginTests"/>
         </classes>
     </test>
 
