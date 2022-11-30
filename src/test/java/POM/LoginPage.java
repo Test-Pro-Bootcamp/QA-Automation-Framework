@@ -15,10 +15,10 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
-    public void provideEmail(String email) {
+    public void provideEmail(String myEmail) {
         WebElement emailField = driver.findElement(emailFieldLocator);
         waitForElementToBeClickable(emailField).click();
-        emailField.sendKeys(email);
+        emailField.sendKeys(myEmail);
     }
 
     public void providePassword(String password) {

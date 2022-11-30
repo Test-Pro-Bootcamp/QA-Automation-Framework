@@ -37,6 +37,12 @@ public class BaseTest {
 
         threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
+        if (BaseURL == null) {
+            BaseURL = "https://bbb.testpro.io";
+        }
+        if(threadDriver == null) {
+            threadDriver = new ThreadLocal<>();
+        }
         threadDriver.set(driver);
 
         getDriver().manage().window().maximize();

@@ -16,14 +16,19 @@ public class AllSongsPage extends BasePage {
     WebElement playButton;
     @FindBy(xpath = "//img[@alt='Sound bars']")
     WebElement visualizer;
-    private String searchPhrase = "Waiting On A Train";
+    @FindBy(xpath="//div[@class='results']/section[@class='songs']")
+    WebElement songsResultsSection;
+    @FindBy(xpath="//div[@class='results']/section[@class='artists']")
+    WebElement artistsResultsSection;
+    @FindBy(xpath="//div[@class='results']/section[@class='albums']")
+    WebElement albumsResultsSection;
 
     public AllSongsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    public void search() {
+    public void search(String songName) {
         waitAndActionsClickWebElement(searchField);
-        searchField.sendKeys(searchPhrase);
+        searchField.sendKeys(songName);
     }
     public void playSelectedSong() {
         waitAndContextClickWebElement(mySelectedSong);
@@ -32,5 +37,44 @@ public class AllSongsPage extends BasePage {
     public boolean playingOfTheSongIsDisplayed() {
         waitForVisibilityOfElement(visualizer);
         return visualizer.isDisplayed();
+    }
+    public void validatePlayOfTheSong() {
+        Assert.assertTrue(visualizer.isDisplayed());
+    }
+    public boolean songsResultsSectionIsDisplayed(){
+        waitForVisibilityOfElement(songsResultsSection);
+        return songsResultsSection.isDisplayed();
+    }
+    public void validateSongsResultsSection(){
+            Assert.assertTrue(songsResultsSectionIsDisplayed());
+
+    }
+    public boolean artistsResultsSectionIsDisplayed(){
+        waitForVisibilityOfElement(artistsResultsSection);
+        return artistsResultsSection.isDisplayed();
+    }
+    public void validateArtistsResultsSection(){
+        Assert.assertTrue(artistsResultsSectionIsDisplayed());
+    }
+    public boolean albumsResultsSectionIsDisplayed(){
+        waitForVisibilityOfElement(albumsResultsSection);
+        return albumsResultsSection.isDisplayed();
+    }
+    public void validateAlbumsResultsSection(){
+        Assert.assertTrue(albumsResultsSectionIsDisplayed());
+    }
+    public boolean searchedSongIsDisplayed(){
+        waitForVisibilityOfElement(mySelectedSong);
+        return mySelectedSong.isDisplayed();
+    }
+    public void validateSearchedSong(){
+        Assert.assertTrue(searchedSongIsDisplayed());
+    }
+    public String getTextFirstSongFromSearchResults() {
+        return mySelectedSong.getText();
+    }
+    public String getTextForSongsResultsSection(){
+        waitForVisibilityOfElement(songsResultsSection);
+        return songsResultsSection.getText();
     }
 }
