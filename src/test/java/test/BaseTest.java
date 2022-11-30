@@ -39,7 +39,9 @@ public class BaseTest {
         threadDriver = new ThreadLocal<>();
         threadDriver.set(driver);
 
+//        action = new Actions(getDriver());
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
         url = baseURL;
         getDriver().get(url);
     }
@@ -48,22 +50,42 @@ public class BaseTest {
         return threadDriver.get();
     }
 
+//    public WebDriver lambdaTest() throws MalformedURLException {
+//        String username = "dankoyanka";
+//        String authkey = "7u1e1vjWWLcBMyNqSpdx9C00NBfqD3yZyVkhjFFn6Nl874Ph74";
+//        String hub = "@hub.lambdatest.com/wd/hub";
+//
+//        DesiredCapabilities caps = new DesiredCapabilities();
+//        caps.setCapability("platform","MacOS Catalina");
+//        caps.setCapability("browserName", "Chrome");
+//        caps.setCapability("version","106.0");
+//        caps.setCapability("resolution", "1920x1080");
+//        caps.setCapability("build", "TestNG With Java");
+//        caps.setCapability("name", this.getClass().getName());
+//        caps.setCapability("plugin", "git-testng");
+//
+//        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+//    }
+
     public WebDriver lambdaTest() throws MalformedURLException {
         String username = "dankoyanka";
         String authkey = "7u1e1vjWWLcBMyNqSpdx9C00NBfqD3yZyVkhjFFn6Nl874Ph74";
-        String hub = "@hub.lambatest.com/wd.hub";
+        String hub = "@hub.lambdatest.com/wd/hub";
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platform","Windows 10");
-        caps.setCapability("browserName", "");
-        caps.setCapability("version","107.0");
-        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version","106.0");
+        caps.setCapability("resolution", "1920x1080");
         caps.setCapability("build", "TestNG With Java");
         caps.setCapability("name", this.getClass().getName());
-        caps.setCapability("plugin", "git-testing");
+        caps.setCapability("plugin", "git-testng");
 
-        return new RemoteWebDriver(new URL("https//" + username + ";" + authkey + hub), caps);
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
     }
+
+
+
 //    ChromeOptions browserOptions = new ChromeOptions();
 //browserOptions.setPlatformName("Windows 10");
 //browserOptions.setBrowserVersion("107.0");
