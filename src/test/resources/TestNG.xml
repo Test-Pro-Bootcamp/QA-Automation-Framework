@@ -13,7 +13,8 @@
 <!--            <class name="HmWrk16"/>-->
 <!--            <class name="HmWrk17"/>-->
 <!--            <class name="HmWrk18"/>-->
-            <class name="HmWrk19"/>
+<!--            <class name="HmWrk19"/>-->
+            <class name="HmWrk20"/>
         </classes>
     </test>
 </suite>

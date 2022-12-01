@@ -2,6 +2,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -12,7 +15,9 @@ import java.time.Duration;
 public class BaseTest {
 
     WebDriver driver;
-    String url = "https://bbb.testpro.io/";
+    WebDriverWait wait;
+    String url;
+
     By usernameLocator = By.xpath("//*[@type='email']");
     By passwordLocator = By.xpath("//*[@type='password']");
     By loginButton = By.xpath("//*[@type='submit']");
@@ -31,19 +36,20 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
     }
     @AfterMethod
     public void tearDown() {
         driver.quit();
     }
     public void providePassword(String password ) {
-        driver.findElement(passwordLocator).sendKeys(password);
+        wait.until(ExpectedConditions.elementToBeClickable(passwordLocator)).sendKeys(password);
     }
     public void provideEmail(String email) {
-        driver.findElement(usernameLocator).sendKeys(email);
+        wait.until(ExpectedConditions.elementToBeClickable(usernameLocator)).sendKeys(email);
     }
     public void clickSubmitBtn() {
-        driver.findElement(loginButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
     }
     public void logIn(){
             provideEmail("demo@class.com");
