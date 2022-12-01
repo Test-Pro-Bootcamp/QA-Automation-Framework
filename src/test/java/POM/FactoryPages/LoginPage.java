@@ -17,6 +17,11 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
+    public boolean submitBtnIsDisplayed(){
+
+        return submitBtn.isDisplayed();
+    }
+
     public LoginPage clickSubmitBtn() {
 
         submitBtn.click();

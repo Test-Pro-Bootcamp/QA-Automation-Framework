@@ -1,4 +1,3 @@
-import POM.FactoryPages.BasePage;
 import java.net.MalformedURLException;
 import java.net.URI;
 import org.openqa.selenium.By;
@@ -10,16 +9,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver;
-    Actions actions;
+    static WebDriver driver;
+    static Actions actions;
 
-    String baseURL;
+    static String url;
+
+    static WebDriverWait wait;
+    static ThreadLocal<WebDriver> threadDriver;
 
     @BeforeSuite
     public static void chromeConfigs() {
@@ -30,26 +33,31 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod
-    public void tearDownBrowser() {
-        driver.quit();
-    }
-
     @BeforeMethod
-    @Parameters({"baseURL"})
-    public void launchBrowser(String baseURL) throws MalformedURLException {
-    if(baseURL == null)
-            baseURL = "https://bbb.testpro.io";
+    public static void launchBrowser() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName","chorme");
+
+        System.setProperty("webdriver.gecko.driver", "geckodriver");
+
+        threadDriver = new ThreadLocal<>();
         driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(driver);
+
+        actions = new Actions(getDriver());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        actions = new Actions(driver);
-        driver.get(baseURL);
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(7));
+        url = "https://bbb.testpro.io";
+        getDriver().get(url);
     }
 
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
 
-    private WebDriver pickBrowser(String browser) throws MalformedURLException {
+    private static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://172.31.128.1:4444";
+        String gridURL = "http://25.0.210.251:4444";
         switch (browser){
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
@@ -69,23 +77,29 @@ public class BaseTest {
                 return driver = new ChromeDriver();
         }
     }
+    @AfterMethod
+    public void tearDownBrowser() {
+        getDriver().quit();
+        threadDriver.remove();
 
-    public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys(email);
     }
 
-    public void providePassword() {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-    }
-
-    public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
-        driver.manage().window().maximize();
-        submitButton.click();
-    }
+//    public void provideEmail(String email) {
+//        WebElement emailField = getDriver().findElement(By.cssSelector("[type='email']"));
+//        emailField.click();
+//        emailField.sendKeys(email);
+//    }
+//
+//    public void providePassword() {
+//        WebElement passwordField = getDriver().findElement(By.cssSelector("[type='password']"));
+//        passwordField.click();
+//        passwordField.sendKeys("te$t$tudent");
+//    }
+//
+//    public void clickSubmitBtn() {
+//        WebElement submitButton = getDriver().findElement(By.cssSelector("[type='submit']"));
+//        getDriver().manage().window().maximize();
+//        submitButton.click();
+//    }
 
 }

@@ -39,8 +39,6 @@ public class Homework18 extends BasePage {
 
         WebElement soundBars = driver.findElement(By.xpath("//*[@id=\"mainFooter\"]/div[2]/div[2]/div/button[1]/div/img"));
 
-        Assert.assertEquals(true, soundBars.isDisplayed());
-
-
+        Assert.assertTrue(soundBars.isDisplayed());
     }
 }
