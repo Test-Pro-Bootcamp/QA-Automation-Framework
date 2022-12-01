@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNG_HW23N">
+
+    <test name="naldoury_Homework23" preserve-order="false">
+        <classes>
+            <class name="naldoury_Homework23"/>
+        </classes>
+    </test>
+</suite>
+
+<!--<class name="RegistrationTests"/>-->
+<!--<class name="ChangeUsernameTests"/>-->
