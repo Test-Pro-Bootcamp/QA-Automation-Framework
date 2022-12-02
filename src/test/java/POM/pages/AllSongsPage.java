@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AllSongsPage extends BasePage{
 
-    //Locators
     By shuffleBtnLocator = By.cssSelector(".btn-shuffle-all");
     By firstSongLocator = By.cssSelector(".play");
 
@@ -34,8 +33,4 @@ public class AllSongsPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playback"))).click();
     }
 
-    //Shuffle
-    //Add to Favorite
-    //PlaySong
-    //SortByTitle
 }
