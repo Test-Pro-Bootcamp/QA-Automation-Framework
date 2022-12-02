@@ -19,6 +19,8 @@ public class BasePage {
     @FindBy(xpath = "//a[contains(text(),'Albums')]")
     WebElement albumsMenuItem;
 
+    @FindBy(xpath = "//a[contains(text(),'Artists')]")
+    WebElement artistsMenuItem;
     @FindBy(xpath = "//a[text()='Favorites']")
     WebElement favoritesMenuItem;
 
@@ -41,6 +43,10 @@ public class BasePage {
 
     public BasePage clickFavorites() {
         wait.until(ExpectedConditions.elementToBeClickable(favoritesMenuItem)).click();
+        return this;
+    }
+    public BasePage clickArtists() {
+        wait.until(ExpectedConditions.elementToBeClickable(artistsMenuItem)).click();
         return this;
     }
 }

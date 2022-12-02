@@ -19,6 +19,9 @@ public class HomePage extends BasePage{
     )
     List<WebElement> playlists;
 
+    @FindBy (xpath = "//ol[@class='top-song-list']//button[@title='Like Dark Days by Grav']")
+    WebElement notYetLikedSong;
+
     @FindBy(xpath="//a[contains(text(),'Nozima')]")
     WebElement nozimaPlaylist ;
 
@@ -34,6 +37,8 @@ public class HomePage extends BasePage{
     @FindBy (xpath = "//button[contains(text(),'Save')]")
     WebElement saveBtn;
 
+    @FindBy (xpath = "//button[@title='Delete this playlist']")
+    WebElement deletePB;
 
     String url = "https://bbb.testpro.io/";
 
@@ -65,6 +70,11 @@ public class HomePage extends BasePage{
         return this;
     }
 
+    public HomePage likeSong() {
+       notYetLikedSong.click();
+        return this;
+    }
+
     public HomePage rightClickOnPlaylist() {
         WebElement playlist = driver.findElement(By.xpath("//a[contains(text(),'Dana')]"));
         actions.contextClick(playlist).perform();
@@ -87,7 +97,6 @@ public class HomePage extends BasePage{
     }
 
     public HomePage clickDeleteBtn() {
-        WebElement deletePB = driver.findElement(By.xpath("//button[@title='Delete this playlist']"));
         deletePB.click();
         return this;
     }
@@ -101,6 +110,11 @@ public class HomePage extends BasePage{
         optionFieldInput.sendKeys("Airbit");
         saveBtn.click();
 
+        return this;
+    }
+    public HomePage clickHeartKetsaBeat() {
+        WebElement deletePB = driver.findElement(By.xpath("//button[@title='Delete this playlist']"));
+        deletePB.click();
         return this;
     }
 }
