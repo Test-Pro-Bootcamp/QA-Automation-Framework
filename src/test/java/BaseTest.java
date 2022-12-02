@@ -38,10 +38,8 @@ public class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName","chorme");
 
-        System.setProperty("webdriver.gecko.driver", "geckodriver");
-
         threadDriver = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
+        driver = pickBrowser("browser");
         threadDriver.set(driver);
 
         actions = new Actions(getDriver());
@@ -83,23 +81,4 @@ public class BaseTest {
         threadDriver.remove();
 
     }
-
-//    public void provideEmail(String email) {
-//        WebElement emailField = getDriver().findElement(By.cssSelector("[type='email']"));
-//        emailField.click();
-//        emailField.sendKeys(email);
-//    }
-//
-//    public void providePassword() {
-//        WebElement passwordField = getDriver().findElement(By.cssSelector("[type='password']"));
-//        passwordField.click();
-//        passwordField.sendKeys("te$t$tudent");
-//    }
-//
-//    public void clickSubmitBtn() {
-//        WebElement submitButton = getDriver().findElement(By.cssSelector("[type='submit']"));
-//        getDriver().manage().window().maximize();
-//        submitButton.click();
-//    }
-
 }

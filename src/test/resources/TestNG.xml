@@ -7,8 +7,8 @@
         <parameter name="baseURL" value="https://bbb.testpro.io/"/>
             <classes>
              <class name="LoginTests"/>
-<!--                    <class name="BaseTest"/>-->
-<!--                            <class name="CustomTests"/>-->
+                    <class name="BaseTest"/>
+                            <class name="CustomTests"/>
 <!--                    <methods/>-->
 <!--                </class>-->
             </classes>

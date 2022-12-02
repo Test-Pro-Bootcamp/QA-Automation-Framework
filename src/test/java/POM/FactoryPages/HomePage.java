@@ -25,7 +25,7 @@ public class HomePage extends BasePage{
 
     public boolean isUserAvatarDisplayed(){
 
-        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) avatarLocator)).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf( avatarLocator)).isDisplayed();
     }
     public boolean isSongPlaying() {
         return soundBarPlayLocator.isDisplayed();
