@@ -2,14 +2,10 @@ package POM.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Factory;
-
-import javax.swing.*;
-
 
 public class HomePage extends BasePage {
 
-    @FindBy(xpath = "//a[@class='songs active']")
+    @FindBy(xpath = "//a[contains(text(),'All Songs')]")
     WebElement allSongsList;
 
     @FindBy(xpath = "//table[@class='items']//tr[@class='song-item']//td[@class='title']")
@@ -20,8 +16,18 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//section[@id='songsWrapper']//li[@class='favorites'] ")
     WebElement addToFavoritesPlaylist;
-    @FindBy(xpath = "//a[@class='active']")
+    @FindBy(xpath = "//li[@class='playlist favorites']")
     WebElement favoritesPlaylist;
+
+    @FindBy(xpath = "//section[@id='favoritesWrapper']//td[@class='title']")
+    WebElement addedSong;
+
+    @FindBy(xpath = "//section[@id='favoritesWrapper']//i[@data-test='btn-like-liked']")
+    WebElement unlikeBtn;
+
+    @FindBy(xpath = "//i[@class='fa fa-frown-o']")
+    public
+    WebElement emptyListIcon;
 
     public HomePage(WebDriver sentDriver) {super(sentDriver);}
 
@@ -32,12 +38,19 @@ public class HomePage extends BasePage {
         addToList.click();
         addToFavoritesPlaylist.click();
         favoritesPlaylist.click();
+    }
 
+    public String getTextAddedSong(){
+        return addedSong.getText();
 
+    }
 
-
-
+    public void emptyFavoritesPlaylist() {
+        favoritesPlaylist.click();
+        unlikeBtn.click();
+        emptyListIcon.isDisplayed();
 
 
     }
 }
+
