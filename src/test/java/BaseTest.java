@@ -102,7 +102,7 @@ public class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("platform", "Windows 10");
-        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("browser", "Chrome");
         capabilities.setCapability("version", "106.0");
         capabilities.setCapability("resolution","1024x768");
         capabilities.setCapability("build", "First Test");
