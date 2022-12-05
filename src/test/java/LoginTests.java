@@ -16,6 +16,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.isUserAvatarDisplayed());
 
     }
+
     @Test
     public void LoginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());

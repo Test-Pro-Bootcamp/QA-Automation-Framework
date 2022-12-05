@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG" parallel="methods" thread-count="2">
+<suite name="TestNG" parallel="methods" thread-count="1">
 
     <test name="LoginTests" preserve-order="false">
         <parameter name="baseURL" value="https://bbb.testpro.io/"/>
-            <classes>
-             <class name="LoginTests">
-<!--                    <class name="BaseTest"/>-->
-<!--                            <class name="CustomTests">-->
-                                <methods>
-<!--                                    <include name="ShuffleTest" />-->
-<!--                                    <include name="PlaySong" />-->
-<!--                                    <include name="ViewAsList" />-->
-<!--                                    <include name="Homework17" />-->
-<!--                                    <include name="Homework18" />-->
-<!--                                    <include name="Homework19" />-->
-<!--                                    <include name="Homework20" />-->
-                                </methods>
-                </class>
-            </classes>
-        </test>
+        <classes>
+            <class name="LoginTests">
+            <!--                    <class name="BaseTest"/>-->
+<!--            <class name="CustomTests">-->
+                <methods>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
 
 

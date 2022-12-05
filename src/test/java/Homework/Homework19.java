@@ -41,7 +41,7 @@ public class Homework19 extends BasePage {
     }
 
     private void chosePL() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("playlist:nth-child(3)"))).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("playlist:nth-child(3)"))).click();
         WebElement chosePL = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
         chosePL.click();
     }

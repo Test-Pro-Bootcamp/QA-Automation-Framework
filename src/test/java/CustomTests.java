@@ -106,8 +106,8 @@ public class CustomTests extends BaseTest {
 //        LoginPage loginPage = new LoginPage(driver);
 //        Homework20 homework20 = new Homework20(driver);
 
-          LoginPage loginPage = new LoginPage(getDriver());
-          Homework20 homework20 = new Homework20(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
+        Homework20 homework20 = new Homework20(getDriver());
 
         loginPage.login();
         homework20.playSongFromPlaylist();
