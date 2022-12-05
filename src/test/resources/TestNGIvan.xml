@@ -7,7 +7,7 @@
         <classes>
 <!--            <class name="BaseTest"/>-->
             <class name="TestLogin"/>
-            <class name="IvanFPlayListTest">
+            <class name="IvanFFavoriteTests">
 <!--                    <methods>-->
 <!--                        <include name="loginTest"></include>&ndash;&gt;-->
 <!--                        <include name="PlayASongFromAllSongs"></include>-->

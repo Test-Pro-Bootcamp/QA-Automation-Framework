@@ -1,4 +1,5 @@
 import PagesIvaF.AllSongsIvan;
+import PagesIvaF.AllSongsIvan;
 import PagesIvaF.HomePageIvan;
 import PagesIvaF.LoginPageIvan;
 import org.openqa.selenium.By;
@@ -12,34 +13,8 @@ import org.testng.annotations.Test;
 import org.testng.annotations.TestInstance;
 import java.time.Duration;
 
-public class IvanFPlayListTest extends BaseTestIvan{
-    @Test
-    public void createPlaylist() throws InterruptedException {
-        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
-        HomePageIvan homePageIvan = loginPage.login();
-        int initialNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        homePageIvan.createPlaylist("name");
-        int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists+1, "Playlist not created");
-    }
-    @Test
-    public void createPlaylistshort() throws InterruptedException {
-        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
-        HomePageIvan homePageIvan = loginPage.login();
-        int initialNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        homePageIvan.createPlaylist("na");
-        int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists, "Playlist created!!!!!!");
-    }
-    @Test
-    public void createPlaylistlong() throws InterruptedException {
-        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
-        HomePageIvan homePageIvan = loginPage.login();
-        int initialNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        homePageIvan.createPlaylist("namenamenamenam");
-        int updatedNumberOfPlaylists = homePageIvan.getNumberOfPlaylist();
-        Assert.assertEquals(updatedNumberOfPlaylists, initialNumberOfPlaylists, "Playlist created!!!!!!");
-    }
+
+public class IvanFFavoriteTests extends BaseTestIvan{
     @Test
     public void checkFavorite() throws InterruptedException{
         LoginPageIvan loginPage = new LoginPageIvan(getDriver());
@@ -48,6 +23,8 @@ public class IvanFPlayListTest extends BaseTestIvan{
         System.out.println("Number of favorites         "+(homePageIvan.getNumberfavourite()));
 
     }
+
+
     @Test
     public void checkQueue() throws InterruptedException{
         LoginPageIvan loginPage = new LoginPageIvan(getDriver());
@@ -100,6 +77,15 @@ public class IvanFPlayListTest extends BaseTestIvan{
         Thread.sleep(2000);
         Assert.assertTrue(homePageIvan.isSongDownloaded("HoliznaCC0 - Waiting On A Train.mp3"));
     }
+    @Test
+    public void checkIfFavEmpty() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        homePageIvan.favorite();
+        Thread.sleep(2000);
+        homePageIvan.emptyFavPlay();
+
+    }
 //   Drag and Droop method not working with the Koel App
 //    @Test
 //    public void dragAndDropSongs() throws InterruptedException {
@@ -113,6 +99,9 @@ public class IvanFPlayListTest extends BaseTestIvan{
 //
 //
 //    }
+
+
+
 
 
 
