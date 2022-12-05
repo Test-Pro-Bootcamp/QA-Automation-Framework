@@ -36,7 +36,7 @@ public class BaseTest {
     @BeforeMethod
     public static void launchBrowser() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName","chorme");
+        capabilities.setCapability("browserName","chrome");
 
         threadDriver = new ThreadLocal<>();
         driver = pickBrowser("browser");

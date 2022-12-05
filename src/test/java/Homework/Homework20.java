@@ -24,6 +24,7 @@ public class Homework20 extends BasePage {
     }
 
     public void openPlaylist() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), 'ITS ALIVE!!!!!')]")));
         WebElement openPlaylist = driver.findElement(By.xpath("//a[contains(text(), 'ITS ALIVE!!!!!')]"));
         openPlaylist.click();
     }

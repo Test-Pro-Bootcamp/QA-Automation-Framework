@@ -4,6 +4,7 @@ import POM.FactoryPages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class Homework18 extends BasePage {
@@ -21,13 +22,14 @@ public class Homework18 extends BasePage {
     }
 
     private void openPlaylist() {
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"playlists\"]/ul/li[3]/a")));
         WebElement openPlaylist = driver.findElement(By.xpath("//*[@id=\"playlists\"]/ul/li[3]/a"));
         openPlaylist.click();
 
     }
 
     private void selectAndLaunchTheSong() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"playlistWrapper\"]/div/div/div[1]/table/tr[3]")));
         WebElement selectAndLaunchTheSong = driver.findElement(By.xpath("//*[@id=\"playlistWrapper\"]/div/div/div[1]/table/tr[3]"));
         actions.contextClick(selectAndLaunchTheSong).perform();
 

@@ -23,6 +23,7 @@ public class Homework19 extends BasePage {
     }
 
     private void createPL() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"playlists\"]/h1/i")));
         WebElement createNewPlayListsButton = driver.findElement(By.xpath("//*[@id=\"playlists\"]/h1/i"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"userBadge\"]/a[1]/img")));
         createNewPlayListsButton.click();
@@ -40,7 +41,7 @@ public class Homework19 extends BasePage {
     }
 
     private void chosePL() {
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("playlist:nth-child(3)"))).click();
         WebElement chosePL = driver.findElement(By.xpath("//a[contains(text(), 'PlayListsForDeleting')]"));
         chosePL.click();
     }
