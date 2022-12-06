@@ -57,7 +57,7 @@ public class BaseTest {
 //        ChromiumNetworkConditions networkConditions = new ChromiumNetworkConditions();
 //        networkConditions.setDownloadThroughput(100 * 1024);
 //        networkConditions.setUploadThroughput(500 * 1024);
-//        networkConditions.setLatency(Duration.ofMillis(5000));
+//        networkConditions.setLatency(Duration.ofMillis(1000));
 //        ((HasNetworkConditions) augmentedDriver).setNetworkConditions(networkConditions);
         // (comment out above lines to remove throttling)
 
@@ -102,18 +102,22 @@ public class BaseTest {
     }
 
     public void clickSubmitBtn() {
-        WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));
+       // WebElement submitButton = driver.findElement(By.cssSelector("[type='submit']"));--> old fashion
+        //this is explicit wait
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='submit']")));// .findElement(By.cssSelector("[type='submit']"));
         submitButton.click();
     }
 
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        //WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));//.findElement(By.cssSelector("[type='email']"));
         emailField.click();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        //WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']")));//driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
         passwordField.sendKeys(password);
 
