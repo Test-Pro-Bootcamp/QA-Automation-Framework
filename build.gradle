@@ -18,5 +18,15 @@ test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
         systemProperty "browser", System.getProperty("browser")
+
+        //suites "src/test/resources/hw17.xml"
+
     }
 }
+
+//test {
+//    useTestNG() {
+//        suites "src/test/resources/TestNGparallel.xml"
+//        systemProperty "browser", System.getProperty("browser")
+//    }
+//}
