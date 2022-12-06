@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class LoginTests extends MyBaseTest  {
 
     @Test
     public void LoginValidEmailPasswordTest () {

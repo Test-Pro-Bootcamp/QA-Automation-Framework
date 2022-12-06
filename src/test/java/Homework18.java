@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework18 extends BaseTest {
+public class Homework18 extends MyBaseTest {
 
     @Test
     public void playSong() throws InterruptedException {

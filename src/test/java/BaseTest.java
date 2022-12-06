@@ -20,7 +20,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver;
+    public WebDriver driver;
     String url;
     WebDriverWait wait;
     Actions actions;
@@ -46,11 +46,11 @@ public class BaseTest {
     public void launchBrowser(@Optional String baseURL) throws MalformedURLException {
         if (baseURL == null)
             baseURL ="https://bbb.testpro.io";
-        //driver = new ChromeDriver();
-        System.setProperty("webdriver.gecko.driver", "geckodriver");
-        //driver = new FirefoxDriver();
-        //driver = new SafariDriver();
-        driver = pickBrowser(System.getProperty("browser"));
+        driver = new ChromeDriver();
+//        System.setProperty("webdriver.gecko.driver", "geckodriver");
+//        driver = new FirefoxDriver();
+//        driver = new SafariDriver();
+//        driver = pickBrowser(System.getProperty("browser"));
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
