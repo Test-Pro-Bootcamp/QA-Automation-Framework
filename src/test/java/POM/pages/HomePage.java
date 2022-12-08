@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//a[contains(text(),'All Songs')]")
@@ -29,6 +31,23 @@ public class HomePage extends BasePage {
     public
     WebElement emptyListIcon;
 
+    @FindBy(xpath = "//section[@id='favoritesWrapper']//i[@class='fa fa-heart text-maroon'] ")
+    List<WebElement> ListOfElements;
+
+    @FindBy(xpath = "//input[@type='search']")
+    WebElement searchBar;
+
+    @FindBy(xpath = "//section[@data-testid='song-excerpts']//h1")
+    WebElement songsSectionResults;
+
+    @FindBy(xpath = "//span[contains(text(),'Search Results')]")
+    WebElement searchResults;
+
+    @FindBy(xpath = "//section[@data-testid='artist-excerpts']/h1")
+    WebElement artistSectionResults;
+
+
+
     public HomePage(WebDriver sentDriver) {super(sentDriver);}
 
 
@@ -49,8 +68,21 @@ public class HomePage extends BasePage {
         favoritesPlaylist.click();
         unlikeBtn.click();
         emptyListIcon.isDisplayed();
+    }
+
+    public void clickOnSearchBar() {
+        searchBar.click();
+        searchBar.sendKeys("dark");
+
+    }
+
+    public boolean isSearchResultsDisplayed() {
+        return searchResults.isDisplayed();
+    }
 
 
+    public boolean isSongsSectionResultsDisplayed() {
+        return songsSectionResults.isDisplayed();
     }
 }
 
