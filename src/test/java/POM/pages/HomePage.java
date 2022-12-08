@@ -79,10 +79,9 @@ public class HomePage extends BasePage {
     public boolean isSearchResultsDisplayed() {
         return searchResults.isDisplayed();
     }
-
-
     public boolean isSongsSectionResultsDisplayed() {
         return songsSectionResults.isDisplayed();
     }
+
 }
 

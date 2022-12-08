@@ -25,6 +25,7 @@ public class SearchBarTests extends BaseTest{
         homePage.clickOnSearchBar();
         Assert.assertTrue(homePage.isSongsSectionResultsDisplayed());
 
+
    }
 
 }
