@@ -24,7 +24,12 @@ public class SearchBarTests extends BaseTest{
         HomePage homePage = new LoginPage(driver).login();
         homePage.clickOnSearchBar();
         Assert.assertTrue(homePage.isSongsSectionResultsDisplayed());
-
+   }
+   @Test
+    public void EmptyListResults(){
+        HomePage homepage =new LoginPage(driver).login();
+        homepage.clickOnSearchBar();
+        Assert.assertEquals(homepage.getTextNoResults(),"no results");
 
    }
 

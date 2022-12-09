@@ -45,6 +45,8 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//section[@data-testid='artist-excerpts']/h1")
     WebElement artistSectionResults;
+    @FindBy(xpath = "//section[@data-testid='song-excerpts']//p")
+    WebElement noResults;
 
 
 
@@ -82,6 +84,9 @@ public class HomePage extends BasePage {
     public boolean isSongsSectionResultsDisplayed() {
         return songsSectionResults.isDisplayed();
     }
+    public String getTextNoResults() {
+        return noResults.getText();
 
+    }
 }
 
