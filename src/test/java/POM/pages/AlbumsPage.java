@@ -23,7 +23,7 @@ public class AlbumsPage extends BasePage{
         super(givenDriver);
     }
 
-    public String getUrlAlbumsPage(){
+    public String getUrlAlbumsPage() {
 
         return urlAlbumsPage;
     }

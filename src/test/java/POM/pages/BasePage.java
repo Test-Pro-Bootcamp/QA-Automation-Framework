@@ -24,6 +24,9 @@ public class BasePage {
     @FindBy(xpath = "//a[text()='Favorites']")
     WebElement favoritesMenuItem;
 
+    @FindBy(xpath = "//input[@type='search']")
+    WebElement searchField;
+
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -47,6 +50,11 @@ public class BasePage {
     }
     public BasePage clickArtists() {
         wait.until(ExpectedConditions.elementToBeClickable(artistsMenuItem)).click();
+        return this;
+    }
+
+    public BasePage search() {
+        wait.until(ExpectedConditions.elementToBeClickable(searchField)).click();
         return this;
     }
 }

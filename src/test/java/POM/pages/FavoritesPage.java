@@ -69,6 +69,7 @@ public class FavoritesPage extends BasePage {
     }
 
     public boolean threeLikedSongs() {
+
         return favePlaylistItems.size() == 3;
     }
     public void deleteAllLikedSongs() {
