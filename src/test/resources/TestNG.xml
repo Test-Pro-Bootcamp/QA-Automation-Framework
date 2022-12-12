@@ -6,9 +6,9 @@
     <test name="LoginTests" preserve-order="false">
         <parameter name="baseURL" value="https://bbb.testpro.io/"/>
         <classes>
-            <class name="LoginTests"/>
+            <class name="LoginTests">
             <!--                    <class name="BaseTest"/>-->
-            <class name="CustomTests">
+<!--            <class name="CustomTests">-->
                 <methods>
                 </methods>
             </class>
