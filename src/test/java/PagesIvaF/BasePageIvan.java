@@ -1,13 +1,14 @@
 package PagesIvaF;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
 import java.time.Duration;
 
 public class BasePageIvan {
@@ -17,6 +18,9 @@ public class BasePageIvan {
      Actions actions;
     By allSongLocator = By.cssSelector("li a.songs");
     By songVisaulizer = By.cssSelector("[data-testid = 'sound-bar-play']");
+
+    @FindBy(css = "#searchForm > input[type=search]")
+    WebElement searchArea;
      public BasePageIvan (WebDriver givenDriver){
          driver=givenDriver;
          wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -54,6 +58,23 @@ public class BasePageIvan {
         wait.until(ExpectedConditions.visibilityOfElementLocated(playListLocator)).click();
         return this;
     }
+    public String removeExtraSpaces(String unformattedString){
+        String formattedString = unformattedString.replaceAll("\\s+", " ");
+        return  formattedString;
+    }
+    public void putSearchRequest(String searchReq) {
+//        System.out.println("placeholder-before : " + searchArea.getAttribute("placeholder"));
+//        System.out.println("value-before : " + searchArea.getAttribute("value"));
+//
+//        searchArea.sendKeys("search keyword here");
+//
+//        System.out.println("placeholder-after : " + searchArea.getAttribute("placeholder"));
+//        System.out.println("value-after : " + searchArea.getAttribute("value"));
+         searchArea.click();
+         searchArea.sendKeys(removeExtraSpaces(searchReq));
+         searchArea.sendKeys(Keys.ENTER);
+    }
+
 
 
 }

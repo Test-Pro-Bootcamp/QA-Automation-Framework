@@ -1,7 +1,5 @@
+import PagesIvaF.*;
 import PagesIvaF.AllSongsIvan;
-import PagesIvaF.AllSongsIvan;
-import PagesIvaF.HomePageIvan;
-import PagesIvaF.LoginPageIvan;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -86,6 +84,44 @@ public class IvanFFavoriteTests extends BaseTestIvan{
         homePageIvan.emptyFavPlay();
 
     }
+    @Test
+    public void search() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        BasePageIvan basePageIvan = new BasePageIvan(getDriver());
+        basePageIvan.putSearchRequest("take      hand");
+        Thread.sleep(2000);
+
+    }
+    @Test
+    public void searchSong() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        BasePageIvan basePageIvan = new BasePageIvan(getDriver());
+        basePageIvan.putSearchRequest("take      hand");
+        Thread.sleep(2000);
+
+    }
+    @Test
+    public void searchNonExisting() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        BasePageIvan basePageIvan = new BasePageIvan(getDriver());
+        basePageIvan.putSearchRequest("ivan");
+        Thread.sleep(2000);
+
+    }
+    @Test
+    public void aNewsearch() throws InterruptedException {
+        LoginPageIvan loginPage = new LoginPageIvan(getDriver());
+        HomePageIvan homePageIvan = loginPage.login();
+        BasePageIvan basePageIvan = new BasePageIvan(getDriver());
+        basePageIvan.putSearchRequest("take      hand");
+        Thread.sleep(2000);
+
+    }
+
+
 //   Drag and Droop method not working with the Koel App
 //    @Test
 //    public void dragAndDropSongs() throws InterruptedException {
