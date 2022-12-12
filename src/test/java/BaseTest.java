@@ -40,7 +40,7 @@ public class BaseTest {
         capabilities.setCapability("browserName", "browser");
 
         threadDriver = new ThreadLocal<>();
-        driver = pickBrowser("cloud");
+        driver = pickBrowser("browser");
         threadDriver.set(driver);
 
         actions = new Actions(getDriver());
