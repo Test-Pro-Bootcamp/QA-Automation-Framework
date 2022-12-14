@@ -1,4 +1,4 @@
-package PageFactory23;
+package POM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +18,7 @@ public class BasePage {
     By allSongsMenuItemLocator = By.cssSelector("li a.songs");
 
     public BasePage(WebDriver givenDriver){
+        //WebDriver givenDriver = null;
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
@@ -33,16 +34,5 @@ public class BasePage {
         return driver.findElement(avatarLocator).isDisplayed();
     }
 
-    public boolean isSongPlaying() {
-        WebElement soundBarVisualizer = driver.findElement(soundBarPlayLocator);
-        return soundBarVisualizer.isDisplayed();
-    }
 
-    public AllSongsPage clickOnAllSongs(){
-        driver.findElement(allSongsMenuItemLocator).click();
-        return new AllSongsPage(driver);
-    }
-    public void chooseAllSongsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
-    }
 }

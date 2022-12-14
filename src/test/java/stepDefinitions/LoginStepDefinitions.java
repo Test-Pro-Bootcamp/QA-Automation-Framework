@@ -32,8 +32,8 @@ public class LoginStepDefinitions {
 
     @Given("I open Browser")
     public void iOpenBrowser() {
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        driver = new ChromeDriver();
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     @And("I open Login Page")

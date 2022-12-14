@@ -1,15 +1,15 @@
 package test;
 
-import PageFactory23.AllSongsPage;
-import PageFactory23.BasePage;
-import PageFactory23.HomePage;
-import PageFactory23.LoginPage;
+import POM.AllSongsPage;
+import POM.BasePage;
+import POM.HomePage;
+import POM.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PlaySong extends BaseTest {
+public class PlaySongTest extends BaseTest {
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void playSong() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -17,7 +17,7 @@ public class PlaySong extends BaseTest {
         BasePage homePage = new HomePage(driver);
 
         loginPage.login();
-        homePage.clickOnAllSongs();
+        songsPage.clickOnAllSongs();
         songsPage.contextClickFirstSong();
         songsPage.playFromContextMenu();
         Assert.assertTrue(songsPage.isSongPlaying());

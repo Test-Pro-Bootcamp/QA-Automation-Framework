@@ -1,4 +1,4 @@
-package PageFactory23;
+package POM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,5 +45,11 @@ public class AllSongsPage extends BasePage {
         actions.moveToElement(play).perform();
         return play;
     }
+
+    public AllSongsPage clickOnAllSongs(){
+        driver.findElement(allSongsMenuItemLocator).click();
+        return new AllSongsPage(driver);
+    }
+
 }
 

@@ -23,7 +23,7 @@ public class BaseTest {
     ThreadLocal<WebDriver> threadDriver;
 
     @BeforeSuite
-    public static void chromeConfigs() {
+    public static void browserConfigs() {
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
             System.setProperty("WebDriver.chrome.driver", "chromedriver.exe");
         }
@@ -50,23 +50,6 @@ public class BaseTest {
         return threadDriver.get();
     }
 
-//    public WebDriver lambdaTest() throws MalformedURLException {
-//        String username = "dankoyanka";
-//        String authkey = "7u1e1vjWWLcBMyNqSpdx9C00NBfqD3yZyVkhjFFn6Nl874Ph74";
-//        String hub = "@hub.lambdatest.com/wd/hub";
-//
-//        DesiredCapabilities caps = new DesiredCapabilities();
-//        caps.setCapability("platform","MacOS Catalina");
-//        caps.setCapability("browserName", "Chrome");
-//        caps.setCapability("version","106.0");
-//        caps.setCapability("resolution", "1920x1080");
-//        caps.setCapability("build", "TestNG With Java");
-//        caps.setCapability("name", this.getClass().getName());
-//        caps.setCapability("plugin", "git-testng");
-//
-//        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
-//    }
-
     public WebDriver lambdaTest() throws MalformedURLException {
         String username = "dankoyanka";
         String authkey = "7u1e1vjWWLcBMyNqSpdx9C00NBfqD3yZyVkhjFFn6Nl874Ph74";
@@ -83,22 +66,6 @@ public class BaseTest {
 
         return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
     }
-
-
-
-//    ChromeOptions browserOptions = new ChromeOptions();
-//browserOptions.setPlatformName("Windows 10");
-//browserOptions.setBrowserVersion("107.0");
-//    HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-//ltOptions.put("username", "dankoyanka");
-//ltOptions.put("accessKey", "7u1e1vjWWLcBMyNqSpdx9C00NBfqD3yZyVkhjFFn6Nl874Ph74");
-//ltOptions.put("resolution", "1024x768");
-//ltOptions.put("project", "Untitled");
-//ltOptions.put("selenium_version", "4.1.2");
-//ltOptions.put("w3c", true);
-//ltOptions.put("plugin", "java-java");
-//browserOptions.setCapability("LT:Options", ltOptions);
-
 
     private WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -131,7 +98,5 @@ public class BaseTest {
         threadDriver.remove();
 
     }
-
-
 }
 

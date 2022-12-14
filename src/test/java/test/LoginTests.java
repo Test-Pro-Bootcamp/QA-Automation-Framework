@@ -1,10 +1,9 @@
 package test;
 
-import PageFactory23.HomePage;
-import PageFactory23.LoginPage;
+import POM.HomePage;
+import POM.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import test.BaseTest;
 
 public class LoginTests extends BaseTest {
 

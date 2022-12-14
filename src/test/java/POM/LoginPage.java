@@ -1,4 +1,4 @@
-package PageFactory23;
+package POM;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,8 +37,6 @@ public class LoginPage extends BasePage {
                 .clickSubmitBtn();
         return new HomePage(driver);
     }
-
-
     public boolean isPageOpened() {
         return driver.getCurrentUrl().contains("https://bbb.testpro.io");
     }
