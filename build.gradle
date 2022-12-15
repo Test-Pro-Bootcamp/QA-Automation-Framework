@@ -12,7 +12,7 @@ repositories {
 dependencies {
     testImplementation 'org.testng:testng:7.6.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.6.0'
-    testImplementation 'org.testng:testng:7.6.1'
+
     implementation 'org.seleniumhq.selenium:selenium-java:4.6.0'
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-testng
     implementation 'io.cucumber:cucumber-testng:7.9.0'

@@ -6,4 +6,3 @@ Feature: Login feature
     And I enter password "te$t$tudent"
     And I submit
     Then I am logged in
-
