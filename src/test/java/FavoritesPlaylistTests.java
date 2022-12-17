@@ -20,6 +20,6 @@ public class FavoritesPlaylistTests extends BaseTest {
         homePage.emptyFavoritesPlaylist();
         Assert.assertTrue(homePage.emptyListIcon.isDisplayed());
 
-
     }
+
 }

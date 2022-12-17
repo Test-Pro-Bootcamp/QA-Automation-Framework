@@ -25,11 +25,18 @@ public class SearchBarTests extends BaseTest{
         homePage.clickOnSearchBar();
         Assert.assertTrue(homePage.isSongsSectionResultsDisplayed());
    }
+//   @Test
+//    public void EmptyListResults(){
+//        HomePage homepage =new LoginPage(driver).login();
+//        homepage.clickOnSearchBar();
+//        Assert.assertEquals(homepage.getTextNoResults(),"no results");
+
+//   
    @Test
-    public void EmptyListResults(){
+    public void CleanTheSearchQuery(){
         HomePage homepage =new LoginPage(driver).login();
         homepage.clickOnSearchBar();
-        Assert.assertEquals(homepage.getTextNoResults(),"no results");
+        Assert.assertEquals(homepage.getTextFindSongsArtistAlbums(),"Find songs, artists, and albums");
 
    }
 

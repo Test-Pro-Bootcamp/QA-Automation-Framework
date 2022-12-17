@@ -1,4 +1,5 @@
 package POM.pages;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +49,11 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//section[@data-testid='song-excerpts']//p")
     WebElement noResults;
 
+    @FindBy(xpath = "//div[contains(text(),'Find songs, artists, and albums')]")
+    WebElement findSongsArtistAlbums;
+
+
+
 
 
     public HomePage(WebDriver sentDriver) {super(sentDriver);}
@@ -75,6 +81,8 @@ public class HomePage extends BasePage {
     public void clickOnSearchBar() {
         searchBar.click();
         searchBar.sendKeys("dark");
+        searchBar.sendKeys(Keys.COMMAND,"a");
+        searchBar.sendKeys(Keys.DELETE,"dark");
 
     }
 
@@ -87,6 +95,10 @@ public class HomePage extends BasePage {
     public String getTextNoResults() {
         return noResults.getText();
 
+    }
+
+    public String getTextFindSongsArtistAlbums() {
+        return findSongsArtistAlbums.getText();
     }
 }
 
