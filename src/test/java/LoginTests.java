@@ -2,6 +2,7 @@ import POM.pages.AllSongsPage;
 import POM.pages.BasePage;
 import POM.pages.HomePage;
 import POM.pages.LoginPage;
+import homeworks.MyBaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

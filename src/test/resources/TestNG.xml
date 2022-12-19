@@ -4,7 +4,7 @@
 <suite name="TestNG">
 
     <test name="LoginTests" preserve-order="false">
-        <classes>
+        <classes>   
             <class name="LoginTests"/>
         </classes>
     </test>
