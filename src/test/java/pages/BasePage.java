@@ -25,4 +25,8 @@ public class BasePage {
     public boolean isLoggedIn(){
         return driver.findElement(avatarLocator).isDisplayed();
     }
+
+    public FavoritesPage goToFavorite() {
+        return new FavoritesPage(driver);
+    }
 }
