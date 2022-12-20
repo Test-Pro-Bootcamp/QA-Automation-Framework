@@ -19,7 +19,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        String username = "demo@class.com";
+        String username = "demo111@class.com";
         loginPage.provideEmail(username);
         loginPage.providePassword("te$t$tudent");
         loginPage.clickSubmitBtn();
