@@ -50,7 +50,7 @@ public class BaseTest {
         System.setProperty("webdriver.gecko.driver", "geckodriver");
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
-        driver = pickBrowser(System.getProperty("browser"));
+        driver = pickBrowser("chrome");
         actions = new Actions(driver);
         // Make webdriver load the pages REALLY slow
 //        WebDriver augmentedDriver = new Augmenter().augment(driver);
