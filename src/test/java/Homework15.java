@@ -27,7 +27,7 @@ public class Homework15 extends BaseTest{
         Assert.assertTrue(searchResult.isDisplayed());
 
         if (searchResult.isDisplayed()) {
-            WebElement songTitle = driver.findElement(By.xpath("//span[contains(text(),'Pluto')]"));
+            WebElement songTitle = driver.findElement(By.xpath("(//h1[normalize-space()='16 is Done'])[1]"));
             Assert.assertTrue(songTitle.isDisplayed());
         }
 
