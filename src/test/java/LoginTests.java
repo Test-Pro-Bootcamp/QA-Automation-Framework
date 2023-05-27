@@ -1,5 +1,4 @@
 import POM.pages.AllSongsPage;
-import POM.pages.BasePage;
 import POM.pages.HomePage;
 import POM.pages.LoginPage;
 import org.openqa.selenium.By;
@@ -19,8 +18,8 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
+        loginPage.provideEmail("dirzo@gmail.com");
+        loginPage.providePassword("Te$ter1234");
         loginPage.clickSubmitBtn();
         Assert.assertTrue(homePage.isUserAvatarDisplayed());
 
@@ -30,7 +29,7 @@ public class LoginTests extends BaseTest {
     public void LoginEmptyPasswordTest () {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("demo@class.com");
+        loginPage.provideEmail("dirzo@gmail.com");
         loginPage.providePassword("");
         loginPage.clickSubmitBtn();
         Assert.assertTrue(loginPage.isPageOpened());
@@ -116,7 +115,7 @@ public class LoginTests extends BaseTest {
 
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
 
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
@@ -147,9 +146,9 @@ public class LoginTests extends BaseTest {
         By allButtonSelector = By.className("btn-shuffle-all");
 
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
+        passwordField.sendKeys("Te$ter1234");
         submitButton.click();
         Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
         // WebElement songsMenu = driver.findElement(By.className("songs"));
@@ -178,9 +177,9 @@ public class LoginTests extends BaseTest {
         By allButtonSelector = By.className("btn-shuffle-all");
 
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
+        passwordField.sendKeys("Te$ter1234");
         submitButton.click();
         Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
         // WebElement songsMenu = driver.findElement(By.className("songs"));
