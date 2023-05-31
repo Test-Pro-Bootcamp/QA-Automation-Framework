@@ -3,7 +3,11 @@
 <suite name="TestNG">
     <test verbose="2" preserve-order="true" name="Homework16">
         <classes>
-            <class name="Homework16"></class>
+            <class name="Homework17">
+                <methods>
+                    <include name="addSongToPlaylist"/>
+                </methods>
+            </class>
         </classes>
 
     </test>
