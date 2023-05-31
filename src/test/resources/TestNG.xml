@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TestNG">
-
-    <test name="LoginTests" preserve-order="false">
+    <test verbose="2" preserve-order="true" name="Homework16">
         <classes>
-            <class name="LoginTests"/>
+            <class name="Homework16"></class>
         </classes>
+
     </test>
 </suite>
-
-<!--<class name="RegistrationTests"/>-->
-<!--<class name="ChangeUsernameTests"/>-->
