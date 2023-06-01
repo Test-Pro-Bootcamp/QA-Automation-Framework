@@ -3,41 +3,37 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework19 extends BaseTest {
-
+public class Homework19 extends BaseTest{
     @Test
-    public void deletePlaylist() throws InterruptedException {
-        // Create a test case deletePlaylist() using @Test annotations
-        // Use the reusable methods
-        // Use @Parameters for passing baseUrl
-        // Given: Navigate to "https://bbb.testpro.io/"
-        // Step1: Log in with your credentials
-        login();
-        // Step2: Choose a playlist
+    public void deletePlayList() throws InterruptedException{
+        //Login to webapp
+        navigateToPage();
+        provideEmail("khushbu07@gmail.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        Thread.sleep(2000);
         selectPlaylist();
-        // Step3: Delete the playlist
-        pressDeletePlaylist();
-        // Step4: Validate that the playlist is deleted "Deleted playlist"
-        Assert.assertEquals(getConfirmationPopupText(), "Deleted playlist");
+        String deletedPlaylist = getSelectedPlaylist();
+        deletePlaylist();
+        Assert.assertEquals(getConfirmationPopup(),"Deleted playlist \"" + deletedPlaylist + ".\"");
     }
-
-    private void selectPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        myPlaylist.click();
-        Thread.sleep(5000);
+    private void selectPlaylist() throws InterruptedException{
+        WebElement selectPlaylist = driver.findElement(By.xpath("//section[@id='playlists']//ul//li[@class='playlist playlist'][1]"));
+        selectPlaylist.click();
+        Thread.sleep(4000);
     }
-
-    private void pressDeletePlaylist() throws InterruptedException {
-        WebElement delPlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
-        delPlaylist.click();
+    private String getSelectedPlaylist() throws InterruptedException{
+        WebElement getSelectedPlaylist = driver.findElement(By.xpath("//section[@id='playlists']//ul//li[@class='playlist playlist']"));
+        String txt = getSelectedPlaylist.getText();
+        return txt;
+    }
+    private void deletePlaylist() throws InterruptedException{
+        WebElement deletePlaylistBtn = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
+        deletePlaylistBtn.click();
         Thread.sleep(4000);
     }
 
-    private String getConfirmationPopupText() {
-        return driver.findElement(By.cssSelector("div.success.show")).getText();
+    private String getConfirmationPopup(){
+        return driver.findElement(By.xpath("//div[@class='success show']")).getText();
     }
-
-
-
-
 }
