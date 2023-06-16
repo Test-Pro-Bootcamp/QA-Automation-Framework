@@ -35,7 +35,7 @@ public class BaseTest {
 // Make baseURL parameter optional, if it is null, then set it to something)
     public void launchBrowser(@Optional String baseURL) throws MalformedURLException {
         if (baseURL == null)
-            baseURL ="https://bbb.testpro.io";
+            baseURL ="https://qa.koel.app/";
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);

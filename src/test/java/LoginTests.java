@@ -45,10 +45,7 @@ public class LoginTests extends BaseTest {
     public void LoginValidEmailValidPasswordTest () {
 
         login();
-        // driver.findelement(how to find the element)
-        // |
-        // var = how to find element
-        // driver.findelement(var)
+
 
         By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
         By playlistLocator = By.cssSelector("#playlists h1");
@@ -110,7 +107,7 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://https://qa.koel.app//";
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
@@ -135,7 +132,7 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         By emailSelector = By.cssSelector("[type='email']");
         WebElement emailField = driver.findElement(emailSelector);
@@ -166,7 +163,7 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         By emailSelector = By.cssSelector("[type='email']");
         WebElement emailField = driver.findElement(emailSelector);
@@ -190,7 +187,7 @@ public class LoginTests extends BaseTest {
         Thread.sleep(5000);
 
 
-        url = "https://bbb.testpro.io/";
+        url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
