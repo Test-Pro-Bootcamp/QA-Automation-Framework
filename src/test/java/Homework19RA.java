@@ -1,48 +1,57 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework19RA extends BaseTest {
-    /*    Create a new file Homework19.java file with @Test annotation in IntelliJ IDEA
-        Create a test case deletePlaylist() using @Test annotations
-        Use the helper/reusable methods we created
-        Use @Parameters for passing baseUrl from the TestNG config file to the tests
-        Navigate to "https://bbb.testpro.io/"
-        Log in with your credentials
-        Choose a playlist
-        Delete the playlist
-        Validate that the playlist is deleted
-        Create a new branch and commit your changes
-        Push your code to a remote repository
-        Create a pull request
-        Copy and paste the link of the pull request (or your branch) to the field below, so we can check your homework*/
+    /*  By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
+        By playlistLocator = By.cssSelector("#playlists h1");
+
+        wait.until(ExpectedConditions.elementToBeClickable(avatarIconLocator));
+        WebElement avatarIcon = driver.findElement(avatarIconLocator);
+        Assert.assertTrue(avatarIcon.isDisplayed());
+        wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(playlistLocator), "PLAYLISTS"));*/
+
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
 
         login();
         selectPlaylist();
         pressDeleteplaylist();
-
-        WebElement deletedplaylistMsg = getConfirmationPopupText();
-        Assert.assertTrue(deletedplaylistMsg.isDisplayed());
+        //confirmDel(); THis is used if the playlist has songs saved in it
+        Assert.assertNotNull(getConfirmationPopupText());
+        Assert.assertTrue(getConfirmationPopupText().startsWith("Deleted playlist"));
 
     }
 
-    private void selectPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(4)"));
+    private void selectPlaylist() {
+
+
+        WebElement myPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         myPlaylist.click();
-        Thread.sleep(4000);
     }
 
-    private void pressDeleteplaylist() throws InterruptedException {
+    private void pressDeleteplaylist() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[title='Delete this playlist']")));
         WebElement playlistDel = driver.findElement(By.cssSelector("button[title='Delete this playlist']"));
         playlistDel.click();
-        Thread.sleep(4000);
+
+
     }
 
-    public WebElement getConfirmationPopupText() {
-        return driver.findElement(By.cssSelector("div.success.show"));
+    //This was used to test when the playlist had songs in it.
+    /*private void confirmDel() {
+
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='dialog']//div")));
+        WebElement okButton = driver.findElement(By.cssSelector(".ok"));
+        okButton.click();
+
+    }*/
+
+    private String getConfirmationPopupText() {
+        return driver.findElement(By.cssSelector("div.success.show")).getText();
 
 
     }

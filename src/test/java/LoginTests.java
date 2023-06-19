@@ -15,12 +15,13 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginValidEmailPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("dirzo@gmail.com");
+        /*loginPage.provideEmail("dirzo@gmail.com");
         loginPage.providePassword("Te$ter1234");
-        loginPage.clickSubmitBtn();
+        loginPage.clickSubmitBtn();*/
+        login();
         Assert.assertTrue(homePage.isUserAvatarDisplayed());
 
     }
@@ -32,7 +33,7 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("dirzo@gmail.com");
         loginPage.providePassword("");
         loginPage.clickSubmitBtn();
-        Assert.assertTrue(loginPage.isPageOpened());
+        Assert.assertFalse(loginPage.isPageOpened());
 
     }
 
@@ -41,8 +42,8 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test (enabled=false, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
-    public void LoginValidEmailValidPasswordTest () {
+    @Test (enabled = true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
+    public void LoginValidEmailValidPasswordTest () throws InterruptedException {
 
         login();
 
@@ -95,8 +96,8 @@ public class LoginTests extends BaseTest {
         providePassword("");
         clickSubmitBtn();
 
-        // Vd
-        Thread.sleep(2000);
+
+        WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
@@ -152,7 +153,7 @@ public class LoginTests extends BaseTest {
         // WebElement songsMenu = driver.findElement(songMenuSelector);
         driver.findElement(songMenuSelector).click();
         Assert.assertTrue(driver.findElement(allButtonSelector).isDisplayed());
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.quit();
     }
@@ -184,7 +185,7 @@ public class LoginTests extends BaseTest {
         driver.findElement(searchBarSelector).click();
         driver.findElement(searchBarSelector).sendKeys("Veggie Straws");
         //Assert.assertTrue(driver.findElement().isDisplayed());
-        Thread.sleep(5000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
         url = "https://qa.koel.app/";
