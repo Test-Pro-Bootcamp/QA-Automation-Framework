@@ -11,7 +11,7 @@ public class Homework17 extends BaseTest {
     public void addSongToPlaylist(){
         //login
         provideEmail("demo@class.com");
-        providePassword("");
+        providePassword("te$t$tudent");
         clickSubmitBtn();
         //add a song to the playlist
         clickViewAllBtn();
@@ -61,5 +61,7 @@ public class Homework17 extends BaseTest {
     private void clickViewAllBtn() {
         WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-testid='home-view-all-recently-played-btn']"));
         viewAllBtn.click();
+        WebElement songList = driver.findElement(By.xpath("//section[@id='recentlyPlayedWrapper']//div[@class='virtual-scroller scroller']//tr[1]"));
+        songList.click();
     }
 }

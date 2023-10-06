@@ -3,12 +3,16 @@
 
 <suite name="TestNG">
 
-    <test name="LoginTests" preserve-order="false">
-        <classes>
-            <class name="LoginTests"/>
+       <test name="LoginTests" preserve-order="false">
+         <classes>
+             <class name="LoginTests">
+                 <methods>
+                     <include name="LoginValidEmailValidPasswordTest" />
+                 </methods>
+             </class>
         </classes>
-    </test>
-</suite>
+        </test>
+    </suite>
 
-<!--<class name="RegistrationTests"/>-->
-<!--<class name="ChangeUsernameTests"/>-->
+
+

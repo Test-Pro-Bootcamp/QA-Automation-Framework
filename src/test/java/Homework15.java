@@ -1,0 +1,33 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Homework15 extends BaseTest{
+
+    @Test
+    public void search() {
+
+        provideEmail("dirzo@gmail.com");
+        providePassword("Te$ter1234");
+        clickSubmitBtn();
+        WebElement searchBar = driver.findElement(By.cssSelector("[type='search'"));
+
+        searchBar.click();
+        
+        searchBar.sendKeys("Pluto");
+
+
+
+        WebElement searchResult;
+        searchResult = driver.findElement(By.id("searchExcerptsWrapper"));
+        Assert.assertTrue(searchResult.isDisplayed());
+
+        if (searchResult.isDisplayed()) {
+            WebElement songTitle = driver.findElement(By.xpath("(//h1[normalize-space()='16 is Done'])[1]"));
+            Assert.assertTrue(songTitle.isDisplayed());
+        }
+
+              driver.quit();
+    }
+}

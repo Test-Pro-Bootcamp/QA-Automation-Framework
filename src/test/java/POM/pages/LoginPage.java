@@ -38,14 +38,14 @@ public class LoginPage extends BasePage{
     }
 
     public HomePage login(){
-        provideEmail("demo@class.com")
-                .providePassword("te$t$tudent")
+        provideEmail("dirzo@gmail.com")
+                .providePassword("Te#ter1234")
                 .clickSubmitBtn();
         return new HomePage(driver);
     }
 
 
     public boolean isPageOpened() {
-        return driver.getCurrentUrl().contains("https://bbb.testpro.io");
+        return driver.getCurrentUrl().contains("https://qa.koel.app/");
     }
 }

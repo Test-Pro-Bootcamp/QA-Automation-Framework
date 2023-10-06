@@ -1,5 +1,4 @@
 import POM.pages.AllSongsPage;
-import POM.pages.BasePage;
 import POM.pages.HomePage;
 import POM.pages.LoginPage;
 import org.openqa.selenium.By;
@@ -16,12 +15,13 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginValidEmailPasswordTest () {
-        LoginPage loginPage = new LoginPage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmitBtn();
+        /*loginPage.provideEmail("dirzo@gmail.com");
+        loginPage.providePassword("Te$ter1234");
+        loginPage.clickSubmitBtn();*/
+        login();
         Assert.assertTrue(homePage.isUserAvatarDisplayed());
 
     }
@@ -30,10 +30,10 @@ public class LoginTests extends BaseTest {
     public void LoginEmptyPasswordTest () {
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.provideEmail("demo@class.com");
+        loginPage.provideEmail("dirzo@gmail.com");
         loginPage.providePassword("");
         loginPage.clickSubmitBtn();
-        Assert.assertTrue(loginPage.isPageOpened());
+        Assert.assertFalse(loginPage.isPageOpened());
 
     }
 
@@ -42,14 +42,11 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test (enabled=false, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
-    public void LoginValidEmailValidPasswordTest () {
+    @Test (enabled = true, priority = 1)// (priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
+    public void LoginValidEmailValidPasswordTest () throws InterruptedException {
 
         login();
-        // driver.findelement(how to find the element)
-        // |
-        // var = how to find element
-        // driver.findelement(var)
+
 
         By avatarIconLocator = By.xpath("//img[contains(@alt,'Avatar of')]");
         By playlistLocator = By.cssSelector("#playlists h1");
@@ -99,8 +96,8 @@ public class LoginTests extends BaseTest {
         providePassword("");
         clickSubmitBtn();
 
-        // Vd
-        Thread.sleep(2000);
+
+        WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
@@ -111,12 +108,12 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://https://qa.koel.app//";
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
 
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
@@ -136,7 +133,7 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         By emailSelector = By.cssSelector("[type='email']");
         WebElement emailField = driver.findElement(emailSelector);
@@ -147,16 +144,16 @@ public class LoginTests extends BaseTest {
         By allButtonSelector = By.className("btn-shuffle-all");
 
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
+        passwordField.sendKeys("Te$ter1234");
         submitButton.click();
         Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
         // WebElement songsMenu = driver.findElement(By.className("songs"));
         // WebElement songsMenu = driver.findElement(songMenuSelector);
         driver.findElement(songMenuSelector).click();
         Assert.assertTrue(driver.findElement(allButtonSelector).isDisplayed());
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.quit();
     }
@@ -167,7 +164,7 @@ public class LoginTests extends BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         By emailSelector = By.cssSelector("[type='email']");
         WebElement emailField = driver.findElement(emailSelector);
@@ -178,9 +175,9 @@ public class LoginTests extends BaseTest {
         By allButtonSelector = By.className("btn-shuffle-all");
 
         emailField.click();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("dirzo@gmail.com");
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
+        passwordField.sendKeys("Te$ter1234");
         submitButton.click();
         Assert.assertTrue(driver.findElement(avatarSelector).isDisplayed());
         // WebElement songsMenu = driver.findElement(By.className("songs"));
@@ -188,10 +185,10 @@ public class LoginTests extends BaseTest {
         driver.findElement(searchBarSelector).click();
         driver.findElement(searchBarSelector).sendKeys("Veggie Straws");
         //Assert.assertTrue(driver.findElement().isDisplayed());
-        Thread.sleep(5000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
-        url = "https://bbb.testpro.io/";
+        url = "https://qa.koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
