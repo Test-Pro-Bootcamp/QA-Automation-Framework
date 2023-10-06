@@ -13,7 +13,7 @@ import java.util.List;
 public class PlaySong extends BaseTest{
 
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong() {
         // test case here
         // Class23 Example
 
